@@ -1,5 +1,7 @@
+*.egg-info/
+build/
+dist/
 .venv/
 __pycache__/
 *.pyc
-.DS_Store
-build/*.xlsx
+.pytest_cache/
