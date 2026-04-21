@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+<<<<<<< HEAD
     "name": "Pipeline & Gas Expo 2026",
     "shortName": "Pipeline & Gas Expo",
     "dates": "4–6 Şubat",
@@ -423,6 +424,38 @@
     "id": 21,
     "name": "Gastech Exhibition & Conference 2026",
     "shortName": "Gastech Bangkok",
+=======
+    "eventId": "evt-wlga-summit-2026",
+    "name": "WLGA Strategic Innovation Summit 2026",
+    "shortName": "WLGA Summit",
+    "dates": "11–12 Mart",
+    "s": 70,
+    "e": 71,
+    "city": "Tokyo",
+    "country": "Japonya",
+    "flag": "🇯🇵",
+    "region": "asia",
+    "type": "lpg",
+    "tag": "LPG",
+    "org": "World Liquid Gas Association",
+    "venue": "Tokyo",
+    "scale": "Bilgi güncellenecek",
+    "desc": "LPG innovation and market development summit.",
+    "contact": "",
+    "url": "https://www.worldliquidgas.org",
+    "ticket": "Check official site",
+    "status": "confirmed",
+    "confidence": 0.93,
+    "sourceType": "association",
+    "sourceUrl": "https://www.worldliquidgas.org/events/",
+    "lastCheckedAt": "2026-04-21T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "eventId": "evt-gastech-2026",
+    "name": "Gastech 2026",
+    "shortName": "Gastech",
+>>>>>>> 4b39800fc0cc7dc7ad68c8179ef86d95cc8137e7
     "dates": "14–17 Eylül",
     "s": 257,
     "e": 260,
@@ -430,6 +463,7 @@
     "country": "Tayland",
     "flag": "🇹🇭",
     "region": "asia",
+<<<<<<< HEAD
     "type": "asia",
     "tag": "ASYA-LNG",
     "org": "dmg events",
@@ -511,10 +545,37 @@
     "s": 306,
     "e": 309,
     "city": "Abu Dabi",
+=======
+    "type": "lng",
+    "tag": "LNG",
+    "org": "dmg events",
+    "venue": "BITEC",
+    "scale": "Bilgi güncellenecek",
+    "desc": "Global gas, LNG, hydrogen and climate technology event.",
+    "contact": "",
+    "url": "https://www.gastechevent.com",
+    "ticket": "Check official site",
+    "status": "confirmed",
+    "confidence": 0.98,
+    "sourceType": "official_site",
+    "sourceUrl": "https://www.gastechevent.com/visit/visitor-registration/",
+    "lastCheckedAt": "2026-04-21T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "eventId": "evt-adipec-2026",
+    "name": "ADIPEC 2026",
+    "shortName": "ADIPEC",
+    "dates": "2–5 Kasım",
+    "s": 306,
+    "e": 309,
+    "city": "Abu Dhabi",
+>>>>>>> 4b39800fc0cc7dc7ad68c8179ef86d95cc8137e7
     "country": "BAE",
     "flag": "🇦🇪",
     "region": "gcc",
     "type": "gcc",
+<<<<<<< HEAD
     "tag": "GCC-ENERJİ",
     "org": "dmg events / ADNOC",
     "venue": "ADNEC – Abu Dhabi National Exhibition Centre",
@@ -565,5 +626,20 @@
     "contact": "info@worldlngsummit.com",
     "url": "https://www.worldlngsummit.com",
     "ticket": "Delege kaydı: Fiyat taleple"
+=======
+    "tag": "GCC-GAZ",
+    "org": "dmg events",
+    "venue": "ADNEC Centre Abu Dhabi",
+    "scale": "Bilgi güncellenecek",
+    "desc": "Major upstream, midstream, downstream and energy transition event.",
+    "contact": "",
+    "url": "https://www.adipec.com",
+    "ticket": "Check official site",
+    "status": "confirmed",
+    "confidence": 0.98,
+    "sourceType": "official_site",
+    "sourceUrl": "https://www.adipec.com",
+    "lastCheckedAt": "2026-04-21T00:00:00Z"
+>>>>>>> 4b39800fc0cc7dc7ad68c8179ef86d95cc8137e7
   }
 ]
