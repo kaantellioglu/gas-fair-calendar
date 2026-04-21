@@ -1,0 +1,95 @@
+[
+  {
+    "id": "evt-gastech-2026",
+    "name": "Gastech 2026",
+    "short_name": "Gastech",
+    "start_date": "2026-09-14",
+    "end_date": "2026-09-17",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "region": "asia",
+    "category": "lng",
+    "venue": "BITEC",
+    "organizer": "dmg events",
+    "website": "https://www.gastechevent.com",
+    "ticket_info": "Check official site",
+    "description": "Global gas, LNG, hydrogen and climate technology event.",
+    "source_url": "https://www.gastechevent.com/visit/visitor-registration/",
+    "source_type": "official_site",
+    "status": "confirmed",
+    "confidence_score": 0.98,
+    "last_checked_at": "2026-04-21T00:00:00Z",
+    "last_changed_at": "2026-04-21T00:00:00Z",
+    "change_log": [
+      {
+        "timestamp": "2026-04-21T00:00:00Z",
+        "field": "created",
+        "old": null,
+        "new": "seeded",
+        "source_url": "https://www.gastechevent.com/visit/visitor-registration/"
+      }
+    ]
+  },
+  {
+    "id": "evt-adipec-2026",
+    "name": "ADIPEC 2026",
+    "short_name": "ADIPEC",
+    "start_date": "2026-11-02",
+    "end_date": "2026-11-05",
+    "city": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "region": "gcc",
+    "category": "gcc",
+    "venue": "ADNEC Centre Abu Dhabi",
+    "organizer": "dmg events",
+    "website": "https://www.adipec.com",
+    "ticket_info": "Check official site",
+    "description": "Major upstream, midstream, downstream and energy transition event.",
+    "source_url": "https://www.adipec.com",
+    "source_type": "official_site",
+    "status": "confirmed",
+    "confidence_score": 0.98,
+    "last_checked_at": "2026-04-21T00:00:00Z",
+    "last_changed_at": "2026-04-21T00:00:00Z",
+    "change_log": [
+      {
+        "timestamp": "2026-04-21T00:00:00Z",
+        "field": "created",
+        "old": null,
+        "new": "seeded",
+        "source_url": "https://www.adipec.com"
+      }
+    ]
+  },
+  {
+    "id": "evt-wlga-summit-2026",
+    "name": "WLGA Strategic Innovation Summit 2026",
+    "short_name": "WLGA Summit",
+    "start_date": "2026-03-11",
+    "end_date": "2026-03-12",
+    "city": "Tokyo",
+    "country": "Japan",
+    "region": "asia",
+    "category": "lpg",
+    "venue": "Tokyo",
+    "organizer": "World Liquid Gas Association",
+    "website": "https://www.worldliquidgas.org",
+    "ticket_info": "Check official site",
+    "description": "LPG innovation and market development summit.",
+    "source_url": "https://www.worldliquidgas.org/events/",
+    "source_type": "association",
+    "status": "confirmed",
+    "confidence_score": 0.93,
+    "last_checked_at": "2026-04-21T00:00:00Z",
+    "last_changed_at": "2026-04-21T00:00:00Z",
+    "change_log": [
+      {
+        "timestamp": "2026-04-21T00:00:00Z",
+        "field": "created",
+        "old": null,
+        "new": "seeded",
+        "source_url": "https://www.worldliquidgas.org/events/"
+      }
+    ]
+  }
+]

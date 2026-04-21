@@ -1,0 +1,19 @@
+[project]
+name = "gas-fair-calendar"
+version = "1.0.0"
+description = "Gas, LNG, LPG and industrial energy fair calendar"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+api = [
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "pydantic>=2.8",
+]
+
+[tool.setuptools]
+py-modules = []
