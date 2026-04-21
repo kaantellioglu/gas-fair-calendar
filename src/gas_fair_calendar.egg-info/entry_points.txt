@@ -1,0 +1,2 @@
+[console_scripts]
+gas-fair-calendar = gas_fair_calendar.cli:main

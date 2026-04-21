@@ -1,0 +1,16 @@
+beautifulsoup4>=4.12
+jinja2>=3.1
+lxml>=5.3
+openpyxl>=3.1
+playwright>=1.55
+pydantic>=2.9
+python-dateutil>=2.9
+PyYAML>=6.0
+requests>=2.32
+
+[api]
+fastapi>=0.115
+uvicorn>=0.30
+
+[dev]
+pytest>=8.3
