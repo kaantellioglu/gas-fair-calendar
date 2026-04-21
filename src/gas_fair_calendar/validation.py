@@ -1,46 +1,35 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from datetime import timedelta
-from typing import Iterable
+from dataclasses import dataclass
+
 from .models import EventRecord
 
 
 @dataclass
 class ValidationIssue:
     event_id: str
-    severity: str
     message: str
 
 
-@dataclass
-class ValidationResult:
-    valid: bool
-    issues: list[ValidationIssue] = field(default_factory=list)
+REQUIRED_TEXT_FIELDS = ["name", "city", "country", "region", "category"]
 
 
-ALLOWED_YEARS = {2026, 2027}
-
-
-def validate_event(event: EventRecord) -> ValidationResult:
+def validate_event(event: EventRecord) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
-
-    if event.start_date.year not in ALLOWED_YEARS:
-        issues.append(ValidationIssue(event.id, "warning", f"Unexpected start year: {event.start_date.year}"))
-    if event.end_date < event.start_date:
-        issues.append(ValidationIssue(event.id, "error", "end_date before start_date"))
-    if not event.website and event.source_type == "official_site":
-        issues.append(ValidationIssue(event.id, "warning", "Missing official website"))
-    if event.confidence_score < 0.5:
-        issues.append(ValidationIssue(event.id, "warning", "Low confidence score"))
-    if not event.city or not event.country:
-        issues.append(ValidationIssue(event.id, "error", "Missing city or country"))
-
-    return ValidationResult(valid=not any(i.severity == "error" for i in issues), issues=issues)
+    for field in REQUIRED_TEXT_FIELDS:
+        if not getattr(event, field, None):
+            issues.append(ValidationIssue(event_id=event.id, message=f"missing {field}"))
+    if event.start_date and event.end_date and event.end_date < event.start_date:
+        issues.append(ValidationIssue(event_id=event.id, message="end_date before start_date"))
+    if event.website and not str(event.website).startswith(("http://", "https://")):
+        issues.append(ValidationIssue(event_id=event.id, message="website is not a valid URL"))
+    if event.confidence_score < 0.0 or event.confidence_score > 1.0:
+        issues.append(ValidationIssue(event_id=event.id, message="confidence_score out of range"))
+    return issues
 
 
-def validate_many(events: Iterable[EventRecord]) -> list[ValidationIssue]:
-    all_issues: list[ValidationIssue] = []
+def validate_many(events: list[EventRecord]) -> list[ValidationIssue]:
+    issues: list[ValidationIssue] = []
     for event in events:
-        all_issues.extend(validate_event(event).issues)
-    return all_issues
+        issues.extend(validate_event(event))
+    return issues

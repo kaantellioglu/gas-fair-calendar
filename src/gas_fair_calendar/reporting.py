@@ -1,39 +1,46 @@
 from __future__ import annotations
 
 from pathlib import Path
-from collections import Counter
-from .io_json import load_events
-from .settings import DATA_DIR, OUTPUT_DIR
+
+from .io_json import save_json
+from .settings import BUILD_DIR
+from .utils import now_utc
 
 
-def write_run_report(issues: list[str], added: int, updated: int, duplicates: list[tuple[str, str]]) -> Path:
-    events = load_events(DATA_DIR / "events_master.json")
-    by_region = Counter(e.region for e in events)
-    by_category = Counter(e.category for e in events)
+def write_run_report(*, issues: list[str], added: int, updated: int, duplicates: list[str], sources_scanned: int = 0, job_name: str = "auto-update") -> tuple[Path, Path]:
+    timestamp = now_utc().isoformat()
+    md_path = BUILD_DIR / "run_report.md"
+    json_path = BUILD_DIR / "run_report.json"
 
-    lines = []
-    lines.append("# Run Report")
-    lines.append("")
-    lines.append(f"Total events: {len(events)}")
-    lines.append(f"Added: {added}")
-    lines.append(f"Updated: {updated}")
-    lines.append(f"Potential duplicates: {len(duplicates)}")
-    lines.append("")
-    lines.append("## Region distribution")
-    for key, value in sorted(by_region.items()):
-        lines.append(f"- {key}: {value}")
-    lines.append("")
-    lines.append("## Category distribution")
-    for key, value in sorted(by_category.items()):
-        lines.append(f"- {key}: {value}")
-    lines.append("")
-    lines.append("## Issues")
+    md = [
+        f"# Run Report\n",
+        f"- job: **{job_name}**\n",
+        f"- timestamp: `{timestamp}`\n",
+        f"- sources scanned: **{sources_scanned}**\n",
+        f"- added: **{added}**\n",
+        f"- updated: **{updated}**\n",
+        f"- duplicates: **{len(duplicates)}**\n",
+        f"- issues: **{len(issues)}**\n",
+        "\n## Issues\n",
+    ]
     if issues:
-        for item in issues:
-            lines.append(f"- {item}")
+        md.extend([f"- {issue}\n" for issue in issues])
     else:
-        lines.append("- None")
+        md.append("- none\n")
+    md.append("\n## Duplicates\n")
+    if duplicates:
+        md.extend([f"- {row}\n" for row in duplicates])
+    else:
+        md.append("- none\n")
+    md_path.write_text("".join(md), encoding="utf-8")
 
-    report_path = OUTPUT_DIR / "run_report.md"
-    report_path.write_text("\n".join(lines), encoding="utf-8")
-    return report_path
+    save_json(json_path, {
+        "job": job_name,
+        "timestamp": timestamp,
+        "sources_scanned": sources_scanned,
+        "added": added,
+        "updated": updated,
+        "issues": issues,
+        "duplicates": duplicates,
+    })
+    return md_path, json_path

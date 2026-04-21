@@ -1,11 +1,11 @@
 # Optional API
 
-Bu klasör, etkileşimli tarama ve kaynak yönetimi için opsiyonel FastAPI servisidir.
+Bu servis, GitHub Pages dışındaki ortamlarda kaynak ekleme ve tarama tetikleme için kullanılır.
 
-## Çalıştırma
+## Kurulum
 
 ```bash
-pip install .[api]
+pip install -e .[api]
 uvicorn backend.app:app --reload
 ```
 
@@ -15,5 +15,6 @@ uvicorn backend.app:app --reload
 - `GET /api/events`
 - `GET /api/sources`
 - `POST /api/sources`
-- `POST /api/scan-jobs`
 - `GET /api/scan-jobs`
+- `POST /api/scan-jobs`
+- `POST /api/scan-run`

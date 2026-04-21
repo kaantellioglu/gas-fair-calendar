@@ -1,60 +1,53 @@
 from __future__ import annotations
 
-from .models import EventRecord, ChangeEntry
+from .models import ChangeEntry, EventRecord
 from .utils import now_utc
 
-SOURCE_PRIORITY = {
-    "official_site": 5,
-    "organizer": 4,
-    "association": 3,
-    "venue": 2,
-    "secondary_backup": 1,
-}
+TRACKED_FIELDS = [
+    "name",
+    "short_name",
+    "start_date",
+    "end_date",
+    "city",
+    "country",
+    "region",
+    "category",
+    "venue",
+    "organizer",
+    "website",
+    "ticket_info",
+    "description",
+    "contact",
+    "scale",
+    "status",
+    "confidence_score",
+]
 
 
-def merge_event(existing: EventRecord, incoming: EventRecord) -> EventRecord:
-    priority_existing = SOURCE_PRIORITY.get(existing.source_type, 0)
-    priority_incoming = SOURCE_PRIORITY.get(incoming.source_type, 0)
+def merge_event(old: EventRecord, new: EventRecord) -> EventRecord:
+    merged = old.model_copy(deep=True)
+    changes = list(merged.change_log)
 
-    updated = existing.model_copy(deep=True)
-    changed = False
-
-    fields_to_compare = [
-        "name",
-        "start_date",
-        "end_date",
-        "city",
-        "country",
-        "region",
-        "category",
-        "venue",
-        "organizer",
-        "website",
-        "ticket_info",
-        "description",
-    ]
-
-    for field in fields_to_compare:
-        old_val = getattr(updated, field)
-        new_val = getattr(incoming, field)
-        if new_val and new_val != old_val:
-            if priority_incoming >= priority_existing:
-                setattr(updated, field, new_val)
-                updated.change_log.append(
-                    ChangeEntry(
-                        timestamp=now_utc(),
-                        field=field,
-                        old=str(old_val) if old_val is not None else None,
-                        new=str(new_val),
-                        source_url=incoming.source_url,
-                    )
+    for field in TRACKED_FIELDS:
+        old_value = getattr(merged, field)
+        new_value = getattr(new, field)
+        if new_value in (None, "", [], {}):
+            continue
+        if old_value != new_value:
+            setattr(merged, field, new_value)
+            changes.append(
+                ChangeEntry(
+                    timestamp=now_utc(),
+                    field=field,
+                    old=str(old_value) if old_value not in (None, "") else None,
+                    new=str(new_value),
+                    source_url=new.source_url or new.website,
                 )
-                changed = True
-            else:
-                updated.status = "needs_review"
+            )
 
-    updated.confidence_score = max(updated.confidence_score, incoming.confidence_score)
-    updated.last_checked_at = now_utc()
-    if changed:
-        updated.last_changed_at = now_utc()
-    return updated
+    merged.source_url = new.source_url or merged.source_url
+    merged.source_type = new.source_type or merged.source_type
+    merged.last_checked_at = new.last_checked_at or now_utc()
+    merged.last_changed_at = now_utc() if changes != merged.change_log else merged.last_changed_at
+    merged.change_log = changes[-50:]
+    return merged

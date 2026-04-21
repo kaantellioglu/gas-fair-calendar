@@ -1,13 +1,24 @@
 from __future__ import annotations
 
-from datetime import datetime, date
-from typing import Literal, Optional, List
-from pydantic import BaseModel, Field, HttpUrl, field_validator
+from datetime import date, datetime
+from typing import Any, Literal, Optional
+
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Region = Literal["eu", "gcc", "turkic", "asia", "global"]
 Category = Literal["lng", "lpg", "dist", "ng", "equip", "boiler", "gcc", "asia"]
-Status = Literal["confirmed", "needs_review", "candidate", "deprecated", "cancelled"]
-SourceType = Literal["official_site", "organizer", "association", "venue", "secondary_backup"]
+Status = Literal["confirmed", "needs_review", "candidate", "deprecated", "cancelled", "seeded"]
+SourceType = Literal[
+    "official_site",
+    "organizer",
+    "association",
+    "venue",
+    "secondary_backup",
+    "user_added",
+    "seed_html",
+    "publisher",
+    "custom",
+]
 
 
 class ChangeEntry(BaseModel):
@@ -19,48 +30,77 @@ class ChangeEntry(BaseModel):
 
 
 class EventRecord(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     id: str
     name: str
     short_name: Optional[str] = None
-    start_date: date
-    end_date: date
-    city: str
-    country: str
-    region: Region
-    category: Category
-    venue: Optional[str] = ""
-    organizer: Optional[str] = ""
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
+    city: str = ""
+    country: str = ""
+    region: Region = "global"
+    category: Category = "ng"
+    venue: str = ""
+    organizer: str = ""
     website: Optional[str] = None
-    ticket_info: Optional[str] = ""
-    description: Optional[str] = ""
-    contact: Optional[str] = ""
+    ticket_info: str = ""
+    description: str = ""
+    contact: str = ""
+    scale: str = ""
     source_url: Optional[str] = None
     source_type: SourceType = "official_site"
     status: Status = "candidate"
     confidence_score: float = Field(default=0.5, ge=0.0, le=1.0)
     last_checked_at: Optional[datetime] = None
     last_changed_at: Optional[datetime] = None
-    change_log: List[ChangeEntry] = Field(default_factory=list)
+    change_log: list[ChangeEntry] = Field(default_factory=list)
+
+    @field_validator("start_date", "end_date", mode="before")
+    @classmethod
+    def empty_dates_to_none(cls, value: Any):
+        if value in ("", None):
+            return None
+        return value
 
     @field_validator("end_date")
     @classmethod
-    def validate_date_order(cls, value: date, info):
+    def validate_date_order(cls, value: Optional[date], info):
         start_date = info.data.get("start_date")
-        if start_date and value < start_date:
+        if value and start_date and value < start_date:
             raise ValueError("end_date cannot be before start_date")
         return value
 
 
 class SourceConfig(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
     key: str
-    enabled: bool = True
-    tier: int = 2
-    source_type: SourceType
-    region: Region
-    category: Category | str
-    discovery: bool = False
-    use_playwright: bool = False
+    name: str
     url: str
-    list_urls: list[str] = Field(default_factory=list)
-    check_frequency: str = "weekly"
-    selectors: dict = Field(default_factory=dict)
+    source_type: SourceType = Field(default="official_site", alias="sourceType")
+    region: Region = "global"
+    category: str = "ng"
+    check_frequency: str = Field(default="weekly", alias="checkFrequency")
+    tier: int = 2
+    use_playwright: bool = Field(default=False, alias="usePlaywright")
+    discovery: bool = False
+    enabled: bool = True
+    selectors: dict[str, Any] = Field(default_factory=dict)
+    list_urls: list[str] = Field(default_factory=list, alias="listUrls")
+
+
+class ScanJob(BaseModel):
+    job_id: str
+    job_name: str
+    mode: str = "full"
+    source_keys: list[str] = Field(default_factory=list)
+    regions: list[str] = Field(default_factory=list)
+    categories: list[str] = Field(default_factory=list)
+    options: dict[str, Any] = Field(default_factory=dict)
+    status: str = "queued"
+    created_at: datetime
+    started_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+    notes: list[str] = Field(default_factory=list)
+    results: dict[str, Any] = Field(default_factory=dict)

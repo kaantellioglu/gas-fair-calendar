@@ -1,23 +1,25 @@
-name: Update dataset
+name: Export Excel snapshot
 
 on:
-  schedule:
-    - cron: "0 5 * * *"
   workflow_dispatch:
 
 jobs:
   export:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - run: pip install openpyxl
-      - run: python scripts/export_excel.py
+          python-version: "3.12"
       - run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          python -m pip install --upgrade pip
+          pip install -e .
+          gas-fair-calendar export-excel
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add build/events_master.xlsx
-          git diff --cached --quiet || git commit -m "Auto export excel"
+          git diff --cached --quiet || git commit -m "chore: refresh excel snapshot"
           git push

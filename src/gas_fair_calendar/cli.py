@@ -2,101 +2,53 @@ from __future__ import annotations
 
 import argparse
 import json
-from collections import Counter
-from pathlib import Path
 
 from .build_html import build_html
 from .export_excel import export_excel
+from .frontend import build_frontend_json
+from .pipeline import run_auto_update
+from .seed import seed_master_from_frontend
+from .settings import DATA_DIR
 from .io_json import load_events
-from .reporting import write_run_report
-from .seed_from_html import seed_from_html
-from .settings import DATA_DIR, OUTPUT_DIR
-from .update_pipeline import main as run_update
-from .validation import validate_many
-from .dedupe import find_duplicates
 
 
-def cmd_update(_: argparse.Namespace) -> int:
-    run_update()
-    return 0
+def main() -> None:
+    parser = argparse.ArgumentParser(prog="gas-fair-calendar")
+    sub = parser.add_subparsers(dest="command", required=True)
 
+    sub.add_parser("seed-master", help="Rebuild events_master.json from frontend seed data")
+    sub.add_parser("build-frontend", help="Rebuild data/events_frontend.json from events_master.json")
+    sub.add_parser("build-html", help="Copy the current UX index into build output")
+    sub.add_parser("export-excel", help="Export events_master.xlsx")
+    p_update = sub.add_parser("auto-update", help="Run full automatic Python update pipeline")
+    p_update.add_argument("--no-seed", action="store_true", help="Do not seed master data when empty")
+    sub.add_parser("stats", help="Print dataset stats")
 
-def cmd_build_html(_: argparse.Namespace) -> int:
-    path = build_html()
-    print(path)
-    return 0
-
-
-def cmd_export_excel(_: argparse.Namespace) -> int:
-    path = export_excel()
-    print(path)
-    return 0
-
-
-def cmd_validate(_: argparse.Namespace) -> int:
-    events = load_events(DATA_DIR / 'events_master.json')
-    issues = validate_many(events)
-    duplicates = find_duplicates(events)
-    reports = write_run_report(
-        issues=[f'{issue.event_id}: {issue.message}' for issue in issues],
-        added=0,
-        updated=0,
-        duplicates=duplicates,
-    )
-    print(json.dumps({
-        'issues': len(issues),
-        'duplicates': len(duplicates),
-        'report_markdown': str(reports['markdown']),
-        'report_json': str(reports['json']),
-    }, ensure_ascii=False, indent=2))
-    return 1 if any(issue.severity == 'error' for issue in issues) else 0
-
-
-def cmd_stats(_: argparse.Namespace) -> int:
-    events = load_events(DATA_DIR / 'events_master.json')
-    payload = {
-        'total': len(events),
-        'by_region': dict(sorted(Counter(e.region for e in events).items())),
-        'by_category': dict(sorted(Counter(e.category for e in events).items())),
-        'by_status': dict(sorted(Counter(e.status for e in events).items())),
-        'html': str(OUTPUT_DIR / 'GAZ-FUAR_TAKVIMI-OTOMATIK.html'),
-        'excel': str(OUTPUT_DIR / 'events_master.xlsx'),
-    }
-    print(json.dumps(payload, ensure_ascii=False, indent=2))
-    return 0
-
-
-def cmd_seed_html(args: argparse.Namespace) -> int:
-    added, updated, backup = seed_from_html(Path(args.html_file).expanduser().resolve())
-    print(json.dumps({'added': added, 'updated': updated, 'backup': str(backup) if backup else None}, ensure_ascii=False, indent=2))
-    return 0
-
-
-def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(prog='gas-fair-calendar', description='Gas fair calendar automation CLI')
-    sub = parser.add_subparsers(dest='command', required=True)
-
-    for name, func, help_text in [
-        ('update', cmd_update, 'Run full update pipeline'),
-        ('build-html', cmd_build_html, 'Build HTML dashboard only'),
-        ('export-excel', cmd_export_excel, 'Export Excel only'),
-        ('validate', cmd_validate, 'Validate data and write reports'),
-        ('stats', cmd_stats, 'Show data statistics'),
-    ]:
-        p = sub.add_parser(name, help=help_text)
-        p.set_defaults(func=func)
-
-    seed = sub.add_parser('seed-html', help='Import fairs from legacy HTML EV array and merge into master data')
-    seed.add_argument('html_file', help='Path to the legacy HTML file')
-    seed.set_defaults(func=cmd_seed_html)
-    return parser
-
-
-def main() -> int:
-    parser = build_parser()
     args = parser.parse_args()
-    return args.func(args)
+
+    if args.command == "seed-master":
+        events = seed_master_from_frontend()
+        print(f"Seeded master dataset with {len(events)} events.")
+    elif args.command == "build-frontend":
+        path = build_frontend_json()
+        print(path)
+    elif args.command == "build-html":
+        path = build_html()
+        print(path)
+    elif args.command == "export-excel":
+        path = export_excel()
+        print(path)
+    elif args.command == "auto-update":
+        result = run_auto_update(seed_if_empty=not args.no_seed)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+    elif args.command == "stats":
+        events = load_events(DATA_DIR / "events_master.json")
+        print(json.dumps({
+            "events": len(events),
+            "confirmed": sum(1 for e in events if e.status == "confirmed"),
+            "candidate": sum(1 for e in events if e.status == "candidate"),
+        }, ensure_ascii=False, indent=2))
 
 
-if __name__ == '__main__':
-    raise SystemExit(main())
+if __name__ == "__main__":
+    main()

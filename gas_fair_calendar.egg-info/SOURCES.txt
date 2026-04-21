@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+gas_fair_calendar.egg-info/PKG-INFO
+gas_fair_calendar.egg-info/SOURCES.txt
+gas_fair_calendar.egg-info/dependency_links.txt
+gas_fair_calendar.egg-info/requires.txt
+gas_fair_calendar.egg-info/top_level.txt
+tests/test_seed_from_html.py
+tests/test_validation.py

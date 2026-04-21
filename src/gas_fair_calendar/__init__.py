@@ -1,5 +1,1 @@
-__all__ = [
-    "models",
-    "settings",
-    "update_pipeline",
-]
+__all__ = ["cli", "pipeline", "models", "settings"]
