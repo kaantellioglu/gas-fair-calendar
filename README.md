@@ -1,82 +1,38 @@
 # Gas Fair Calendar
 
-GitHub'da yayınlanmaya hazır, otomatik güncellenebilir bir gaz / LNG / LPG / endüstriyel enerji fuar takvimi projesi.
+GitHub Pages üzerinde çalışan, gaz / LNG / LPG / enerji fuarlarını takip etmek için hazırlanmış ürünleşmiş proje.
 
-Bu repo şunları üretir:
-- HTML dashboard
-- Excel export
-- JSON master dataset
-- aday havuzu
-- run report
-- otomatik backup
+## Ne var?
 
-## Bu sürümde ne düzeltildi
+- mevcut dashboard UX'i korunmuş ana sayfa
+- dinamik veri yükleme (`data/events_frontend.json`)
+- kaynak yönetim paneli
+- tarama istek paneli
+- kullanıcı eklediği kaynakları tarayıcıda saklama (`localStorage`)
+- Python tabanlı veri/Excel araçları
+- GitHub Pages uyumlu yayın yapısı
+- opsiyonel backend API klasörü
 
-- eski kayıtların kaybolmasını önlemek için **merge-first** akış kuruldu
-- her update öncesi `data/backups/` içine otomatik snapshot alınıyor
-- legacy HTML içindeki `EV` dizisini içe aktarabilen `seed-html` komutu eklendi
-- repo, GitHub Actions ile çalışacak şekilde hazırlandı
-- başlangıç verisi olarak eski HTML takvimindeki **27 fuar** master datasete geri yüklendi
+## GitHub Pages
 
-## Hızlı başlangıç
+`index.html` doğrudan yayın girişidir. Sayfa root'tan açılır.
 
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-python -m pip install --upgrade pip
-pip install -e .[dev]
-python -m playwright install chromium
-gas-fair-calendar validate
-gas-fair-calendar build-html
-gas-fair-calendar export-excel
-```
-
-Tam pipeline:
+## Yerel çalıştırma
 
 ```bash
-gas-fair-calendar update
+python -m http.server 8000
 ```
 
-Legacy HTML'den tekrar seed almak için:
+## Python araçları
 
 ```bash
-gas-fair-calendar seed-html GAZ-FUAR_TAKVIMI-2026.html
+python scripts/export_excel.py
 ```
 
-## CLI komutları
+## Not
 
-- `gas-fair-calendar update`
-- `gas-fair-calendar build-html`
-- `gas-fair-calendar export-excel`
-- `gas-fair-calendar validate`
-- `gas-fair-calendar stats`
-- `gas-fair-calendar seed-html <html-file>`
+GitHub Pages statik çalışır. Bu yüzden sayfadaki **Tarama Başlat** paneli:
+- GitHub Pages üzerinde tarama isteği üretir / dışa aktarır
+- backend API kurulursa gerçek tarama job'ı başlatabilir
 
-## GitHub'da yayınlama
-
-Yeni bir repo açtıktan sonra:
-
-```bash
-git init
-git add .
-git commit -m "Initial release"
-git branch -M main
-git remote add origin https://github.com/<username>/gas-fair-calendar.git
-git push -u origin main
-```
-
-## GitHub Actions
-
-- `.github/workflows/update-events.yml` veri güncelleme işini çalıştırır
-- `.github/workflows/pages.yml` HTML dashboard'u GitHub Pages'e yayınlar
-
-## Üretim notları
-
-- düşük öncelikli kaynak yüksek öncelikli kaydı otomatik ezmez
-- çakışmalı değişiklikte kayıt `needs_review` durumuna çekilir
-- `events_master.json` atomik yazılır
-- her koşudan önce backup alınır
-
-## Lisans
-
-MIT
+Opsiyonel backend için `backend/README.md` dosyasına bak.

@@ -1,0 +1,80 @@
+[
+  {
+    "key": "gastech",
+    "name": "Gastech Official",
+    "url": "https://www.gastechevent.com/visit/visitor-registration/",
+    "sourceType": "official_site",
+    "region": "asia",
+    "category": "lng",
+    "checkFrequency": "daily",
+    "tier": 1,
+    "usePlaywright": false,
+    "discovery": false,
+    "enabled": true
+  },
+  {
+    "key": "wlga",
+    "name": "WLGA Events",
+    "url": "https://www.worldliquidgas.org/events/",
+    "sourceType": "association",
+    "region": "global",
+    "category": "lpg",
+    "checkFrequency": "weekly",
+    "tier": 1,
+    "usePlaywright": false,
+    "discovery": true,
+    "enabled": true
+  },
+  {
+    "key": "adipec",
+    "name": "ADIPEC Official",
+    "url": "https://www.adipec.com",
+    "sourceType": "official_site",
+    "region": "gcc",
+    "category": "gcc",
+    "checkFrequency": "daily",
+    "tier": 1,
+    "usePlaywright": false,
+    "discovery": false,
+    "enabled": true
+  },
+  {
+    "key": "dmg",
+    "name": "dmg events Energy Portfolio",
+    "url": "https://www.dmgevents.com",
+    "sourceType": "organizer",
+    "region": "global",
+    "category": "ng",
+    "checkFrequency": "weekly",
+    "tier": 2,
+    "usePlaywright": true,
+    "discovery": true,
+    "enabled": true
+  },
+  {
+    "key": "woodmac",
+    "name": "Wood Mackenzie Events",
+    "url": "https://www.woodmac.com/events/",
+    "sourceType": "publisher",
+    "region": "eu",
+    "category": "lng",
+    "checkFrequency": "weekly",
+    "tier": 2,
+    "usePlaywright": false,
+    "discovery": true,
+    "enabled": true
+  },
+  {
+    "key": "iteca",
+    "name": "Iteca Energy Portfolio",
+    "url": "https://www.iteca.uz/en/exhibitions",
+    "sourceType": "organizer",
+    "region": "turkic",
+    "category": "ng",
+    "checkFrequency": "weekly",
+    "tier": 2,
+    "usePlaywright": false,
+    "discovery": true,
+    "enabled": true
+  }
+]

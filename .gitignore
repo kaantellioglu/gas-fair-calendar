@@ -1,8 +1,5 @@
-__pycache__/
-*.py[cod]
-*.egg-info/
-.pytest_cache/
 .venv/
-.env
+__pycache__/
+*.pyc
 .DS_Store
-build/*.log
+build/*.xlsx

@@ -1,10 +1,10 @@
 [
   {
-    "id": "evt-pipeline-gas-expo-2026",
+    "id": "evt-1",
     "name": "Pipeline & Gas Expo 2026",
     "short_name": "Pipeline & Gas Expo",
-    "start_date": "2026-02-04",
-    "end_date": "2026-02-06",
+    "start_date": "",
+    "end_date": "",
     "city": "Piacenza",
     "country": "İtalya",
     "region": "eu",
@@ -14,29 +14,20 @@
     "website": "https://www.pipelineandgasexpo.com",
     "ticket_info": "Ziyaretçi girişi ücretsiz (kayıt gerekli)",
     "description": "Avrupa'nın gaz ve su dağıtım ağlarına odaklanan tek ikiyıllık fuarıdır. Boru hattı tasarımı, inşaatı ve bakımı; ekipman, makine ve yazılım tedarikçileri bir arada. 7.000 m² kapalı alanda 7 teknik konferans ve 50 konuşmacı.",
-    "contact": "info@pipelineandgasexpo.com",
     "source_url": "https://www.pipelineandgasexpo.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.pipelineandgasexpo.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-lngcon-2026-int-l-lng-congress",
+    "id": "evt-2",
     "name": "LNGCON 2026 – Int'l LNG Congress",
     "short_name": "LNGCON Barselona",
-    "start_date": "2026-03-09",
-    "end_date": "2026-03-11",
+    "start_date": "",
+    "end_date": "",
     "city": "Barselona",
     "country": "İspanya",
     "region": "eu",
@@ -46,29 +37,20 @@
     "website": "https://lngcongress.com",
     "ticket_info": "Davetiye / Kayıt tabanlı (fiyat talep üzerine)",
     "description": "12. edisyonunda 390'dan fazla LNG sektörü liderini bir araya getiren kapalı kapı kongresidir. Üretim, taşımacılık, ticaret ve yeniden gazlaştırma alanlarında B2B görüşmeleri. 11 Mart'ta Barcelona LNG Terminaline teknik ziyaret.",
-    "contact": "info@bgs.group",
     "source_url": "https://lngcongress.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://lngcongress.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-ogce-2026-oil-gas-connect-expo-india",
+    "id": "evt-3",
     "name": "OGCE 2026 – Oil & Gas Connect Expo India",
     "short_name": "OGCE Delhi",
-    "start_date": "2026-03-12",
-    "end_date": "2026-03-14",
+    "start_date": "",
+    "end_date": "",
     "city": "Greater Noida / Delhi NCR",
     "country": "Hindistan",
     "region": "asia",
@@ -78,29 +60,20 @@
     "website": "https://gasconnectexpo.com",
     "ticket_info": "Ziyaretçi ücretsiz; delege kaydı web sitesinde",
     "description": "Hindistan'ın genişleyen doğal gaz altyapısına yönelik uluslararası fuar platformudur. LNG, CNG, boru hattı teknolojileri, gaz dağıtım sistemleri, endüstriyel brülörler ve kazan sistemleri sergilenmektedir. City Gas Distribution (CGD) ağının hızla büyümesiyle kritik pazar erişim noktasıdır.",
-    "contact": "info@gasconnectexpo.com",
     "source_url": "https://gasconnectexpo.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://gasconnectexpo.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-abw-sofia-2026-architectural-building-week",
+    "id": "evt-4",
     "name": "ABW Sofia 2026 – Architectural Building Week",
     "short_name": "ABW Sofia",
-    "start_date": "2026-03-11",
-    "end_date": "2026-03-14",
+    "start_date": "",
+    "end_date": "",
     "city": "Sofya",
     "country": "Bulgaristan",
     "region": "eu",
@@ -110,29 +83,20 @@
     "website": "https://iec.bg",
     "ticket_info": "Ziyaretçi girişi ücretsiz",
     "description": "26. edisyonunda Bulgaristan'ın önde gelen yapı ve enerji fuarıdır. Isıtma sistemleri, brülörler, kazan teknolojileri ve gaz tesisatı ağırlıklı. GREEN ENERGY fuarıyla eş zamanlı düzenlenmektedir.",
-    "contact": "office@iec.bg",
     "source_url": "https://iec.bg",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://iec.bg"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-meos-2026-middle-east-oil-gas-geosciences-show",
+    "id": "evt-5",
     "name": "MEOS 2026 – Middle East Oil, Gas & Geosciences Show",
     "short_name": "MEOS Manama",
-    "start_date": "2026-03-09",
-    "end_date": "2026-03-11",
+    "start_date": "",
+    "end_date": "",
     "city": "Manama",
     "country": "Bahreyn",
     "region": "gcc",
@@ -142,29 +106,20 @@
     "website": "https://www.meos-bahrain.com",
     "ticket_info": "Ziyaretçi kaydı ücretsiz; Konferans delege: web sitesinde",
     "description": "İkiyılda bir Bahreyn'de düzenlenen Orta Doğu'nun en köklü petrol, gaz ve jeobilim fuarıdır. Arama ve üretim teknolojileri, gaz işleme, boru hattı sistemleri ve endüstriyel ekipmanlar sergilenmektedir. GCC gaz sektörünün temel buluşma noktalarından biridir.",
-    "contact": "meos@dmgevents.com",
     "source_url": "https://www.meos-bahrain.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.meos-bahrain.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-romtherm-2026-is-tma-so-utma-gaz-tesisat",
+    "id": "evt-6",
     "name": "ROMTHERM 2026 – Isıtma, Soğutma & Gaz Tesisatı",
     "short_name": "ROMTHERM Bükreş",
-    "start_date": "2026-03-19",
-    "end_date": "2026-03-22",
+    "start_date": "",
+    "end_date": "",
     "city": "Bükreş",
     "country": "Romanya",
     "region": "eu",
@@ -174,29 +129,20 @@
     "website": "https://romtherm.ro/en",
     "ticket_info": "Ziyaretçi girişi ücretsiz (ön kayıt önerilir)",
     "description": "Romanya'nın en köklü ısıtma ve tesisat fuarıdır (29. edisyon). Viessmann, Buderus, Ferroli, Ariston gibi önde gelen kazan ve brülör üreticileri her yıl katılmaktadır. CONSTRUCT–AMBIENT EXPO ile eş zamanlı.",
-    "contact": "info@romexpo.ro",
     "source_url": "https://romtherm.ro/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://romtherm.ro/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-lisbon-energy-summit-2026",
+    "id": "evt-7",
     "name": "Lisbon Energy Summit 2026",
     "short_name": "Lisbon Energy",
-    "start_date": "2026-03-24",
-    "end_date": "2026-03-25",
+    "start_date": "",
+    "end_date": "",
     "city": "Lizbon",
     "country": "Portekiz",
     "region": "eu",
@@ -206,29 +152,20 @@
     "website": "https://www.lisbonenergyweek.com",
     "ticket_info": "Delege kaydı: €500–€1.200",
     "description": "İberya yarımadası ve Portekiz Enerji Bakanlığı destekli etkinliktir. Gaz altyapısı, LNG terminalleri ve enerji verimliliği konularında oturumlar düzenlenmektedir.",
-    "contact": "events@dmgevents.com",
     "source_url": "https://www.lisbonenergyweek.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.lisbonenergyweek.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-pumps-valves-antwerp-2026",
+    "id": "evt-8",
     "name": "Pumps & Valves Antwerp 2026",
     "short_name": "Pumps & Valves",
-    "start_date": "2026-03-25",
-    "end_date": "2026-03-26",
+    "start_date": "",
+    "end_date": "",
     "city": "Antwerp",
     "country": "Belçika",
     "region": "eu",
@@ -238,29 +175,20 @@
     "website": "https://www.pumps-valves-expo.be/en",
     "ticket_info": "Ziyaretçi girişi ücretsiz (ön kayıt önerilir)",
     "description": "Endüstriyel sıvı ve gaz teknolojilerine yönelik Avrupa'nın önde gelen ikiyıllık fuarıdır. 20 teknik masterclass, İnovasyon Galerisi ve Maintenance fuarıyla eş zamanlı.",
-    "contact": "www.pumps-valves-expo.be",
     "source_url": "https://www.pumps-valves-expo.be/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.pumps-valves-expo.be/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-construma-hungarotherm-2026",
+    "id": "evt-9",
     "name": "CONSTRUMA & HUNGAROTHERM 2026",
     "short_name": "Construma Budapeşte",
-    "start_date": "2026-03-25",
-    "end_date": "2026-03-29",
+    "start_date": "",
+    "end_date": "",
     "city": "Budapeşte",
     "country": "Macaristan",
     "region": "eu",
@@ -270,29 +198,20 @@
     "website": "https://construma.hu",
     "ticket_info": "Ön kayıt ile ücretsiz",
     "description": "Orta-Doğu Avrupa'nın en büyük yapı ve bina mühendisliği fuarıdır. HUNGAROTHERM bölümü; kazan teknolojileri, brülörler, doğal gaz tesisatı ve HVAC çözümlerini kapsar.",
-    "contact": "construma@hungexpo.hu",
     "source_url": "https://construma.hu",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://construma.hu"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-ret-thessaloniki-2026-renewable-energytech-expo",
+    "id": "evt-10",
     "name": "RET Thessaloniki 2026 – Renewable EnergyTech Expo",
     "short_name": "RET Selanik",
-    "start_date": "2026-03-26",
-    "end_date": "2026-03-28",
+    "start_date": "",
+    "end_date": "",
     "city": "Selanik",
     "country": "Yunanistan",
     "region": "eu",
@@ -302,29 +221,20 @@
     "website": "https://www.renewable-energytech-expo.gr/en",
     "ticket_info": "İlgili profesyonellere ücretsiz giriş",
     "description": "Güneydoğu Avrupa'nın döngüsel ekonomi ve enerji geçişi alanındaki lider etkinliğidir. Gaz-hibrit sistemler, biyogaz ve akıllı enerji çözümleri sergilenmektedir.",
-    "contact": "hello@helexpo.gr",
     "source_url": "https://www.renewable-energytech-expo.gr/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.renewable-energytech-expo.gr/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-tekt-nica-lisbon-2026-yap-gaz-ekipmanlar",
+    "id": "evt-11",
     "name": "Tektónica Lisbon 2026 – Yapı & Gaz Ekipmanları",
     "short_name": "Tektónica Lizbon",
-    "start_date": "2026-04-23",
-    "end_date": "2026-04-25",
+    "start_date": "",
+    "end_date": "",
     "city": "Lizbon",
     "country": "Portekiz",
     "region": "eu",
@@ -334,29 +244,20 @@
     "website": "https://www.tektonica.fil.pt",
     "ticket_info": "Ziyaretçi girişi ücretsiz",
     "description": "Portekiz'in lider yapı ve inşaat fuarıdır. Kazan, brülör ve gaz skid tedarikçileri ile sanayi ekipman distribütörleri katılmaktadır.",
-    "contact": "tektonica@fil.pt",
     "source_url": "https://www.tektonica.fil.pt",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.tektonica.fil.pt"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-8th-global-lng-forum-2026",
+    "id": "evt-12",
     "name": "8th Global LNG Forum 2026",
     "short_name": "Global LNG Forum",
-    "start_date": "2026-04-28",
-    "end_date": "2026-04-29",
+    "start_date": "",
+    "end_date": "",
     "city": "Barselona",
     "country": "İspanya",
     "region": "eu",
@@ -366,29 +267,20 @@
     "website": "https://lng-global.com",
     "ticket_info": "Delege: €1.500–€2.500 (taleple)",
     "description": "Küresel LNG pazarındaki gelişmelere odaklanan Avrupa merkezli LNG etkinliğidir. Jeopolitik riskler, enerji güvenliği ve altyapı yatırımları masaya yatırılmaktadır.",
-    "contact": "info@lng-global.com",
     "source_url": "https://lng-global.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://lng-global.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-gas-professionals-meeting-opatija-2026-41st",
+    "id": "evt-13",
     "name": "Gas Professionals Meeting Opatija 2026 (41st)",
     "short_name": "Gas Meeting Opatija",
-    "start_date": "2026-05-06",
-    "end_date": "2026-05-08",
+    "start_date": "",
+    "end_date": "",
     "city": "Opatija",
     "country": "Hırvatistan",
     "region": "eu",
@@ -398,29 +290,20 @@
     "website": "https://susret.hsup.hr/en",
     "ticket_info": "Delege kaydı: Fiyat web sitesinde",
     "description": "Güneydoğu Avrupa'nın en büyük uluslararası gaz konferansı ve fuarıdır (41. edisyon). Gas skid, brülör, boru hattı ve gaz ölçüm ekipmanı üreticileri sergilenmektedir.",
-    "contact": "susret@hsup.hr",
     "source_url": "https://susret.hsup.hr/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://susret.hsup.hr/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-mpgc-2026-33rd-middle-east-petroleum-gas-conference",
+    "id": "evt-14",
     "name": "MPGC 2026 – 33rd Middle East Petroleum & Gas Conference",
     "short_name": "MPGC Dubai",
-    "start_date": "2026-05-11",
-    "end_date": "2026-05-13",
+    "start_date": "",
+    "end_date": "",
     "city": "Dubai",
     "country": "BAE",
     "region": "gcc",
@@ -430,29 +313,20 @@
     "website": "https://www.spglobal.com/energy/en/events/conferences/mpgc",
     "ticket_info": "USD tabanlı; S&P Global web sitesinde",
     "description": "Orta Doğu'nun en uzun soluklu yıllık petrol ve gaz konferansıdır (33. edisyon). HH Şeyh Ahmed bin Saeed Al Maktoum himayesinde gerçekleşir. LNG & gaz dengesi, enerji güvenliği konularında bakanlık ve CEO seviyesinde paneller.",
-    "contact": "spglobal.com/energy/events/mpgc",
     "source_url": "https://www.spglobal.com/energy/en/events/conferences/mpgc",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.spglobal.com/energy/en/events/conferences/mpgc"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-opes-2026-oman-petroleum-energy-show",
+    "id": "evt-15",
     "name": "OPES 2026 – Oman Petroleum & Energy Show",
     "short_name": "OPES Muskat",
-    "start_date": "2026-05-18",
-    "end_date": "2026-05-20",
+    "start_date": "",
+    "end_date": "",
     "city": "Muskat",
     "country": "Umman",
     "region": "gcc",
@@ -462,29 +336,20 @@
     "website": "https://omanpetroleumandenergyshow.com",
     "ticket_info": "Ziyaretçi girişi ücretsiz; SPE delege web sitesinde",
     "description": "Umman'ın tek entegre petrol, gaz ve enerji fuarıdır. SPE Konferansı eş zamanlı düzenlenmektedir. Gaz işleme sistemleri, pompa & kompresörler, endüstriyel brülörler ve gaz skid ekipmanları sergilenmektedir.",
-    "contact": "info@connectthroughus.com",
     "source_url": "https://omanpetroleumandenergyshow.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://omanpetroleumandenergyshow.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-gas-lng-the-future-of-energy-2026-wood-mackenzie",
+    "id": "evt-16",
     "name": "Gas, LNG & The Future of Energy 2026 (Wood Mackenzie)",
     "short_name": "WoodMac Gas & LNG",
-    "start_date": "2026-06-02",
-    "end_date": "2026-06-03",
+    "start_date": "",
+    "end_date": "",
     "city": "Londra",
     "country": "İngiltere",
     "region": "eu",
@@ -494,29 +359,20 @@
     "website": "https://www.woodmac.com/events/gas-lng-future-energy",
     "ticket_info": "Fiyat kayıt sayfasında",
     "description": "Wood Mackenzie'nin yıllık Gaz & LNG konferansı. Avrupa gaz toplayıcıları, Asya LNG alıcıları ve yatırım bankaları bir araya gelir. Jeopolitik riskler ve fiyat oynaklığı gündemdedir.",
-    "contact": "events@woodmac.com",
     "source_url": "https://www.woodmac.com/events/gas-lng-future-energy",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.woodmac.com/events/gas-lng-future-energy"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-gtc-2026-gas-technology-conference-wlga",
+    "id": "evt-17",
     "name": "GTC 2026 – Gas Technology Conference (WLGA)",
     "short_name": "GTC WLGA",
-    "start_date": "2026-06-09",
-    "end_date": "2026-06-11",
+    "start_date": "",
+    "end_date": "",
     "city": "Avrupa",
     "country": "Avrupa",
     "region": "eu",
@@ -526,29 +382,20 @@
     "website": "https://www.worldliquidgas.org",
     "ticket_info": "Kayıt fiyatları açıklanacak",
     "description": "LPG ve yenilenebilir DME endüstrisinde teknoloji ve inovasyona odaklanan tek küresel konferanstır. Global İnovasyon Ödülü yarışması da düzenlenmektedir.",
-    "contact": "wlga@worldliquidgas.org",
     "source_url": "https://www.worldliquidgas.org",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.worldliquidgas.org"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-baku-energy-week-2026-caspian-oil-gas-caspian-power",
+    "id": "evt-18",
     "name": "Baku Energy Week 2026 – Caspian Oil & Gas + Caspian Power",
     "short_name": "Baku Energy Week",
-    "start_date": "2026-06-03",
-    "end_date": "2026-06-05",
+    "start_date": "",
+    "end_date": "",
     "city": "Bakü",
     "country": "Azerbaycan",
     "region": "turkic",
@@ -558,29 +405,20 @@
     "website": "https://caspianoilgas.az/en",
     "ticket_info": "Ziyaretçi kaydı ücretsiz; Forum: fiyat taleple",
     "description": "Hazar bölgesinin en prestijli enerji etkinliğidir. Azerbaycan Cumhurbaşkanı açılışa katılmaktadır. SOCAR, bp, TotalEnergies ve Equinor katılır. Gaz sahası geliştirme, boru hattı güvenliği ve gaz işleme ana gündem başlıklarıdır.",
-    "contact": "info@iteca.az",
     "source_url": "https://caspianoilgas.az/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://caspianoilgas.az/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-foren-2026-wec-central-eastern-europe-energy-forum",
+    "id": "evt-19",
     "name": "FOREN 2026 – WEC Central & Eastern Europe Energy Forum",
     "short_name": "FOREN Neptun",
-    "start_date": "2026-06-14",
-    "end_date": "2026-06-17",
+    "start_date": "",
+    "end_date": "",
     "city": "Neptun",
     "country": "Romanya",
     "region": "eu",
@@ -590,29 +428,20 @@
     "website": "https://www.foren.ro",
     "ticket_info": "Delege kaydı: Fiyat taleple",
     "description": "Romanya Hükümeti himayesinde WEC koordinasyonuyla ikiyılda bir düzenlenen bölgenin en prestijli enerji forumudur. Kazanlar, borular, valfler ve gaz ekipmanları sergi kategorilerindedir.",
-    "contact": "secretariat@wec-romania.ro",
     "source_url": "https://www.foren.ro",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.foren.ro"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-gas-india-expo-2026-gie",
+    "id": "evt-20",
     "name": "Gas India Expo 2026 – GIE",
     "short_name": "Gas India Expo",
-    "start_date": "2026-07-23",
-    "end_date": "2026-07-25",
+    "start_date": "",
+    "end_date": "",
     "city": "Greater Noida / Delhi NCR",
     "country": "Hindistan",
     "region": "asia",
@@ -622,29 +451,20 @@
     "website": "https://www.gasindiaexpo.com",
     "ticket_info": "Stand ve ziyaretçi kaydı web sitesinde",
     "description": "Doğal gaz, LNG, hidrojen ve endüstriyel gaz üretimine yönelik uluslararası fuar platformudur. CNG/LNG dolum ekipmanları, boru hatları ve gaz ölçüm cihazları ile endüstriyel brülörler ana sergi kategorileridir.",
-    "contact": "info@gasindiaexpo.com",
     "source_url": "https://www.gasindiaexpo.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.gasindiaexpo.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-gastech-exhibition-conference-2026",
+    "id": "evt-21",
     "name": "Gastech Exhibition & Conference 2026",
     "short_name": "Gastech Bangkok",
-    "start_date": "2026-09-14",
-    "end_date": "2026-09-17",
+    "start_date": "",
+    "end_date": "",
     "city": "Bangkok",
     "country": "Tayland",
     "region": "asia",
@@ -654,29 +474,20 @@
     "website": "https://www.gastechevent.com",
     "ticket_info": "Sergi ücretsiz (kayıt gerekli); Konferans: web sitesinde",
     "description": "54. yılında dünyanın en büyük doğal gaz, LNG ve hidrojen konferans & fuarıdır. 20 ülke pavilyonu, 4 özel sergi bölümü ve 1.000+ konuşmacı. Avrupa'lı gaz skid ve brülör üreticileri için Asya pazarına açılımın en etkili platformudur.",
-    "contact": "gastech@dmgevents.com",
     "source_url": "https://www.gastechevent.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.gastechevent.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-kioge-2026-30th-kazakhstan-int-l-oil-gas-exhibition",
+    "id": "evt-22",
     "name": "KIOGE 2026 – 30th Kazakhstan Int'l Oil & Gas Exhibition",
     "short_name": "KIOGE Almatı",
-    "start_date": "2026-09-30",
-    "end_date": "2026-10-02",
+    "start_date": "",
+    "end_date": "",
     "city": "Almatı",
     "country": "Kazakistan",
     "region": "turkic",
@@ -686,29 +497,20 @@
     "website": "https://kioge.kz/en",
     "ticket_info": "Ziyaretçi kaydı ücretsiz; konferans web sitesinde",
     "description": "30. yılında Orta Asya'nın en büyük petrol & gaz fuarıdır. KazMunayGas, Tengizchevroil ve NCOC destekli. Kazan & ısıtma teknolojileri, gaz ölçüm & arıtma ekipmanları sergilenmektedir.",
-    "contact": "contact@iteca.kz",
     "source_url": "https://kioge.kz/en",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://kioge.kz/en"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-liquid-gas-week-2026-istanbul",
+    "id": "evt-23",
     "name": "Liquid Gas Week 2026 – Istanbul",
     "short_name": "Liquid Gas Week İstanbul",
-    "start_date": "2026-10-12",
-    "end_date": "2026-10-16",
+    "start_date": "",
+    "end_date": "",
     "city": "İstanbul",
     "country": "Türkiye",
     "region": "eu",
@@ -718,29 +520,20 @@
     "website": "https://www.liquidgasweek.com/istanbul-2026",
     "ticket_info": "WLGA üyelerine %20 indirim; Delege ~€1.500–€3.000",
     "description": "LPG sektörünün en büyük yıllık buluşmasıdır. IEA Başkanı Dr. Fatih Birol açılış konuşmacısıdır. Sergi alanının %90'ı dolu.",
-    "contact": "events@worldliquidgas.org",
     "source_url": "https://www.liquidgasweek.com/istanbul-2026",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.liquidgasweek.com/istanbul-2026"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-energetika-2026-international-energy-fair-belgrade",
+    "id": "evt-24",
     "name": "Energetika 2026 – International Energy Fair Belgrade",
     "short_name": "Energetika Belgrad",
-    "start_date": "2026-10-21",
-    "end_date": "2026-10-23",
+    "start_date": "",
+    "end_date": "",
     "city": "Belgrad",
     "country": "Sırbistan",
     "region": "eu",
@@ -750,29 +543,20 @@
     "website": "https://www.sajamenergetike.rs",
     "ticket_info": "Ziyaretçi girişi ücretsiz",
     "description": "21. edisyonunda UFI lisanslı Sırbistan'ın en büyük enerji fuarıdır. Gaz türbinleri, buhar kazanları ve endüstriyel gaz ekipmanı üreticileri katılmaktadır.",
-    "contact": "energetika@sajam.rs",
     "source_url": "https://www.sajamenergetike.rs",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.sajamenergetike.rs"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-adipec-2026-abu-dhabi-int-l-petroleum-exhibition-conference",
+    "id": "evt-25",
     "name": "ADIPEC 2026 – Abu Dhabi Int'l Petroleum Exhibition & Conference",
     "short_name": "ADIPEC Abu Dabi",
-    "start_date": "2026-11-02",
-    "end_date": "2026-11-05",
+    "start_date": "",
+    "end_date": "",
     "city": "Abu Dabi",
     "country": "BAE",
     "region": "gcc",
@@ -782,29 +566,20 @@
     "website": "https://www.adipec.com",
     "ticket_info": "Ziyaretçi kaydı ücretsiz; Konferans: web sitesinde",
     "description": "Dünyanın en büyük enerji etkinliklerinden biridir. 54 enerji şirketi, 30 ülke pavilyonu ve 12 konferans programı. Endüstriyel kazan & brülör sistemleri, gaz ölçüm & skid ekipmanları ile küresel devler aynı çatıda.",
-    "contact": "adipec@dmgevents.com",
     "source_url": "https://www.adipec.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.adipec.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-osea-2026-offshore-south-east-asia",
+    "id": "evt-26",
     "name": "OSEA 2026 – Offshore South East Asia",
     "short_name": "OSEA Singapur",
-    "start_date": "2026-11-24",
-    "end_date": "2026-11-26",
+    "start_date": "",
+    "end_date": "",
     "city": "Singapur",
     "country": "Singapur",
     "region": "asia",
@@ -814,29 +589,20 @@
     "website": "https://www.osea-offshore.com",
     "ticket_info": "Ziyaretçi kaydı ücretsiz; Konferans: web sitesinde",
     "description": "49 yıllık geçmişiyle Asya-Pasifik'in köklü petrol & gaz fuarıdır. LNG işleme, taşıma terminalleri, boru hattı ekipmanları ve endüstriyel gaz sistemleri sergilenmektedir.",
-    "contact": "osea@sesallworld.com",
     "source_url": "https://www.osea-offshore.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.osea-offshore.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   },
   {
-    "id": "evt-26th-world-lng-summit-awards-2026",
+    "id": "evt-27",
     "name": "26th World LNG Summit & Awards 2026",
     "short_name": "World LNG Summit",
-    "start_date": "2026-12-01",
-    "end_date": "2026-12-04",
+    "start_date": "",
+    "end_date": "",
     "city": "İstanbul",
     "country": "Türkiye",
     "region": "eu",
@@ -846,21 +612,12 @@
     "website": "https://www.worldlngsummit.com",
     "ticket_info": "Delege kaydı: Fiyat taleple",
     "description": "Küresel LNG endüstrisinin yıllık buluşma noktasıdır. Enerji güvenliği ve karbonsuzlaşma dengesini ele almaktadır. Global LNG Ödülleri de bu etkinlikte verilmektedir.",
-    "contact": "info@worldlngsummit.com",
     "source_url": "https://www.worldlngsummit.com",
-    "source_type": "secondary_backup",
-    "status": "confirmed",
-    "confidence_score": 0.82,
-    "last_checked_at": "2026-04-21T00:00:00+00:00",
-    "last_changed_at": "2026-04-21T00:00:00+00:00",
-    "change_log": [
-      {
-        "timestamp": "2026-04-21T00:00:00+00:00",
-        "field": "created",
-        "old": null,
-        "new": "imported-from-html-seed",
-        "source_url": "https://www.worldlngsummit.com"
-      }
-    ]
+    "source_type": "seed_html",
+    "status": "seeded",
+    "confidence_score": 0.8,
+    "last_checked_at": "",
+    "last_changed_at": "",
+    "change_log": []
   }
 ]

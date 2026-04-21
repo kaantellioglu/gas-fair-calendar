@@ -1,23 +1,24 @@
 from __future__ import annotations
 
+from typing import Iterable
 from .build_html import build_html
 from .collectors.http_html import GenericHTMLCollector
 from .collectors.playwright_collector import PlaywrightCollector
 from .dedupe import find_duplicates
 from .discovery import discover_candidates_from_html
 from .export_excel import export_excel
-from .io_json import backup_json, load_events, save_events
-from .merge import merge_all_events
+from .io_json import load_events, save_events
+from .merge import merge_event
 from .models import EventRecord, SourceConfig
 from .reporting import write_run_report
-from .settings import BACKUP_DIR, DATA_DIR, load_sources_config
+from .settings import DATA_DIR, load_sources_config
 from .validation import validate_many
 
 
 def run_collectors() -> list[EventRecord]:
     config = load_sources_config()
     results: list[EventRecord] = []
-    for source_dict in config.get('sources', []):
+    for source_dict in config.get("sources", []):
         source = SourceConfig.model_validate(source_dict)
         if not source.enabled:
             continue
@@ -25,14 +26,14 @@ def run_collectors() -> list[EventRecord]:
         try:
             results.extend(collector.collect())
         except Exception as exc:
-            print(f'Collector failed for {source.key}: {exc}')
+            print(f"Collector failed for {source.key}: {exc}")
     return results
 
 
 def run_discovery() -> list[EventRecord]:
     config = load_sources_config()
     candidates: list[EventRecord] = []
-    for source_dict in config.get('sources', []):
+    for source_dict in config.get("sources", []):
         source = SourceConfig.model_validate(source_dict)
         if not source.enabled or not source.discovery:
             continue
@@ -40,51 +41,54 @@ def run_discovery() -> list[EventRecord]:
             try:
                 candidates.extend(discover_candidates_from_html(url, region=source.region, category=source.category))
             except Exception as exc:
-                print(f'Discovery failed for {url}: {exc}')
+                print(f"Discovery failed for {url}: {exc}")
     return candidates
 
 
-def main() -> None:
-    config = load_sources_config()
-    min_confidence = float(config.get('defaults', {}).get('min_confidence_to_publish', 0.78))
-    guard_min_records = int(config.get('defaults', {}).get('minimum_incoming_records_guard', 0))
+def merge_all(master: list[EventRecord], incoming: list[EventRecord]) -> tuple[list[EventRecord], int, int]:
+    index = {event.id: event for event in master}
+    added = 0
+    updated = 0
 
-    master_path = DATA_DIR / 'events_master.json'
-    master = load_events(master_path)
+    for event in incoming:
+        if event.id in index:
+            index[event.id] = merge_event(index[event.id], event)
+            updated += 1
+        else:
+            index[event.id] = event
+            added += 1
+
+    merged = sorted(index.values(), key=lambda e: (e.start_date, e.name))
+    return merged, added, updated
+
+
+def main() -> None:
+    master = load_events(DATA_DIR / "events_master.json")
     collected = run_collectors()
     discovered = run_discovery()
-    incoming = collected + discovered
-
-    if guard_min_records and len(incoming) < guard_min_records:
-        print(f'Incoming records ({len(incoming)}) below guard threshold ({guard_min_records}). Master file kept as-is.')
-        incoming = []
-
-    backup_path = backup_json(master_path, BACKUP_DIR)
-    merged, added, updated = merge_all_events(master, incoming)
+    merged, added, updated = merge_all(master, collected + discovered)
 
     issues = validate_many(merged)
     duplicates = find_duplicates(merged)
 
     for event in merged:
-        if event.status == 'candidate' and event.confidence_score >= min_confidence:
-            event.status = 'confirmed'
+        if event.status == "candidate" and event.confidence_score >= 0.78:
+            event.status = "confirmed"
 
-    save_events(master_path, merged)
-    save_events(DATA_DIR / 'candidates.json', [e for e in merged if e.status in {'candidate', 'needs_review'}])
+    save_events(DATA_DIR / "events_master.json", merged)
+    save_events(DATA_DIR / "candidates.json", [e for e in merged if e.status in {"candidate", "needs_review"}])
 
-    html_path = build_html()
-    excel_path = export_excel()
-    reports = write_run_report(
-        issues=[f'{issue.event_id}: {issue.message}' for issue in issues],
-        added=added, updated=updated, duplicates=duplicates, backup_path=backup_path, incoming_count=len(incoming),
+    build_html()
+    export_excel()
+    write_run_report(
+        issues=[f"{issue.event_id}: {issue.message}" for issue in issues],
+        added=added,
+        updated=updated,
+        duplicates=duplicates,
     )
 
-    print(
-        'Pipeline completed. '
-        f'Added={added}, Updated={updated}, Incoming={len(incoming)}, Issues={len(issues)}, Duplicates={len(duplicates)}\n'
-        f'Backup={backup_path}\nHTML={html_path}\nExcel={excel_path}\nReport={reports["markdown"]}'
-    )
+    print(f"Pipeline completed. Added={added}, Updated={updated}, Issues={len(issues)}, Duplicates={len(duplicates)}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

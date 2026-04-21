@@ -403,24 +403,6 @@ h1 em { font-style:normal; color:var(--r-eu); }
 .btn-cal:active { transform:translateY(0); }
 .btn-cal .cal-icon { font-size:15px; }
 
-
-/* UX improvements */
-.livebar{display:flex;flex-wrap:wrap;gap:10px;margin:-10px 0 24px;animation:fadeUp .55s .2s both}
-.live-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);font-size:12px;color:var(--text-2)}
-.live-pill span{color:#10b981;font-size:10px}
-.status-chip,.conf-chip,.src-chip{display:inline-flex;align-items:center;gap:6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:3px 7px;border-radius:999px;text-transform:uppercase;letter-spacing:.4px;border:1px solid transparent}
-.status-confirmed{background:rgba(16,185,129,.1);color:#047857;border-color:rgba(16,185,129,.22)}
-.status-needs_review{background:rgba(245,158,11,.12);color:#b45309;border-color:rgba(245,158,11,.25)}
-.status-candidate{background:rgba(99,102,241,.10);color:#4338ca;border-color:rgba(99,102,241,.22)}
-.status-cancelled,.status-deprecated{background:rgba(239,68,68,.1);color:#b91c1c;border-color:rgba(239,68,68,.25)}
-.conf-chip{background:rgba(26,37,64,.06);color:var(--text)}
-.src-chip{background:rgba(6,182,212,.08);color:#0e7490}
-.evc-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:3px}
-.evc-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.m-ver{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
-.tbl-toolbar{row-gap:10px}
-@media(max-width:900px){.livebar{margin-top:4px}.srch{margin-left:0;width:100%}.srch input{width:100%}}
-
 @media(max-width:640px) {
   .mgrid { grid-template-columns:1fr; }
   .stats-grid { display:none; }
@@ -532,6 +514,46 @@ h1 em { font-style:normal; color:var(--r-eu); }
 }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
+
+/* PRODUCT ACTIONS */
+.actions-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:-8px 0 28px;}
+.action-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);transition:.18s transform,.18s box-shadow;}
+.action-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.action-btn.primary{background:linear-gradient(135deg,#6366f1,#818cf8);color:#fff;border:none}
+.action-btn.subtle{background:var(--surface2);color:var(--text-2)}
+.meta-strip{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.meta-chip{padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:11px;font-weight:700;color:var(--text-2);box-shadow:var(--shadow)}
+.drawer{position:fixed;top:0;right:-480px;width:min(480px,100vw);height:100vh;background:var(--surface);border-left:1px solid var(--border);box-shadow:var(--shadow-lg);z-index:450;transition:right .25s ease;overflow:auto}
+.drawer.on{right:0}
+#drawer-backdrop{background:rgba(15,23,42,.12)!important;backdrop-filter:none!important;}
+.drawer{z-index:550;}
+.drawer-head{position:sticky;top:0;background:var(--surface);padding:20px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;z-index:2}
+.drawer-body{padding:18px 22px 26px;display:flex;flex-direction:column;gap:16px}
+.drawer h3{font-size:18px;font-weight:800;margin:0}
+.drawer p{font-size:12px;color:var(--text-2)}
+.drawer .cardx{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.kv .fg{display:flex;flex-direction:column;gap:6px}
+.kv input,.kv select,.kv textarea,.drawer input,.drawer select,.drawer textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:10px;background:#fff;font-size:13px;outline:none}
+.kv textarea,.drawer textarea{min-height:80px;resize:vertical}
+.drawer label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-2)}
+.check-grid{display:grid;grid-template-columns:1fr;gap:8px}
+.check-item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;background:#fff;border:1px solid var(--border);border-radius:12px}
+.check-item small{display:block;color:var(--text-3);font-size:11px}
+.list-sources{display:flex;flex-direction:column;gap:10px}
+.source-row{padding:12px;border:1px solid var(--border);border-radius:14px;background:#fff}
+.source-row h4{font-size:13px;font-weight:800;margin:0 0 4px}
+.source-row p{font-size:11px;color:var(--text-2);margin:0 0 6px}
+.source-tags{display:flex;gap:6px;flex-wrap:wrap}
+.source-tags span,.pill-mini{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:4px 7px;border-radius:999px;background:var(--surface2);border:1px solid var(--border)}
+.drawer-actions{display:flex;gap:10px;flex-wrap:wrap}
+.notice{padding:12px 14px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;font-size:12px;line-height:1.6}
+.badge-status{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:800;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.badge-status.confirmed{background:rgba(16,185,129,.12);color:#047857}
+.badge-status.review{background:rgba(245,158,11,.12);color:#b45309}
+.badge-status.new{background:rgba(99,102,241,.12);color:#4f46e5}
+@media(max-width:768px){.actions-bar{margin-top:8px}.kv{grid-template-columns:1fr}.actions-bar .action-btn{width:100%;justify-content:center}}
+
 </style>
 </head>
 <body>
@@ -543,13 +565,13 @@ h1 em { font-style:normal; color:var(--r-eu); }
   <div>
     <div class="badge-eyebrow">// 2026 Küresel Fuar Rehberi</div>
     <h1>Gaz, LNG &amp; LPG<br><em>Fuarları 2026</em></h1>
-    <p class="header-desc">Avrupa · GCC · Türki Cumhuriyetler · Asya-Pasifik — Doğal gaz, LNG, LPG, kazan, brülör ve gaz skid ekipmanları için kapsamlı küresel etkinlik takvimi</p>
+    <p class="header-desc">Avrupa · GCC / Orta Doğu / Afrika / Afrika · Türki Cumhuriyetler · Asya-Pasifik — Doğal gaz, LNG, LPG, kazan, brülör ve gaz skid ekipmanları için kapsamlı küresel etkinlik takvimi</p>
     <div class="pills">
       <span class="pill" style="border-color:#0ea5e9;color:#0369a1;background:rgba(14,165,233,.08)">LNG</span>
       <span class="pill" style="border-color:#f97316;color:#9a3412;background:rgba(249,115,22,.08)">LPG</span>
       <span class="pill" style="border-color:#8b5cf6;color:#6d28d9;background:rgba(139,92,246,.08)">Gaz Dağıtım</span>
       <span class="pill" style="border-color:#ec4899;color:#9d174d;background:rgba(236,72,153,.08)">Boiler / Brülör / Skid</span>
-      <span class="pill" style="border-color:#d97706;color:#92400e;background:rgba(245,158,11,.08)">GCC / Orta Doğu</span>
+      <span class="pill" style="border-color:#d97706;color:#92400e;background:rgba(245,158,11,.08)">GCC / Orta Doğu / Afrika</span>
       <span class="pill" style="border-color:#06b6d4;color:#0e7490;background:rgba(6,182,212,.08)">Asya-Pasifik</span>
     </div>
     <div style="margin-top:20px">
@@ -559,7 +581,7 @@ h1 em { font-style:normal; color:var(--r-eu); }
     </div>
   </div>
   <div class="stats-grid">
-    <div class="stat-box"><div class="stat-n" id="stat-ev">27</div><div class="stat-l">Etkinlik</div></div>
+    <div class="stat-box"><div class="stat-n" id="stat-ev">29</div><div class="stat-l">Etkinlik</div></div>
     <div class="stat-box"><div class="stat-n">20+</div><div class="stat-l">Ülke</div></div>
     <div class="stat-box"><div class="stat-n">4</div><div class="stat-l">Bölge</div></div>
     <div class="stat-box"><div class="stat-n">11</div><div class="stat-l">Ay</div></div>
@@ -569,18 +591,25 @@ h1 em { font-style:normal; color:var(--r-eu); }
   </div>
 </header>
 
+<div class="actions-bar">
+  <button class="action-btn primary" onclick="openDrawer('scan-drawer')">⚡ Tarama Başlat</button>
+  <button class="action-btn" onclick="openDrawer('sources-drawer')">🧭 Kaynaklar</button>
+  <button class="action-btn subtle" onclick="downloadJson('data/events_frontend.json','events_frontend.json')">⬇ Veri JSON</button>
+  <button class="action-btn subtle" onclick="downloadJson('data/sources.json','sources.json')">⬇ Kaynak JSON</button>
+</div>
+<div class="meta-strip" id="meta-strip">
+  <div class="meta-chip" id="meta-last-sync">Son senkron: yükleniyor…</div>
+  <div class="meta-chip" id="meta-event-count">0 etkinlik</div>
+  <div class="meta-chip" id="meta-source-count">0 kaynak</div>
+  <div class="meta-chip" id="meta-mode">GitHub Pages modu</div>
+</div>
+
+
 <!-- ══ TABS ══ -->
 <div class="tabs">
   <button class="tab on" onclick="switchTab('cal',this)">📅 Aylık Takvim</button>
   <button class="tab" onclick="switchTab('tl',this)">📊 Zaman Çizelgesi</button>
   <button class="tab" onclick="switchTab('tbl',this)">🗂 Özet Tablo</button>
-</div>
-
-<div class="livebar">
-  <div class="live-pill"><span>●</span> Son senkron: <strong id="live-last-sync">-</strong></div>
-  <div class="live-pill">Doğrulanan: <strong id="live-confirmed">-</strong></div>
-  <div class="live-pill">Kontrol gereken: <strong id="live-review">-</strong></div>
-  <div class="live-pill">Kaynak: <strong id="live-sources">-</strong></div>
 </div>
 
 <!-- ══ CALENDAR PANEL ══ -->
@@ -612,15 +641,10 @@ h1 em { font-style:normal; color:var(--r-eu); }
     <span class="tbl-lbl">Bölge:</span>
     <button class="fbtn on" data-r="all" onclick="filterTbl('all',this)">Tümü</button>
     <button class="fbtn" data-r="eu"     onclick="filterTbl('eu',this)">🇪🇺 Avrupa</button>
-    <button class="fbtn" data-r="gcc"    onclick="filterTbl('gcc',this)">🌍 GCC / Orta Doğu</button>
+    <button class="fbtn" data-r="gcc"    onclick="filterTbl('gcc',this)">🌍 GCC / Orta Doğu / Afrika</button>
     <button class="fbtn" data-r="turkic" onclick="filterTbl('turkic',this)">🏔 Türki Cumhuriyetler</button>
     <button class="fbtn" data-r="asia"   onclick="filterTbl('asia',this)">🌏 Asya-Pasifik</button>
-    <span class="tbl-lbl" style="margin-left:8px">Durum:</span>
-    <button class="fbtn status-btn on" data-s="all" onclick="filterStatus('all',this)">Tümü</button>
-    <button class="fbtn status-btn" data-s="confirmed" onclick="filterStatus('confirmed',this)">Doğrulandı</button>
-    <button class="fbtn status-btn" data-s="needs_review" onclick="filterStatus('needs_review',this)">Kontrol Gerekli</button>
-    <button class="fbtn status-btn" data-s="candidate" onclick="filterStatus('candidate',this)">Aday</button>
-    <span class="cnt-badge" id="cnt">27 etkinlik</span>
+    <span class="cnt-badge" id="cnt">29 etkinlik</span>
     <div class="srch">
       <span style="color:var(--text-3);font-size:13px">🔍</span>
       <input type="text" placeholder="Ara: fuar, şehir, ülke…" oninput="srchTbl(this.value)">
@@ -650,6 +674,64 @@ h1 em { font-style:normal; color:var(--r-eu); }
 </div>
 
 </div><!-- /wrap -->
+
+
+<div class="cpoverlay" id="drawer-backdrop" onclick="closeDrawers()"></div>
+<aside class="drawer" id="scan-drawer">
+  <div class="drawer-head"><div><h3>Tarama paneli</h3><p>Kullanıcı seçimine göre tarama isteği oluşturur. API varsa doğrudan job başlatır.</p></div><button class="mclose" onclick="closeDrawers()">✕</button></div>
+  <div class="drawer-body">
+    <div class="notice">GitHub Pages üzerinde sayfa doğrudan scraper çalıştıramaz. Buradaki panel tarama isteğini hazırlar; istek JSON olarak indirilebilir veya opsiyonel API'ye gönderilebilir.</div>
+    <div class="cardx">
+      <div class="kv">
+        <div class="fg"><label>Tarama modu</label><select id="scan-mode"><option value="delta">Sadece değişiklikleri tara</option><option value="full">Tam tarama</option><option value="discovery">Sadece yeni fuar ara</option><option value="dates">Sadece tarih güncelle</option></select></div>
+        <div class="fg"><label>Kaynak profili</label><select id="scan-profile"><option value="all">Tüm aktif kaynaklar</option><option value="official_only">Sadece resmi kaynaklar</option><option value="high_confidence">Yüksek güven kaynakları</option><option value="custom">Elle seçim</option></select></div>
+        <div class="fg"><label>Bölge</label><select id="scan-region"><option value="all">Tümü</option><option value="eu">Avrupa</option><option value="gcc">GCC / Orta Doğu / Afrika</option><option value="turkic">Türki Cumhuriyetler</option><option value="asia">Asya-Pasifik</option></select></div>
+        <div class="fg"><label>Kategori</label><select id="scan-category"><option value="all">Tümü</option><option value="lng">LNG</option><option value="lpg">LPG</option><option value="dist">Gaz dağıtım</option><option value="ng">Enerji</option><option value="equip">Ekipman</option><option value="boiler">Boiler / Brülör</option><option value="gcc">Petrol & Gaz</option><option value="asia">Asya Gaz</option></select></div>
+      </div>
+    </div>
+    <div class="cardx">
+      <label>Kaynak seçimi</label>
+      <div class="check-grid" id="scan-source-list"></div>
+    </div>
+    <div class="cardx">
+      <label>Not</label>
+      <textarea id="scan-notes" placeholder="Örn: Q4 etkinliklerini ve LNG odaklı büyük fuarları tekrar kontrol et."></textarea>
+    </div>
+    <div class="drawer-actions">
+      <button class="action-btn primary" onclick="submitScanRequest()">🚀 İstek oluştur</button>
+      <button class="action-btn" onclick="downloadScanRequest()">⬇ İstek JSON indir</button>
+      <button class="action-btn subtle" onclick="saveScanPrefs()">💾 Tercihleri kaydet</button>
+    </div>
+    <div class="cardx"><label>Son istek</label><pre id="scan-preview" style="white-space:pre-wrap;font-size:12px;color:var(--text-2)"></pre></div>
+  </div>
+</aside>
+<aside class="drawer" id="sources-drawer">
+  <div class="drawer-head"><div><h3>Kaynak merkezi</h3><p>Yerleşik kaynaklar + kullanıcının eklediği kaynaklar birlikte görünür.</p></div><button class="mclose" onclick="closeDrawers()">✕</button></div>
+  <div class="drawer-body">
+    <div class="cardx">
+      <div class="kv">
+        <div class="fg"><label>Arama</label><input id="src-search" placeholder="Kaynak adı veya alan adı" oninput="renderSources()"></div>
+        <div class="fg"><label>Filtre</label><select id="src-filter" onchange="renderSources()"><option value="all">Tümü</option><option value="official_site">Resmi site</option><option value="association">Birlik / Association</option><option value="organizer">Organizatör</option><option value="custom">Kullanıcı eklediği</option></select></div>
+      </div>
+    </div>
+    <div class="cardx">
+      <label>Yeni kaynak ekle</label>
+      <div class="kv">
+        <div class="fg"><label>Kaynak adı</label><input id="new-source-name" placeholder="Örn: Global Energy Show"></div>
+        <div class="fg"><label>URL</label><input id="new-source-url" placeholder="https://..."></div>
+        <div class="fg"><label>Kaynak tipi</label><select id="new-source-type"><option value="official_site">Resmi site</option><option value="association">Association</option><option value="organizer">Organizatör</option><option value="venue_calendar">Venue calendar</option><option value="custom">Özel / manuel</option></select></div>
+        <div class="fg"><label>Bölge</label><select id="new-source-region"><option value="global">Global</option><option value="eu">Avrupa</option><option value="gcc">GCC</option><option value="turkic">Türki</option><option value="asia">Asya</option></select></div>
+        <div class="fg"><label>Kategori</label><select id="new-source-category"><option value="ng">Enerji</option><option value="lng">LNG</option><option value="lpg">LPG</option><option value="dist">Dağıtım</option><option value="equip">Ekipman</option><option value="boiler">Boiler</option><option value="gcc">Petrol & Gaz</option></select></div>
+        <div class="fg"><label>Sıklık</label><select id="new-source-frequency"><option value="daily">Günlük</option><option value="weekly">Haftalık</option><option value="monthly">Aylık</option></select></div>
+      </div>
+      <div class="drawer-actions" style="margin-top:12px"><button class="action-btn primary" onclick="addCustomSource()">＋ Kaynak ekle</button></div>
+    </div>
+    <div class="cardx">
+      <label>Aktif kaynaklar</label>
+      <div id="sources-list" class="list-sources"></div>
+    </div>
+  </div>
+</aside>
 
 <!-- ══ ADD EVENT FORM MODAL ══ -->
 <div class="foverlay" id="fov" onclick="closeAddOut(event)">
@@ -714,7 +796,7 @@ h1 em { font-style:normal; color:var(--r-eu); }
               <option value="Ukrayna|ua|eu">🇺🇦 Ukrayna</option>
               <option value="Yunanistan|gr|eu">🇬🇷 Yunanistan</option>
             </optgroup>
-            <optgroup label="🌍 GCC / Orta Doğu">
+            <optgroup label="🌍 GCC / Orta Doğu / Afrika">
               <option value="BAE|ae|gcc">🇦🇪 BAE (Birleşik Arap Emirlikleri)</option>
               <option value="Bahreyn|bh|gcc">🇧🇭 Bahreyn</option>
               <option value="Irak|iq|gcc">🇮🇶 Irak</option>
@@ -764,7 +846,7 @@ h1 em { font-style:normal; color:var(--r-eu); }
           <label>Bölge <span class="req">*</span></label>
           <select id="f-region">
             <option value="eu">🇪🇺 Avrupa</option>
-            <option value="gcc">🌍 GCC / Orta Doğu</option>
+            <option value="gcc">🌍 GCC / Orta Doğu / Afrika</option>
             <option value="turkic">🏔 Türki Cumhuriyetler</option>
             <option value="asia">🌏 Asya-Pasifik</option>
           </select>
@@ -898,8 +980,13 @@ h1 em { font-style:normal; color:var(--r-eu); }
 
 <script>
 /* ═══════════ DATA ═══════════ */
-const EV = [{"id": 1, "event_id": "evt-pipeline-gas-expo-2026", "name": "Pipeline & Gas Expo 2026", "shortName": "Pipeline & Gas Expo", "dates": "4–6 Şubat", "s": 35, "e": 37, "city": "Piacenza", "country": "İtalya", "flag": "🇮🇹", "region": "eu", "type": "dist", "tag": "GAZ / DAĞITIM", "org": "Mediapoint & Exhibitions s.r.l.", "venue": "Piacenza Expo – Le Mose", "scale": "Takipte", "desc": "Avrupa'nın gaz ve su dağıtım ağlarına odaklanan tek ikiyıllık fuarıdır. Boru hattı tasarımı, inşaatı ve bakımı; ekipman, makine ve yazılım tedarikçileri bir arada. 7.000 m² kapalı alanda 7 teknik konferans ve 50 konuşmacı.", "contact": "info@pipelineandgasexpo.com", "url": "https://www.pipelineandgasexpo.com", "ticket": "Ziyaretçi girişi ücretsiz (kayıt gerekli)", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.pipelineandgasexpo.com", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 2, "event_id": "evt-lngcon-2026-int-l-lng-congress", "name": "LNGCON 2026 – Int'l LNG Congress", "shortName": "LNGCON Barselona", "dates": "9–11 Mart", "s": 68, "e": 70, "city": "Barselona", "country": "İspanya", "flag": "🇪🇸", "region": "eu", "type": "lng", "tag": "LNG", "org": "BGS Group", "venue": "Barcelona (Enagás Sponsorluğu)", "scale": "Takipte", "desc": "12. edisyonunda 390'dan fazla LNG sektörü liderini bir araya getiren kapalı kapı kongresidir. Üretim, taşımacılık, ticaret ve yeniden gazlaştırma alanlarında B2B görüşmeleri. 11 Mart'ta Barcelona LNG Terminaline teknik ziyaret.", "contact": "info@bgs.group", "url": "https://lngcongress.com", "ticket": "Davetiye / Kayıt tabanlı (fiyat talep üzerine)", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://lngcongress.com", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 3, "event_id": "evt-meos-2026-middle-east-oil-gas-geosciences-show", "name": "MEOS 2026 – Middle East Oil, Gas & Geosciences Show", "shortName": "MEOS Manama", "dates": "9–11 Mart", "s": 68, "e": 70, "city": "Manama", "country": "Bahreyn", "flag": "🇧🇭", "region": "gcc", "type": "gcc", "tag": "GCC-GAZ", "org": "SPE / dmg events", "venue": "Bahrain International Exhibition & Convention Centre", "scale": "Takipte", "desc": "İkiyılda bir Bahreyn'de düzenlenen Orta Doğu'nun en köklü petrol, gaz ve jeobilim fuarıdır. Arama ve üretim teknolojileri, gaz işleme, boru hattı sistemleri ve endüstriyel ekipmanlar sergilenmektedir. GCC gaz sektörünün temel buluşma noktalarından biridir.", "contact": "meos@dmgevents.com", "url": "https://www.meos-bahrain.com", "ticket": "Ziyaretçi kaydı ücretsiz; Konferans delege: web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.meos-bahrain.com", "source_type": "secondary_backup", "region_label": "GCC / Orta Doğu"}, {"id": 4, "event_id": "evt-abw-sofia-2026-architectural-building-week", "name": "ABW Sofia 2026 – Architectural Building Week", "shortName": "ABW Sofia", "dates": "11–14 Mart", "s": 70, "e": 73, "city": "Sofya", "country": "Bulgaristan", "flag": "🇧🇬", "region": "eu", "type": "boiler", "tag": "BOILER", "org": "IEC Inter Expo Center", "venue": "Inter Expo Center, 147 Tsarigradsko Shose", "scale": "Takipte", "desc": "26. edisyonunda Bulgaristan'ın önde gelen yapı ve enerji fuarıdır. Isıtma sistemleri, brülörler, kazan teknolojileri ve gaz tesisatı ağırlıklı. GREEN ENERGY fuarıyla eş zamanlı düzenlenmektedir.", "contact": "office@iec.bg", "url": "https://iec.bg", "ticket": "Ziyaretçi girişi ücretsiz", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://iec.bg", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 5, "event_id": "evt-ogce-2026-oil-gas-connect-expo-india", "name": "OGCE 2026 – Oil & Gas Connect Expo India", "shortName": "OGCE Delhi", "dates": "12–14 Mart", "s": 71, "e": 73, "city": "Greater Noida / Delhi NCR", "country": "Hindistan", "flag": "🇮🇳", "region": "asia", "type": "asia", "tag": "ASYA-GAZ", "org": "India Expo Mart & Centre", "venue": "India Expo Mart, Knowledge Park II", "scale": "Takipte", "desc": "Hindistan'ın genişleyen doğal gaz altyapısına yönelik uluslararası fuar platformudur. LNG, CNG, boru hattı teknolojileri, gaz dağıtım sistemleri, endüstriyel brülörler ve kazan sistemleri sergilenmektedir. City Gas Distribution (CGD) ağının hızla büyümesiyle kritik pazar erişim noktasıdır.", "contact": "info@gasconnectexpo.com", "url": "https://gasconnectexpo.com", "ticket": "Ziyaretçi ücretsiz; delege kaydı web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://gasconnectexpo.com", "source_type": "secondary_backup", "region_label": "Asya-Pasifik"}, {"id": 6, "event_id": "evt-romtherm-2026-is-tma-so-utma-gaz-tesisat", "name": "ROMTHERM 2026 – Isıtma, Soğutma & Gaz Tesisatı", "shortName": "ROMTHERM Bükreş", "dates": "19–22 Mart", "s": 78, "e": 81, "city": "Bükreş", "country": "Romanya", "flag": "🇷🇴", "region": "eu", "type": "boiler", "tag": "BOILER", "org": "Romexpo S.A.", "venue": "Romexpo B2 Pavilyonu, Bd. Marasti 65-67", "scale": "Takipte", "desc": "Romanya'nın en köklü ısıtma ve tesisat fuarıdır (29. edisyon). Viessmann, Buderus, Ferroli, Ariston gibi önde gelen kazan ve brülör üreticileri her yıl katılmaktadır. CONSTRUCT–AMBIENT EXPO ile eş zamanlı.", "contact": "info@romexpo.ro", "url": "https://romtherm.ro/en", "ticket": "Ziyaretçi girişi ücretsiz (ön kayıt önerilir)", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://romtherm.ro/en", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 7, "event_id": "evt-lisbon-energy-summit-2026", "name": "Lisbon Energy Summit 2026", "shortName": "Lisbon Energy", "dates": "24–25 Mart", "s": 83, "e": 84, "city": "Lizbon", "country": "Portekiz", "flag": "🇵🇹", "region": "eu", "type": "ng", "tag": "ENERJİ", "org": "dmg events", "venue": "FIL – Feira Internacional de Lisboa", "scale": "Takipte", "desc": "İberya yarımadası ve Portekiz Enerji Bakanlığı destekli etkinliktir. Gaz altyapısı, LNG terminalleri ve enerji verimliliği konularında oturumlar düzenlenmektedir.", "contact": "events@dmgevents.com", "url": "https://www.lisbonenergyweek.com", "ticket": "Delege kaydı: €500–€1.200", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.lisbonenergyweek.com", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 8, "event_id": "evt-construma-hungarotherm-2026", "name": "CONSTRUMA & HUNGAROTHERM 2026", "shortName": "Construma Budapeşte", "dates": "25–29 Mart", "s": 84, "e": 88, "city": "Budapeşte", "country": "Macaristan", "flag": "🇭🇺", "region": "eu", "type": "boiler", "tag": "BOILER", "org": "Hungexpo Zrt.", "venue": "HUNGEXPO Budapest Congress & Exhibition Center", "scale": "Takipte", "desc": "Orta-Doğu Avrupa'nın en büyük yapı ve bina mühendisliği fuarıdır. HUNGAROTHERM bölümü; kazan teknolojileri, brülörler, doğal gaz tesisatı ve HVAC çözümlerini kapsar.", "contact": "construma@hungexpo.hu", "url": "https://construma.hu", "ticket": "Ön kayıt ile ücretsiz", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://construma.hu", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 9, "event_id": "evt-pumps-valves-antwerp-2026", "name": "Pumps & Valves Antwerp 2026", "shortName": "Pumps & Valves", "dates": "25–26 Mart", "s": 84, "e": 85, "city": "Antwerp", "country": "Belçika", "flag": "🇧🇪", "region": "eu", "type": "equip", "tag": "EKİPMAN", "org": "Easyfairs", "venue": "Antwerp Expo, Jan Van Rijswijcklaan 191", "scale": "Takipte", "desc": "Endüstriyel sıvı ve gaz teknolojilerine yönelik Avrupa'nın önde gelen ikiyıllık fuarıdır. 20 teknik masterclass, İnovasyon Galerisi ve Maintenance fuarıyla eş zamanlı.", "contact": "www.pumps-valves-expo.be", "url": "https://www.pumps-valves-expo.be/en", "ticket": "Ziyaretçi girişi ücretsiz (ön kayıt önerilir)", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.pumps-valves-expo.be/en", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 10, "event_id": "evt-ret-thessaloniki-2026-renewable-energytech-expo", "name": "RET Thessaloniki 2026 – Renewable EnergyTech Expo", "shortName": "RET Selanik", "dates": "26–28 Mart", "s": 85, "e": 87, "city": "Selanik", "country": "Yunanistan", "flag": "🇬🇷", "region": "eu", "type": "ng", "tag": "ENERJİ", "org": "TIF-HELEXPO", "venue": "Thessaloniki International Exhibition & Congress Center", "scale": "Takipte", "desc": "Güneydoğu Avrupa'nın döngüsel ekonomi ve enerji geçişi alanındaki lider etkinliğidir. Gaz-hibrit sistemler, biyogaz ve akıllı enerji çözümleri sergilenmektedir.", "contact": "hello@helexpo.gr", "url": "https://www.renewable-energytech-expo.gr/en", "ticket": "İlgili profesyonellere ücretsiz giriş", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.renewable-energytech-expo.gr/en", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 11, "event_id": "evt-tekt-nica-lisbon-2026-yap-gaz-ekipmanlar", "name": "Tektónica Lisbon 2026 – Yapı & Gaz Ekipmanları", "shortName": "Tektónica Lizbon", "dates": "23–25 Nisan", "s": 113, "e": 115, "city": "Lizbon", "country": "Portekiz", "flag": "🇵🇹", "region": "eu", "type": "boiler", "tag": "BOILER", "org": "FIL – Feira Internacional de Lisboa", "venue": "FIL, Parque das Nações", "scale": "Takipte", "desc": "Portekiz'in lider yapı ve inşaat fuarıdır. Kazan, brülör ve gaz skid tedarikçileri ile sanayi ekipman distribütörleri katılmaktadır.", "contact": "tektonica@fil.pt", "url": "https://www.tektonica.fil.pt", "ticket": "Ziyaretçi girişi ücretsiz", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.tektonica.fil.pt", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 12, "event_id": "evt-8th-global-lng-forum-2026", "name": "8th Global LNG Forum 2026", "shortName": "Global LNG Forum", "dates": "28–29 Nisan", "s": 118, "e": 119, "city": "Barselona", "country": "İspanya", "flag": "🇪🇸", "region": "eu", "type": "lng", "tag": "LNG", "org": "ALJ Group", "venue": "Barselona (mekan TBC)", "scale": "Takipte", "desc": "Küresel LNG pazarındaki gelişmelere odaklanan Avrupa merkezli LNG etkinliğidir. Jeopolitik riskler, enerji güvenliği ve altyapı yatırımları masaya yatırılmaktadır.", "contact": "info@lng-global.com", "url": "https://lng-global.com", "ticket": "Delege: €1.500–€2.500 (taleple)", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://lng-global.com", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 13, "event_id": "evt-gas-professionals-meeting-opatija-2026-41st", "name": "Gas Professionals Meeting Opatija 2026 (41st)", "shortName": "Gas Meeting Opatija", "dates": "6–8 Mayıs", "s": 126, "e": 128, "city": "Opatija", "country": "Hırvatistan", "flag": "🇭🇷", "region": "eu", "type": "dist", "tag": "GAZ / DAĞITIM", "org": "HSUP – Croatian Gas Association", "venue": "Opatija Kongre Merkezi", "scale": "Takipte", "desc": "Güneydoğu Avrupa'nın en büyük uluslararası gaz konferansı ve fuarıdır (41. edisyon). Gas skid, brülör, boru hattı ve gaz ölçüm ekipmanı üreticileri sergilenmektedir.", "contact": "susret@hsup.hr", "url": "https://susret.hsup.hr/en", "ticket": "Delege kaydı: Fiyat web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://susret.hsup.hr/en", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 14, "event_id": "evt-mpgc-2026-33rd-middle-east-petroleum-gas-conference", "name": "MPGC 2026 – 33rd Middle East Petroleum & Gas Conference", "shortName": "MPGC Dubai", "dates": "11–13 Mayıs", "s": 131, "e": 133, "city": "Dubai", "country": "BAE", "flag": "🇦🇪", "region": "gcc", "type": "gcc", "tag": "GCC-GAZ", "org": "S&P Global / ENOC", "venue": "Jumeirah Emirates Towers, Dubai", "scale": "Takipte", "desc": "Orta Doğu'nun en uzun soluklu yıllık petrol ve gaz konferansıdır (33. edisyon). HH Şeyh Ahmed bin Saeed Al Maktoum himayesinde gerçekleşir. LNG & gaz dengesi, enerji güvenliği konularında bakanlık ve CEO seviyesinde paneller.", "contact": "spglobal.com/energy/events/mpgc", "url": "https://www.spglobal.com/energy/en/events/conferences/mpgc", "ticket": "USD tabanlı; S&P Global web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.spglobal.com/energy/en/events/conferences/mpgc", "source_type": "secondary_backup", "region_label": "GCC / Orta Doğu"}, {"id": 15, "event_id": "evt-opes-2026-oman-petroleum-energy-show", "name": "OPES 2026 – Oman Petroleum & Energy Show", "shortName": "OPES Muskat", "dates": "18–20 Mayıs", "s": 138, "e": 140, "city": "Muskat", "country": "Umman", "flag": "🇴🇲", "region": "gcc", "type": "gcc", "tag": "GCC-GAZ", "org": "CONNECT – Oman Exhibitions LLC", "venue": "OCEC – Oman Convention & Exhibition Centre", "scale": "Takipte", "desc": "Umman'ın tek entegre petrol, gaz ve enerji fuarıdır. SPE Konferansı eş zamanlı düzenlenmektedir. Gaz işleme sistemleri, pompa & kompresörler, endüstriyel brülörler ve gaz skid ekipmanları sergilenmektedir.", "contact": "info@connectthroughus.com", "url": "https://omanpetroleumandenergyshow.com", "ticket": "Ziyaretçi girişi ücretsiz; SPE delege web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://omanpetroleumandenergyshow.com", "source_type": "secondary_backup", "region_label": "GCC / Orta Doğu"}, {"id": 16, "event_id": "evt-gas-lng-the-future-of-energy-2026-wood-mackenzie", "name": "Gas, LNG & The Future of Energy 2026 (Wood Mackenzie)", "shortName": "WoodMac Gas & LNG", "dates": "2–3 Haziran", "s": 153, "e": 154, "city": "Londra", "country": "İngiltere", "flag": "🇬🇧", "region": "eu", "type": "lng", "tag": "LNG", "org": "Wood Mackenzie", "venue": "City of London", "scale": "Takipte", "desc": "Wood Mackenzie'nin yıllık Gaz & LNG konferansı. Avrupa gaz toplayıcıları, Asya LNG alıcıları ve yatırım bankaları bir araya gelir. Jeopolitik riskler ve fiyat oynaklığı gündemdedir.", "contact": "events@woodmac.com", "url": "https://www.woodmac.com/events/gas-lng-future-energy", "ticket": "Fiyat kayıt sayfasında", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.woodmac.com/events/gas-lng-future-energy", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 17, "event_id": "evt-baku-energy-week-2026-caspian-oil-gas-caspian-power", "name": "Baku Energy Week 2026 – Caspian Oil & Gas + Caspian Power", "shortName": "Baku Energy Week", "dates": "3–5 Haziran", "s": 154, "e": 156, "city": "Bakü", "country": "Azerbaycan", "flag": "🇦🇿", "region": "turkic", "type": "gcc", "tag": "GCC-GAZ", "org": "Iteca Caspian LLC / SOCAR", "venue": "Baku Expo Center, 515 H. Aliyev Ave.", "scale": "Takipte", "desc": "Hazar bölgesinin en prestijli enerji etkinliğidir. Azerbaycan Cumhurbaşkanı açılışa katılmaktadır. SOCAR, bp, TotalEnergies ve Equinor katılır. Gaz sahası geliştirme, boru hattı güvenliği ve gaz işleme ana gündem başlıklarıdır.", "contact": "info@iteca.az", "url": "https://caspianoilgas.az/en", "ticket": "Ziyaretçi kaydı ücretsiz; Forum: fiyat taleple", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://caspianoilgas.az/en", "source_type": "secondary_backup", "region_label": "Türki Cumhuriyetler"}, {"id": 18, "event_id": "evt-gtc-2026-gas-technology-conference-wlga", "name": "GTC 2026 – Gas Technology Conference (WLGA)", "shortName": "GTC WLGA", "dates": "9–11 Haziran", "s": 160, "e": 162, "city": "Avrupa", "country": "Avrupa", "flag": "🌐", "region": "eu", "type": "lpg", "tag": "LPG", "org": "WLGA", "venue": "TBC", "scale": "Takipte", "desc": "LPG ve yenilenebilir DME endüstrisinde teknoloji ve inovasyona odaklanan tek küresel konferanstır. Global İnovasyon Ödülü yarışması da düzenlenmektedir.", "contact": "wlga@worldliquidgas.org", "url": "https://www.worldliquidgas.org", "ticket": "Kayıt fiyatları açıklanacak", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.worldliquidgas.org", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 19, "event_id": "evt-foren-2026-wec-central-eastern-europe-energy-forum", "name": "FOREN 2026 – WEC Central & Eastern Europe Energy Forum", "shortName": "FOREN Neptun", "dates": "14–17 Haziran", "s": 165, "e": 168, "city": "Neptun", "country": "Romanya", "flag": "🇷🇴", "region": "eu", "type": "ng", "tag": "ENERJİ", "org": "WEC Romanian National Committee", "venue": "Neptun Uluslararası Kongre Merkezi, Karadeniz Kıyısı", "scale": "Takipte", "desc": "Romanya Hükümeti himayesinde WEC koordinasyonuyla ikiyılda bir düzenlenen bölgenin en prestijli enerji forumudur. Kazanlar, borular, valfler ve gaz ekipmanları sergi kategorilerindedir.", "contact": "secretariat@wec-romania.ro", "url": "https://www.foren.ro", "ticket": "Delege kaydı: Fiyat taleple", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.foren.ro", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 20, "event_id": "evt-gas-india-expo-2026-gie", "name": "Gas India Expo 2026 – GIE", "shortName": "Gas India Expo", "dates": "23–25 Temmuz", "s": 204, "e": 206, "city": "Greater Noida / Delhi NCR", "country": "Hindistan", "flag": "🇮🇳", "region": "asia", "type": "asia", "tag": "ASYA-GAZ", "org": "Indian Exhibition Services", "venue": "India Expo Centre and Mart, Greater Noida", "scale": "Takipte", "desc": "Doğal gaz, LNG, hidrojen ve endüstriyel gaz üretimine yönelik uluslararası fuar platformudur. CNG/LNG dolum ekipmanları, boru hatları ve gaz ölçüm cihazları ile endüstriyel brülörler ana sergi kategorileridir.", "contact": "info@gasindiaexpo.com", "url": "https://www.gasindiaexpo.com", "ticket": "Stand ve ziyaretçi kaydı web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.gasindiaexpo.com", "source_type": "secondary_backup", "region_label": "Asya-Pasifik"}, {"id": 21, "event_id": "evt-gastech-exhibition-conference-2026", "name": "Gastech Exhibition & Conference 2026", "shortName": "Gastech Bangkok", "dates": "14–17 Eylül", "s": 257, "e": 260, "city": "Bangkok", "country": "Tayland", "flag": "🇹🇭", "region": "asia", "type": "asia", "tag": "ASYA-GAZ", "org": "dmg events", "venue": "BITEC – Bangkok International Trade & Exhibition Centre", "scale": "Takipte", "desc": "54. yılında dünyanın en büyük doğal gaz, LNG ve hidrojen konferans & fuarıdır. 20 ülke pavilyonu, 4 özel sergi bölümü ve 1.000+ konuşmacı. Avrupa'lı gaz skid ve brülör üreticileri için Asya pazarına açılımın en etkili platformudur.", "contact": "gastech@dmgevents.com", "url": "https://www.gastechevent.com", "ticket": "Sergi ücretsiz (kayıt gerekli); Konferans: web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.gastechevent.com", "source_type": "secondary_backup", "region_label": "Asya-Pasifik"}, {"id": 22, "event_id": "evt-kioge-2026-30th-kazakhstan-int-l-oil-gas-exhibition", "name": "KIOGE 2026 – 30th Kazakhstan Int'l Oil & Gas Exhibition", "shortName": "KIOGE Almatı", "dates": "30 Eylül – 2 Ekim", "s": 273, "e": 275, "city": "Almatı", "country": "Kazakistan", "flag": "🇰🇿", "region": "turkic", "type": "gcc", "tag": "GCC-GAZ", "org": "Iteca Kazakhstan / KAZENERGY", "venue": "Atakent International Exhibition Centre, 42 Timiryazev Str.", "scale": "Takipte", "desc": "30. yılında Orta Asya'nın en büyük petrol & gaz fuarıdır. KazMunayGas, Tengizchevroil ve NCOC destekli. Kazan & ısıtma teknolojileri, gaz ölçüm & arıtma ekipmanları sergilenmektedir.", "contact": "contact@iteca.kz", "url": "https://kioge.kz/en", "ticket": "Ziyaretçi kaydı ücretsiz; konferans web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://kioge.kz/en", "source_type": "secondary_backup", "region_label": "Türki Cumhuriyetler"}, {"id": 23, "event_id": "evt-liquid-gas-week-2026-istanbul", "name": "Liquid Gas Week 2026 – Istanbul", "shortName": "Liquid Gas Week İstanbul", "dates": "12–16 Ekim", "s": 285, "e": 289, "city": "İstanbul", "country": "Türkiye", "flag": "🇹🇷", "region": "eu", "type": "lpg", "tag": "LPG", "org": "WLGA (World Liquid Gas Association)", "venue": "Istanbul Congress Center (ICC)", "scale": "Takipte", "desc": "LPG sektörünün en büyük yıllık buluşmasıdır. IEA Başkanı Dr. Fatih Birol açılış konuşmacısıdır. Sergi alanının %90'ı dolu.", "contact": "events@worldliquidgas.org", "url": "https://www.liquidgasweek.com/istanbul-2026", "ticket": "WLGA üyelerine %20 indirim; Delege ~€1.500–€3.000", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.liquidgasweek.com/istanbul-2026", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 24, "event_id": "evt-energetika-2026-international-energy-fair-belgrade", "name": "Energetika 2026 – International Energy Fair Belgrade", "shortName": "Energetika Belgrad", "dates": "21–23 Ekim", "s": 294, "e": 296, "city": "Belgrad", "country": "Sırbistan", "flag": "🌐", "region": "eu", "type": "ng", "tag": "ENERJİ", "org": "Beogradski sajam (Belgrade Fair)", "venue": "Belgrade Fair Grounds, Bulevar vojvode Mišića 14", "scale": "Takipte", "desc": "21. edisyonunda UFI lisanslı Sırbistan'ın en büyük enerji fuarıdır. Gaz türbinleri, buhar kazanları ve endüstriyel gaz ekipmanı üreticileri katılmaktadır.", "contact": "energetika@sajam.rs", "url": "https://www.sajamenergetike.rs", "ticket": "Ziyaretçi girişi ücretsiz", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.sajamenergetike.rs", "source_type": "secondary_backup", "region_label": "Avrupa"}, {"id": 25, "event_id": "evt-adipec-2026-abu-dhabi-int-l-petroleum-exhibition-conference", "name": "ADIPEC 2026 – Abu Dhabi Int'l Petroleum Exhibition & Conference", "shortName": "ADIPEC Abu Dabi", "dates": "2–5 Kasım", "s": 306, "e": 309, "city": "Abu Dabi", "country": "BAE", "flag": "🇦🇪", "region": "gcc", "type": "gcc", "tag": "GCC-GAZ", "org": "dmg events / ADNOC", "venue": "ADNEC – Abu Dhabi National Exhibition Centre", "scale": "Takipte", "desc": "Dünyanın en büyük enerji etkinliklerinden biridir. 54 enerji şirketi, 30 ülke pavilyonu ve 12 konferans programı. Endüstriyel kazan & brülör sistemleri, gaz ölçüm & skid ekipmanları ile küresel devler aynı çatıda.", "contact": "adipec@dmgevents.com", "url": "https://www.adipec.com", "ticket": "Ziyaretçi kaydı ücretsiz; Konferans: web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.adipec.com", "source_type": "secondary_backup", "region_label": "GCC / Orta Doğu"}, {"id": 26, "event_id": "evt-osea-2026-offshore-south-east-asia", "name": "OSEA 2026 – Offshore South East Asia", "shortName": "OSEA Singapur", "dates": "24–26 Kasım", "s": 328, "e": 330, "city": "Singapur", "country": "Singapur", "flag": "🇸🇬", "region": "asia", "type": "asia", "tag": "ASYA-GAZ", "org": "Singapore Exhibition Services Pte Ltd", "venue": "Marina Bay Sands Expo & Convention Centre", "scale": "Takipte", "desc": "49 yıllık geçmişiyle Asya-Pasifik'in köklü petrol & gaz fuarıdır. LNG işleme, taşıma terminalleri, boru hattı ekipmanları ve endüstriyel gaz sistemleri sergilenmektedir.", "contact": "osea@sesallworld.com", "url": "https://www.osea-offshore.com", "ticket": "Ziyaretçi kaydı ücretsiz; Konferans: web sitesinde", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.osea-offshore.com", "source_type": "secondary_backup", "region_label": "Asya-Pasifik"}, {"id": 27, "event_id": "evt-26th-world-lng-summit-awards-2026", "name": "26th World LNG Summit & Awards 2026", "shortName": "World LNG Summit", "dates": "1–4 Aralık", "s": 335, "e": 338, "city": "İstanbul", "country": "Türkiye", "flag": "🇹🇷", "region": "eu", "type": "lng", "tag": "LNG", "org": "Energy Council", "venue": "İstanbul (mekan TBC)", "scale": "Takipte", "desc": "Küresel LNG endüstrisinin yıllık buluşma noktasıdır. Enerji güvenliği ve karbonsuzlaşma dengesini ele almaktadır. Global LNG Ödülleri de bu etkinlikte verilmektedir.", "contact": "info@worldlngsummit.com", "url": "https://www.worldlngsummit.com", "ticket": "Delege kaydı: Fiyat taleple", "status": "confirmed", "confidence": 0.82, "last_checked_at": "2026-04-21T00:00:00+00:00", "last_changed_at": "2026-04-21T00:00:00+00:00", "source_url": "https://www.worldlngsummit.com", "source_type": "secondary_backup", "region_label": "Avrupa"}];
-const BUILD_META = {"generated_at": "2026-04-21T10:25:50.225284Z", "last_sync": "2026-04-21T00:00:00+00:00", "total": 27, "confirmed": 27, "needs_review": 0, "candidate": 0, "regions": ["asia", "eu", "gcc", "turkic"], "countries": 21};
+let EV = [];
+let SOURCES = [];
+let USER_SOURCES = [];
+const APP_STATE = {
+  apiBase: localStorage.getItem('gfc_api_base') || '',
+  lastScanRequest: null
+};
 
 /* ═══════════ CONFIG ═══════════ */
 const MONTHS = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
@@ -918,7 +1005,7 @@ const CAT = {
 };
 const REG = {
   eu:    {label:'Avrupa',              cls:'rg-eu'},
-  gcc:   {label:'GCC / Orta Doğu',    cls:'rg-gcc'},
+  gcc:   {label:'GCC / Orta Doğu / Afrika',    cls:'rg-gcc'},
   turkic:{label:'Türki Cumhuriyetler', cls:'rg-turkic'},
   asia:  {label:'Asya-Pasifik',        cls:'rg-asia'}
 };
@@ -951,9 +1038,9 @@ function buildCal() {
         ${evts.map(e=>`
           <div class="evc ${e.type}" onclick="openM(${e.id})">
             <div class="evc-date">${e.dates} 2026</div>
-            <div class="evc-top"><div class="evc-name">${e.name}</div><span class="status-chip status-${e.status||'confirmed'}">${statusLabel(e.status)}</span></div>
+            <div class="evc-name">${e.name}</div>
             <div class="evc-loc"><span>${e.flag}</span><span>${e.city}, ${e.country}</span></div>
-            <div class="evc-meta"><span class="evc-tag ${e.type}">${e.tag}</span><span class="conf-chip">Skor ${(e.confidence*100).toFixed(0)}%</span></div>
+            <span class="evc-tag ${e.type}">${e.tag}</span>
           </div>`).join('')}
       </div>`;
     grid.appendChild(card);
@@ -1018,9 +1105,8 @@ function buildTbl() {
     tr.dataset.region=e.region;
     tr.dataset.q=`${e.name} ${e.city} ${e.country} ${e.tag} ${e.org}`.toLowerCase();
     tr.dataset.s=e.s;
-    tr.dataset.status=e.status||'confirmed';
     tr.innerHTML=`
-      <td class="t-name">${e.flag} ${e.name}<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap"><span class="status-chip status-${e.status||'confirmed'}">${statusLabel(e.status)}</span><span class="src-chip">${sourceLabel(e.source_type)}</span></div></td>
+      <td class="t-name">${e.flag} ${e.name}</td>
       <td class="t-date">${e.dates} 2026</td>
       <td class="t-loc">${e.city}<small>${e.country}</small></td>
       <td><span class="t-reg ${r.cls}">${r.label}</span></td>
@@ -1043,7 +1129,7 @@ function apply() {
   const rows=[...document.querySelectorAll('#tbl-body tr')];
   let vis=0;
   rows.forEach(tr => {
-    const ok=(aReg==='all'||tr.dataset.region===aReg) && (aStatus==='all'||tr.dataset.status===aStatus) && (!aQ||tr.dataset.q.includes(aQ));
+    const ok=(aReg==='all'||tr.dataset.region===aReg) && (!aQ||tr.dataset.q.includes(aQ));
     tr.classList.toggle('hide',!ok);
     if(ok) vis++;
   });
@@ -1167,9 +1253,7 @@ function openM(id) {
   document.getElementById('m-org').textContent=e.org;
   document.getElementById('m-venue').textContent=e.venue;
   document.getElementById('m-scale').textContent=e.scale;
-  document.querySelectorAll('.m-ver').forEach(el=>el.remove());
   document.getElementById('m-desc').textContent=e.desc;
-  document.getElementById('m-desc').insertAdjacentHTML('afterend', `<div class="m-ver"><span class="status-chip status-${e.status||'confirmed'}">${statusLabel(e.status)}</span><span class="conf-chip">Güven ${(e.confidence*100).toFixed(0)}%</span><span class="src-chip">${sourceLabel(e.source_type)}</span><span class="src-chip">Son kontrol ${fmtDT(e.last_checked_at)}</span></div>`);
   document.getElementById('m-acts').innerHTML=`
     <a href="${e.url}" target="_blank" rel="noopener" class="btn-p">↗ Web Sitesi</a>
     <a href="mailto:${e.contact}" class="btn-s">✉ ${e.contact}</a>
@@ -1213,7 +1297,7 @@ const CITIES = {
   'Türkiye':      ['İstanbul','Ankara','İzmir','Bursa','Antalya','Adana','Konya','Gaziantep','Mersin','Kocaeli','Trabzon','Samsun'],
   'Ukrayna':      ['Kyiv','Harkiv','Odessa','Dnipro','Lviv'],
   'Yunanistan':   ['Atina','Selanik','Patras','Rodos','Kreta (Herakleion)'],
-  // GCC / Orta Doğu
+  // GCC / Orta Doğu / Afrika
   'BAE':           ['Dubai','Abu Dabi','Şarjah','Ras Al Khaimah','Fujairah','Ajman'],
   'Bahreyn':       ['Manama','Riffa','Muharraq','Hamad'],
   'Irak':          ['Bağdat','Basra','Erbil','Musul','Kerkük'],
@@ -1414,7 +1498,7 @@ function submitEvent() {
   document.getElementById('tl-body').innerHTML = '<div class="tl-gl" id="tl-gl"></div>';
   document.getElementById('tl-legend').innerHTML = '';
   document.getElementById('tbl-body').innerHTML = '';
-  buildCal(); buildTL(); buildTbl(); refreshLiveBar(); refreshLiveBar();
+  buildCal(); buildTL(); buildTbl();
 
   // Update stat counter
   document.getElementById('stat-ev').textContent = EV.length;
@@ -1515,7 +1599,7 @@ function checkPassword() {
   document.getElementById('tl-body').innerHTML = '<div class="tl-gl" id="tl-gl"></div>';
   document.getElementById('tl-legend').innerHTML = '';
   document.getElementById('tbl-body').innerHTML = '';
-  buildCal(); buildTL(); buildTbl(); refreshLiveBar();
+  buildCal(); buildTL(); buildTbl();
 
   // Update stat counter
   document.getElementById('stat-ev').textContent = EV.length;
@@ -1530,44 +1614,139 @@ function backToDetail() {
   if(_deleteId !== null) openM(_deleteId);
 }
 
-
-function fmtDT(v){return v?new Date(v).toLocaleString('tr-TR',{dateStyle:'medium',timeStyle:'short'}):'-';}
-function statusLabel(s){return ({confirmed:'Doğrulandı',needs_review:'Kontrol Gerekli',candidate:'Aday',cancelled:'İptal',deprecated:'Arşiv'})[s]||s||'Bilinmiyor';}
-function sourceLabel(s){return ({official_site:'Resmi Site',organizer:'Organizatör',association:'Birlik',venue:'Mekan',secondary_backup:'Yedek Kaynak'})[s]||'Kaynak';}
-let aStatus='all';
-function filterStatus(status,btn){document.querySelectorAll('.status-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');aStatus=status;apply();}
-function refreshLiveBar(){
- const confirmed=EV.filter(e=>e.status==='confirmed').length;
- const review=EV.filter(e=>e.status==='needs_review').length;
- const sources=new Set(EV.map(e=>sourceLabel(e.source_type))).size;
- const last=EV.map(e=>e.last_checked_at).filter(Boolean).sort().slice(-1)[0]||BUILD_META.generated_at;
- document.getElementById('live-last-sync').textContent=fmtDT(last);
- document.getElementById('live-confirmed').textContent=`${confirmed}/${EV.length}`;
- document.getElementById('live-review').textContent=review;
- document.getElementById('live-sources').textContent=sources;
- document.getElementById('stat-ev').textContent=EV.length;
- const countries=new Set(EV.map(e=>e.country)).size;
- const regions=new Set(EV.map(e=>e.region)).size;
- const months=new Set(EV.map(e=>getMonth(e.s))).size;
- const statBoxes=document.querySelectorAll('.stat-box .stat-n');
- if(statBoxes[1]) statBoxes[1].textContent=countries;
- if(statBoxes[2]) statBoxes[2].textContent=regions;
- if(statBoxes[3]) statBoxes[3].textContent=months;
+/* ═══════════ DATA LOADER + PRODUCT LAYER ═══════════ */
+function statusBadge(status){
+  const map={confirmed:['confirmed','Doğrulandı'],needs_review:['review','İncelenecek'],new:['new','Yeni']};
+  const [cls,label]=(map[status]||['review',status||'Durum']);
+  return `<span class="badge-status ${cls}">${label}</span>`;
+}
+function fmtDate(iso){if(!iso) return '—'; try{return new Date(iso).toLocaleString('tr-TR')}catch{return iso}}
+async function fetchJson(path){ const r = await fetch(path,{cache:'no-store'}); if(!r.ok) throw new Error(path); return await r.json(); }
+function updateMeta(){
+  const last = EV.map(x=>x.lastCheckedAt).filter(Boolean).sort().slice(-1)[0] || '';
+  document.getElementById('meta-last-sync').textContent = 'Son senkron: ' + (last ? fmtDate(last) : 'bilgi yok');
+  document.getElementById('meta-event-count').textContent = `${EV.length} etkinlik`;
+  document.getElementById('meta-source-count').textContent = `${(SOURCES.length + USER_SOURCES.length)} kaynak`;
+  document.getElementById('meta-mode').textContent = APP_STATE.apiBase ? 'API modu açık' : 'GitHub Pages modu';
+  document.getElementById('stat-ev').textContent = EV.length;
+}
+function rebuildAll(){
+  document.getElementById('cal-grid').innerHTML='';
+  document.getElementById('tl-months').innerHTML='';
+  document.getElementById('tl-body').innerHTML='<div class="tl-gl" id="tl-gl"></div>';
+  document.getElementById('tl-legend').innerHTML='';
+  document.getElementById('tbl-body').innerHTML='';
+  buildCal(); buildTL(); buildTbl(); updateMeta();
+}
+async function loadAppData(){
+  try{
+    [EV, SOURCES] = await Promise.all([fetchJson('data/events_frontend.json'), fetchJson('data/sources.json')]);
+  }catch(err){ console.error(err); showToast('⚠ Veri yüklenemedi'); return; }
+  USER_SOURCES = JSON.parse(localStorage.getItem('gfc_user_sources') || '[]');
+  rebuildAll();
+  renderScanSources();
+  renderSources();
+  loadScanPrefs();
+  if(window.innerWidth < 768){ const mb=document.getElementById('btn-add-mobile'); if(mb) mb.style.display='inline-flex'; }
+}
+function openDrawer(id){ document.getElementById('drawer-backdrop').classList.add('on'); document.getElementById(id).classList.add('on'); document.body.style.overflow='hidden'; }
+function closeDrawers(){ document.getElementById('drawer-backdrop').classList.remove('on'); document.querySelectorAll('.drawer').forEach(d=>d.classList.remove('on')); document.body.style.overflow=''; }
+function allSources(){ return [...SOURCES, ...USER_SOURCES]; }
+function renderScanSources(){
+  const box=document.getElementById('scan-source-list'); if(!box) return;
+  box.innerHTML = allSources().map(s=>`<label class="check-item"><input type="checkbox" value="${s.key}" ${s.enabled!==false?'checked':''}><div><strong>${s.name||s.key}</strong><small>${s.url}</small><small>${s.sourceType||'custom'} · ${s.region||'global'} · ${s.category||'ng'}</small></div></label>`).join('');
+}
+function renderSources(){
+  const search=(document.getElementById('src-search')?.value||'').toLowerCase();
+  const flt=document.getElementById('src-filter')?.value||'all';
+  const list=document.getElementById('sources-list'); if(!list) return;
+  const items=allSources().filter(s=>{
+    const okText=!search || `${s.name||''} ${s.url||''}`.toLowerCase().includes(search);
+    const okType=flt==='all' || (s.sourceType||'custom')===flt;
+    return okText && okType;
+  });
+  list.innerHTML = items.map(s=>`<div class="source-row"><h4>${s.name||s.key}</h4><p>${s.url||''}</p><div class="source-tags"><span>${s.sourceType||'custom'}</span><span>${s.region||'global'}</span><span>${s.category||'ng'}</span><span>${s.checkFrequency||'manual'}</span>${s.discovery?'<span>discovery</span>':''}${s.usePlaywright?'<span>playwright</span>':''}</div></div>`).join('') || '<div class="notice">Eşleşen kaynak yok.</div>';
+}
+function addCustomSource(){
+  const payload={
+    key:'user-'+Date.now(),
+    name:document.getElementById('new-source-name').value.trim(),
+    url:document.getElementById('new-source-url').value.trim(),
+    sourceType:document.getElementById('new-source-type').value,
+    region:document.getElementById('new-source-region').value,
+    category:document.getElementById('new-source-category').value,
+    checkFrequency:document.getElementById('new-source-frequency').value,
+    enabled:true, discovery:true, tier:3, usePlaywright:false
+  };
+  if(!payload.name || !payload.url){ showToast('⚠ Kaynak adı ve URL gerekli'); return; }
+  USER_SOURCES.unshift(payload);
+  localStorage.setItem('gfc_user_sources', JSON.stringify(USER_SOURCES));
+  renderSources(); renderScanSources(); updateMeta();
+  document.getElementById('new-source-name').value=''; document.getElementById('new-source-url').value='';
+  showToast('✅ Kaynak eklendi');
+}
+function selectedSourceKeys(){ return [...document.querySelectorAll('#scan-source-list input:checked')].map(x=>x.value); }
+function buildScanPayload(){
+  return {
+    mode: document.getElementById('scan-mode').value,
+    profile: document.getElementById('scan-profile').value,
+    region: document.getElementById('scan-region').value,
+    category: document.getElementById('scan-category').value,
+    selectedSources: selectedSourceKeys(),
+    notes: document.getElementById('scan-notes').value.trim(),
+    createdAt: new Date().toISOString()
+  };
+}
+function saveScanPrefs(){
+  const payload=buildScanPayload();
+  localStorage.setItem('gfc_scan_prefs', JSON.stringify(payload));
+  document.getElementById('scan-preview').textContent = JSON.stringify(payload, null, 2);
+  showToast('💾 Tarama tercihleri kaydedildi');
+}
+function loadScanPrefs(){
+  const raw = localStorage.getItem('gfc_scan_prefs'); if(!raw) return;
+  try{
+    const p=JSON.parse(raw);
+    if(p.mode) document.getElementById('scan-mode').value=p.mode;
+    if(p.profile) document.getElementById('scan-profile').value=p.profile;
+    if(p.region) document.getElementById('scan-region').value=p.region;
+    if(p.category) document.getElementById('scan-category').value=p.category;
+    if(p.notes) document.getElementById('scan-notes').value=p.notes;
+    setTimeout(()=>{ [...document.querySelectorAll('#scan-source-list input')].forEach(cb=>cb.checked=(p.selectedSources||[]).includes(cb.value)); },0);
+    document.getElementById('scan-preview').textContent = JSON.stringify(p, null, 2);
+  }catch(e){ console.warn(e); }
+}
+function downloadBlob(name, data){ const blob=new Blob([data],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); URL.revokeObjectURL(a.href); }
+async function downloadJson(path, fileName){ const data=await fetch(path).then(r=>r.text()); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([data],{type:'application/json'})); a.download=fileName; a.click(); }
+function downloadScanRequest(){ const payload=buildScanPayload(); APP_STATE.lastScanRequest=payload; document.getElementById('scan-preview').textContent = JSON.stringify(payload, null, 2); downloadBlob('scan_request.json', JSON.stringify(payload, null, 2)); }
+async function submitScanRequest(){
+  const payload=buildScanPayload(); APP_STATE.lastScanRequest=payload; document.getElementById('scan-preview').textContent = JSON.stringify(payload, null, 2);
+  if(APP_STATE.apiBase){
+    try{
+      const r = await fetch(APP_STATE.apiBase.replace(/\/$/,'') + '/api/scan-jobs', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload)});
+      if(!r.ok) throw new Error('API hata');
+      const job = await r.json();
+      showToast('🚀 Tarama işi oluşturuldu: ' + job.id);
+      return;
+    }catch(e){ console.error(e); showToast('⚠ API erişilemedi, JSON indiriliyor'); }
+  }
+  downloadBlob('scan_request.json', JSON.stringify(payload, null, 2));
+  showToast('⬇ Tarama isteği JSON olarak indirildi');
+}
+const _openM = openM;
+openM = function(id){
+  _openM(id);
+  const e = EV.find(x=>x.id===id); if(!e) return;
+  const acts = document.getElementById('m-acts');
+  if(acts){
+    const meta = `<div class="notice" style="margin-top:6px;width:100%">${statusBadge(e.status)} · Güven skoru: ${(e.confidence||0).toFixed(2)} · Kaynak tipi: ${e.sourceType||'—'} · Son kontrol: ${fmtDate(e.lastCheckedAt)}</div>`;
+    acts.insertAdjacentHTML('beforeend', meta);
+  }
 }
 
 /* ═══════════ INIT ═══════════ */
-buildCal(); buildTL(); buildTbl(); refreshLiveBar();
-
-// Show mobile add button on small screens
-if(window.innerWidth < 768) {
-  const mb = document.getElementById('btn-add-mobile');
-  if(mb) mb.style.display = 'inline-flex';
-}
-
-// Escape closes form too
-document.addEventListener('keydown', e => {
-  if(e.key === 'Escape') { closeM(); closeAddForm(); }
-});
+loadAppData();
+document.addEventListener('keydown', e => { if(e.key === 'Escape') { closeM(); closeAddForm(); closeDrawers(); } });
 </script>
 </body>
 </html>

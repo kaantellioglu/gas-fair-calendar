@@ -5,7 +5,6 @@ defaults:
   min_confidence_to_publish: 0.78
   max_duplicate_distance_days: 14
   target_years: [2026, 2027]
-  minimum_incoming_records_guard: 0
 
 sources:
   - key: gastech

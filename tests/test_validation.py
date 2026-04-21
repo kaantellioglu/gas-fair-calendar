@@ -1,6 +1,6 @@
 from datetime import date
-from gas_fair_calendar.models import EventRecord
-from gas_fair_calendar.validation import validate_event
+from src.gas_fair_calendar.models import EventRecord
+from src.gas_fair_calendar.validation import validate_event
 
 
 def test_validate_good_event():
