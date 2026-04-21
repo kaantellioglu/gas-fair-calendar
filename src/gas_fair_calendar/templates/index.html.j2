@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaz & LNG Fuar Takvimi</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f6f8fb; color: #1b2430; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 32px 20px 80px; }
+    h1 { margin: 0 0 8px; }
+    p.lead { color: #51606f; margin: 0 0 24px; }
+    .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .card { background: white; border: 1px solid #d9e1ea; border-radius: 12px; padding: 14px 18px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+    .event { background: white; border: 1px solid #d9e1ea; border-radius: 14px; padding: 16px; }
+    .tag { display: inline-block; font-size: 12px; padding: 4px 8px; border-radius: 999px; background: #eaf1ff; color: #284b9b; margin-right: 6px; }
+    .meta { color: #5a6775; font-size: 14px; margin: 6px 0; }
+    .footer { color: #6c7a89; font-size: 13px; margin-top: 32px; }
+    a { color: #0d56c2; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Gaz, LNG, LPG ve İlgili Enerji Fuarları</h1>
+    <p class="lead">Bu sayfa <code>events_master.json</code> verisinden otomatik üretilmiştir.</p>
+
+    <div class="stats">
+      <div class="card"><strong>{{ events|length }}</strong><br>toplam etkinlik</div>
+      <div class="card"><strong>{{ events|selectattr('status', 'equalto', 'confirmed')|list|length }}</strong><br>confirmed</div>
+      <div class="card"><strong>{{ events|selectattr('status', 'equalto', 'candidate')|list|length }}</strong><br>candidate</div>
+      <div class="card"><strong>{{ events|map(attribute='region')|list|unique|list|length }}</strong><br>bölge</div>
+    </div>
+
+    <div class="grid">
+      {% for event in events %}
+      <div class="event">
+        <div>
+          <span class="tag">{{ event.region }}</span>
+          <span class="tag">{{ event.category }}</span>
+          <span class="tag">{{ event.status }}</span>
+        </div>
+        <h3>{{ event.name }}</h3>
+        <div class="meta"><strong>Tarih:</strong> {{ event.start_date }} → {{ event.end_date }}</div>
+        <div class="meta"><strong>Şehir / Ülke:</strong> {{ event.city }}, {{ event.country }}</div>
+        <div class="meta"><strong>Organizatör:</strong> {{ event.organizer or '-' }}</div>
+        <div class="meta"><strong>Mekan:</strong> {{ event.venue or '-' }}</div>
+        <div class="meta"><strong>Güven Skoru:</strong> {{ '%.2f'|format(event.confidence_score) }}</div>
+        <p>{{ event.description or '' }}</p>
+        {% if event.website %}<p><a href="{{ event.website }}" target="_blank" rel="noopener">Resmi site</a></p>{% endif %}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="footer">
+      Otomatik üretim zamanı pipeline içinde yönetilir. Bu HTML tek başına veri kaynağı değildir.
+    </div>
+  </div>
+</body>
+</html>
