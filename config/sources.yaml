@@ -1,0 +1,63 @@
+defaults:
+  timeout_seconds: 30
+  retries: 2
+  user_agent: "Mozilla/5.0 (compatible; GasFairCalendarBot/1.0; +https://example.com/bot)"
+  min_confidence_to_publish: 0.78
+  max_duplicate_distance_days: 14
+  target_years: [2026, 2027]
+  minimum_incoming_records_guard: 0
+
+sources:
+  - key: gastech
+    enabled: true
+    tier: 1
+    source_type: official_site
+    region: asia
+    category: lng
+    discovery: false
+    use_playwright: false
+    url: "https://www.gastechevent.com"
+    list_urls:
+      - "https://www.gastechevent.com/visit/visitor-registration/"
+    selectors:
+      title: "title"
+    check_frequency: daily
+
+  - key: wlga
+    enabled: true
+    tier: 1
+    source_type: association
+    region: global
+    category: lpg
+    discovery: true
+    use_playwright: false
+    url: "https://www.worldliquidgas.org"
+    list_urls:
+      - "https://www.worldliquidgas.org/events/"
+    check_frequency: weekly
+
+  - key: adipec
+    enabled: true
+    tier: 1
+    source_type: official_site
+    region: gcc
+    category: gcc
+    discovery: false
+    use_playwright: false
+    url: "https://www.adipec.com"
+    list_urls:
+      - "https://www.adipec.com"
+    check_frequency: daily
+
+  - key: generic_energy_events
+    enabled: true
+    tier: 2
+    source_type: organizer
+    region: global
+    category: ng
+    discovery: true
+    use_playwright: true
+    url: "https://www.dmgevents.com"
+    list_urls:
+      - "https://www.dmgevents.com"
+    check_frequency: weekly

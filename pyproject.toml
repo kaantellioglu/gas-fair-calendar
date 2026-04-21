@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gas-fair-calendar"
+version = "1.1.0"
+description = "Automated gas, LNG, LPG and industrial energy fair calendar pipeline"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  {name = "OpenAI project scaffold"}
+]
+license = {text = "MIT"}
+dependencies = [
+  "beautifulsoup4>=4.12",
+  "Jinja2>=3.1",
+  "lxml>=5.2",
+  "openpyxl>=3.1",
+  "playwright>=1.54",
+  "pydantic>=2.8",
+  "python-dateutil>=2.9",
+  "PyYAML>=6.0",
+  "requests>=2.32"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3",
+  "ruff>=0.6"
+]
+
+[project.scripts]
+gas-fair-calendar = "gas_fair_calendar.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+"gas_fair_calendar" = ["templates/*.j2"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

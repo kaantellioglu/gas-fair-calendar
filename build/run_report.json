@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-04-21T10:16:54.724960+00:00",
+  "total_events": 27,
+  "incoming_count": 0,
+  "added": 0,
+  "updated": 0,
+  "backup_path": null,
+  "potential_duplicates": [],
+  "issues": [],
+  "distribution": {
+    "region": {
+      "asia": 4,
+      "eu": 17,
+      "gcc": 4,
+      "turkic": 2
+    },
+    "category": {
+      "asia": 4,
+      "boiler": 4,
+      "dist": 2,
+      "equip": 1,
+      "gcc": 6,
+      "lng": 4,
+      "lpg": 2,
+      "ng": 4
+    },
+    "status": {
+      "confirmed": 27
+    }
+  }
+}
