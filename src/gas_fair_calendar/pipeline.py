@@ -55,7 +55,13 @@ def merge_all(master: list[EventRecord], incoming: list[EventRecord]) -> tuple[l
         else:
             index[event.id] = event
             added += 1
-    merged = sorted(index.values(), key=lambda e: (e.start_date.isoformat() if e.start_date else "9999-12-31", e.name))
+    merged = sorted(
+        index.values(),
+        key=lambda e: (
+            e.start_date.isoformat() if e.start_date else "9999-12-31",
+            e.name,
+        ),
+    )
     return merged, added, updated
 
 
@@ -86,6 +92,11 @@ def run_auto_update(*, seed_if_empty: bool = True) -> dict:
 
     if len(merged) < 5 and master:
         raise RuntimeError("Safety stop: merged dataset too small; refusing to overwrite master data.")
+
+    # Update last sync/check time for all records.
+    sync_time = now_utc()
+    for event in merged:
+        event.last_checked_at = sync_time
 
     save_events(master_path, merged)
     save_events(DATA_DIR / "candidates.json", [e for e in merged if e.status in {"candidate", "needs_review"}])
