@@ -1,0 +1,19 @@
+{
+  "mode": "delta",
+  "profile": "all",
+  "region": "all",
+  "category": "all",
+  "selectedSources": [
+    "gastech",
+    "wlga",
+    "adipec",
+    "dmg",
+    "woodmac",
+    "iteca",
+    "user-1780393322184",
+    "user-1780393265842",
+    "user-1780393215050"
+  ],
+  "notes": "",
+  "createdAt": "2026-06-02T14:59:17.634Z"
+}
