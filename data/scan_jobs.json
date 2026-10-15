@@ -6298,5 +6298,50 @@
       "added": 0,
       "updated": 0
     }
+  },
+  {
+    "job_id": "58c71f5e-1ea1-4095-9354-d7af4440187a",
+    "job_name": "auto_update_20261015_090007",
+    "mode": "full",
+    "source_keys": [
+      "gastech",
+      "wlga",
+      "adipec",
+      "dmg",
+      "woodmac",
+      "iteca"
+    ],
+    "regions": [
+      "asia",
+      "eu",
+      "gcc",
+      "global",
+      "turkic"
+    ],
+    "categories": [
+      "gcc",
+      "lng",
+      "lpg",
+      "ng"
+    ],
+    "options": {
+      "only_new": false,
+      "update_existing": true,
+      "seed_if_empty": true
+    },
+    "status": "completed",
+    "created_at": "2026-10-15T09:00:07Z",
+    "started_at": "2026-10-15T09:00:07Z",
+    "completed_at": "2026-10-15T09:00:07Z",
+    "notes": [
+      "Job created automatically by Python pipeline."
+    ],
+    "results": {
+      "event_count": 27,
+      "issues": 0,
+      "duplicates": 0,
+      "added": 0,
+      "updated": 0
+    }
   }
 ]
