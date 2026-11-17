@@ -190,3 +190,12 @@ get('copy').addEventListener('click',async () => {
   }
 });
 render();
+
+
+const updateButton = make('button', 'Takvimi güncelle');
+updateButton.type = 'button';
+updateButton.title = 'GitHub Actions → Run workflow ile kaynak kontrolünü başlat';
+updateButton.addEventListener('click', () => {
+  window.open('https://github.com/kaantellioglu/gas-fair-calendar/actions/workflows/gaz-2027-sources.yml', '_blank', 'noopener,noreferrer');
+});
+get('subscribe').after(updateButton);
