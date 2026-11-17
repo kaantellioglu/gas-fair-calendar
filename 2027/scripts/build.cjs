@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
+const { createHash } = require('node:crypto');
 const root = path.resolve(__dirname,'..');
 const site = fs.existsSync(path.join(root,'site','core.js')) ? path.join(root,'site') : root;
 const {calendar,csv,report} = require(path.join(site,'core.js'));
@@ -44,19 +45,17 @@ const outputs = {
   '.nojekyll':''
 };
 for (const [name,content] of Object.entries(outputs)) fs.writeFileSync(path.join(site,name),content);
-console.log(JSON.stringify(metrics,null,2));
-
-// Keep the Outlook subscription URL stable; version browser assets and downloads.
-const { createHash } = require('node:crypto');
+// Keep the Outlook subscription URL stable; version the browser's assets and downloads.
 const indexPath = path.join(site,'index.html');
 const versions = new Map();
 const index = fs.readFileSync(indexPath,'utf8').replace(
-  /\b(src|href)="(style\.css|catalog\.js|core\.js|app\.js|events\.csv|events\.json|report\.json)(?:\?v=[a-f0-9]+)?"/g,
+  /\b(src|href)="(style\.css|catalog\.js|core\.js|app\.js|atlas-data\.js|atlas\.js|event-editor\.js|events\.csv|events\.json|report\.json)(?:\?v=[a-f0-9]+)?"/g,
   (_,attr,name) => {
     if (!versions.has(name)) {
       versions.set(name,createHash('sha256').update(fs.readFileSync(path.join(site,name))).digest('hex').slice(0,16));
     }
-    return attr+'="'+name+'?v='+versions.get(name)+'"';
+    return `${attr}="${name}?v=${versions.get(name)}"`;
   }
 );
 fs.writeFileSync(indexPath,index);
+console.log(JSON.stringify(metrics,null,2));
