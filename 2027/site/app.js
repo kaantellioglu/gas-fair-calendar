@@ -1,4 +1,7 @@
-const {events,sources,checked} = window.GazCatalog;
+const {events:published,sources,checked} = window.GazCatalog;
+const editor = window.GazEventEditor;
+const events = editor.init(published);
+let atlas;
 const {csv,calendar,report} = window.GazCore;
 const get = id => document.getElementById(id);
 const make = (tag,value) => {
@@ -67,6 +70,7 @@ function makeRow(event) {
   details.setAttribute('aria-label','Ayrıntılar · '+event.name);
   details.addEventListener('click',() => showEventDetails(event,details));
   name.append(details);
+  if (editor.changed(event)) name.append(make('small','Bu tarayıcıda düzenlendi'));
   const place = make('td');
   place.append(make('strong',[event.city,event.country].filter(Boolean).join(', ')));
   place.append(event.venue ? link(event.venue,'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([event.venue,event.city,event.country].join(', '))) : make('small','Mekân bilgisi yok'));
@@ -143,8 +147,9 @@ function render() {
   const month = get('month').value;
   for (const cell of yearStrip.children) cell.setAttribute('aria-pressed',String(cell.dataset.month === month));
   const fee = get('fee').value;
-  const filters = ['topic','country','status'].map(key => [key,get(key).value]);
+  const filters = ['topic','status'].map(key => [key,get(key).value]);
   active = events.filter(event => {
+    if (!atlas.includes(event)) return false;
     if (get('saved').checked && !saved.has(event.id)) return false;
     if (filters.some(([key,value]) => value && event[key] !== value)) return false;
     if (month && (event.start?.slice(5,7) || 'none') !== month) return false;
@@ -167,8 +172,11 @@ function render() {
   showReport(active);
 }
 get('filters').addEventListener('submit',event => event.preventDefault());
-get('filters').addEventListener('input',render);
-get('filters').addEventListener('reset',() => setTimeout(render,0));
+get('filters').addEventListener('input',event => {
+  if (event.target === get('country')) atlas.selectCountry(published.find(e=>e.country===event.target.value)?.countryCode || '',false);
+  render();
+});
+get('filters').addEventListener('reset',() => setTimeout(() => {atlas.reset();render();},0));
 get('sort').addEventListener('change',render);
 get('csv').addEventListener('click',() => download(csv(active),'text/csv;charset=utf-8','gaz-takvimi-2027.csv'));
 get('ics').addEventListener('click',() => ics(active,'gaz-takvimi-2027'));
@@ -190,7 +198,14 @@ get('copy').addEventListener('click',async () => {
   }
 });
 function showEventDetails(event, trigger) {
-  const panel = get('event-panel');
+  fillEventDetails(event);
+  panel.addEventListener('close',() => {
+    const target = get(event.id)?.querySelector('.event-detail') || (trigger.isConnected ? trigger : get('q'));
+    target.focus({preventScroll:true});
+  },{once:true});
+  panel.showModal();
+}
+function fillEventDetails(event,message='') {
   const fields = make('dl');
   const location = [event.city,event.country].filter(Boolean).join(', ');
   const venue = event.venue
@@ -216,9 +231,14 @@ function showEventDetails(event, trigger) {
   if (event.attendance) references.append(make('p','Katılım · '+event.attendance));
   if (event.note) references.append(make('p',event.note));
   references.append(make('p','Son inceleme · '+event.checked));
-  get('event-content').replaceChildren(make('p',event.topic+' · '+event.type),fields,references);
-  panel.addEventListener('close',() => trigger.focus(),{once:true});
-  panel.showModal();
+  const controls = editor.controls(event, (updated,notice) => {
+    events[events.findIndex(e=>e.id===event.id)] = updated;
+    updateYearStrip();
+    render();
+    fillEventDetails(updated,notice);
+    get('event-title').focus();
+  }, message);
+  get('event-content').replaceChildren(make('p',event.topic+' · '+event.type),fields,references,controls);
 }
 
 const panel = make('dialog');
@@ -230,6 +250,7 @@ closePanel.autofocus = true;
 closePanel.addEventListener('click',() => panel.close());
 const panelTitle = make('h2');
 panelTitle.id = 'event-title';
+panelTitle.tabIndex = -1;
 const panelContent = make('div');
 panelContent.id = 'event-content';
 panel.append(closePanel,panelTitle,panelContent);
@@ -253,16 +274,21 @@ const yearStrip = make('div');
 yearStrip.className = 'year-strip';
 yearStrip.setAttribute('role','group');
 yearStrip.setAttribute('aria-label','Aya göre filtrele · Etkinliklerin başlangıç ayı');
-const monthCounts = report(events).byMonth;
-const peakMonth = Math.max(1,...Object.values(monthCounts));
+function updateYearStrip() {
+  const counts = report(events).byMonth;
+  const peak = Math.max(1,...Object.values(counts));
+  for (const cell of yearStrip.children) {
+    const count = counts[cell.dataset.month] || 0;
+    cell.querySelector('strong').textContent = count;
+    cell.setAttribute('aria-label',monthName(cell.dataset.month)+' · '+count+' etkinlik');
+    cell.style.setProperty('--month-share',(count/peak*100)+'%');
+  }
+}
 for (const month of months) {
-  const count = monthCounts[month] || 0;
   const cell = make('button');
   cell.type = 'button';
   cell.dataset.month = month;
-  cell.setAttribute('aria-label',monthName(month)+' · '+count+' etkinlik');
-  cell.style.setProperty('--month-share',(count/peakMonth*100)+'%');
-  cell.append(make('span',monthName(month)),make('strong',count));
+  cell.append(make('span',monthName(month)),make('strong'));
   cell.addEventListener('click',() => {
     get('month').value = get('month').value === month ? '' : month;
     render();
@@ -270,6 +296,11 @@ for (const month of months) {
   yearStrip.append(cell);
 }
 get('filters').before(yearStrip);
+updateYearStrip();
+atlas = window.GazAtlas(get('atlas'),events,code => {
+  get('country').value = published.find(e=>e.countryCode===code)?.country || '';
+  render();
+});
 render();
 
 const updateButton = make('button', 'Takvimi güncelle');
