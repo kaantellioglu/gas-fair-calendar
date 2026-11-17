@@ -61,12 +61,11 @@ function makeRow(event) {
   date.append(make('small',event.status));
   const name = make('td');
   name.append(make('strong',event.name),make('small',event.topic+' · '+event.type));
-  const details = make('details');
-  details.append(make('summary','Kaynak ve ayrıntılar'),link('Tarih / ayrıntı ↗',event.source));
-  if (event.feeSource && event.feeSource !== event.source) details.append(link('Ücret kaynağı ↗',event.feeSource));
-  if (event.attendance) details.append(make('p','Katılım · '+event.attendance));
-  if (event.note) details.append(make('p',event.note));
-  details.append(make('p','Son inceleme · '+event.checked));
+  const details = make('button','Ayrıntılar');
+  details.className = 'event-detail';
+  details.type = 'button';
+  details.setAttribute('aria-label','Ayrıntılar · '+event.name);
+  details.addEventListener('click',() => showEventDetails(event,details));
   name.append(details);
   const place = make('td');
   place.append(make('strong',[event.city,event.country].filter(Boolean).join(', ')));
@@ -142,6 +141,7 @@ let active = [];
 function render() {
   const query = normal(get('q').value.trim());
   const month = get('month').value;
+  for (const cell of yearStrip.children) cell.setAttribute('aria-pressed',String(cell.dataset.month === month));
   const fee = get('fee').value;
   const filters = ['topic','country','status'].map(key => [key,get(key).value]);
   active = events.filter(event => {
@@ -189,8 +189,84 @@ get('copy').addEventListener('click',async () => {
     get('feed-note').textContent = 'Seçili adresi kopyalayın.';
   }
 });
-render();
+function showEventDetails(event, trigger) {
+  const panel = get('event-panel');
+  const fields = make('dl');
+  const location = [event.city,event.country].filter(Boolean).join(', ');
+  const venue = event.venue
+    ? link(event.venue, 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent([event.venue,location].join(', ')))
+    : 'Mekân bilgisi yok';
+  for (const [label,value] of [
+    ['Tarih', dateLabel(event)], ['Tarih kaynağı', event.status],
+    ['Yer', location], ['Mekân', venue],
+    ['Ziyaretçi ücreti', event.visitor || 'Bilgi yok'],
+    ['Delege ücreti', event.delegate || 'Bilgi yok'],
+    ['Kayıt', event.registration ? link('Kayıt sayfasını aç',event.registration) : '2027 kayıt bağlantısı yok'],
+    ['Etkinlik sitesi', link('Resmî siteyi aç',event.website)]
+  ]) {
+    const field = make('dd');
+    field.append(value);
+    fields.append(make('dt',label),field);
+  }
+  get('event-title').textContent = event.name;
+  const references = make('div');
+  references.className = 'event-references';
+  references.append(link('Tarih kaynağını aç',event.source));
+  if (event.feeSource && event.feeSource !== event.source) references.append(link('Ücret kaynağını aç',event.feeSource));
+  if (event.attendance) references.append(make('p','Katılım · '+event.attendance));
+  if (event.note) references.append(make('p',event.note));
+  references.append(make('p','Son inceleme · '+event.checked));
+  get('event-content').replaceChildren(make('p',event.topic+' · '+event.type),fields,references);
+  panel.addEventListener('close',() => trigger.focus(),{once:true});
+  panel.showModal();
+}
 
+const panel = make('dialog');
+panel.id = 'event-panel';
+panel.setAttribute('aria-labelledby','event-title');
+const closePanel = make('button','Kapat');
+closePanel.type = 'button';
+closePanel.autofocus = true;
+closePanel.addEventListener('click',() => panel.close());
+const panelTitle = make('h2');
+panelTitle.id = 'event-title';
+const panelContent = make('div');
+panelContent.id = 'event-content';
+panel.append(closePanel,panelTitle,panelContent);
+document.body.append(panel);
+
+const exportMenu = make('details');
+exportMenu.className = 'export-menu';
+const exportChoices = make('div');
+exportChoices.append(get('csv'),get('ics'),get('subscribe'),get('print'));
+exportMenu.append(make('summary','Dışa aktar'),exportChoices);
+document.querySelector('#takvim .actions').append(exportMenu);
+exportChoices.addEventListener('click',event => {
+  if (event.target.closest('button:not(:disabled)')) exportMenu.open = false;
+});
+
+const yearStrip = make('div');
+yearStrip.className = 'year-strip';
+yearStrip.setAttribute('role','group');
+yearStrip.setAttribute('aria-label','Aya göre filtrele · Etkinliklerin başlangıç ayı');
+const monthCounts = report(events).byMonth;
+const peakMonth = Math.max(1,...Object.values(monthCounts));
+for (const month of months) {
+  const count = monthCounts[month] || 0;
+  const cell = make('button');
+  cell.type = 'button';
+  cell.dataset.month = month;
+  cell.setAttribute('aria-label',monthName(month)+' · '+count+' etkinlik');
+  cell.style.setProperty('--month-share',(count/peakMonth*100)+'%');
+  cell.append(make('span',monthName(month)),make('strong',count));
+  cell.addEventListener('click',() => {
+    get('month').value = get('month').value === month ? '' : month;
+    render();
+  });
+  yearStrip.append(cell);
+}
+get('filters').before(yearStrip);
+render();
 
 const updateButton = make('button', 'Takvimi güncelle');
 updateButton.type = 'button';
