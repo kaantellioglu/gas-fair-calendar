@@ -20,3 +20,51 @@ button:hover { background: var(--accent-soft); }
 .actions #csv:hover { background: var(--dark); }
 :focus-visible { outline-color: var(--brand-cyan); }
 dialog::backdrop { background: #024660dd; }
+
+/* ESKA event planner */
+.wrap { width: min(1240px, calc(100% - 48px)); }
+.mast { min-height: 52px; gap: 18px; }
+.mast button { background: transparent; border-color: #b6d4df; color: #fff; }
+.mast button:hover { background: #175871; }
+.lead { padding: 19px 0 22px; }
+.lead > p { display: none; }
+.lead h1 { font-size: clamp(1.65rem, 4vw, 2.25rem); line-height: 1.15; letter-spacing: -.03em; margin-bottom: 5px; }
+.lead small { margin-top: 5px; }
+section { padding-top: 24px; }
+h2 { font-size: 1.35rem; letter-spacing: -.025em; }
+#filters { background: #fff; border: 1px solid var(--line); }
+.tablebox { border-top: 1px solid var(--line); }
+table { font-size: .875rem; }
+th { background: #fff; color: var(--muted); font-weight: 650; }
+td:nth-child(2) > strong { font-size: .96rem; }
+.event-detail { background: transparent; border: 0; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; padding: 4px 0; }
+.year-strip { display: grid; grid-template-columns: repeat(12, minmax(68px, 1fr)); overflow-x: auto; gap: 3px; margin-bottom: 12px; padding: 3px; }
+.year-strip button { text-align: left; border: 1px solid var(--line); border-radius: 4px; min-height: 54px; position: relative; padding: 5px 7px 9px; }
+.year-strip button::after { content: ''; position: absolute; inset: auto auto 2px 4px; width: var(--month-share, 0%); max-width: calc(100% - 8px); height: 2px; background: var(--brand-cyan, #009fd6); }
+.year-strip span, .year-strip strong { display: block; }
+.year-strip span { color: var(--muted); font-size: .72rem; }
+.year-strip strong { font-size: 1rem; font-variant-numeric: tabular-nums; }
+.year-strip button[aria-pressed=true] { background: var(--accent-soft); border-color: var(--accent); }
+.export-menu { position: relative; }
+.export-menu summary { margin: 0; border: 1px solid #7198a9; background: #fff; font: inherit; font-weight: 650; padding: 6px 12px; }
+.export-menu > div { position: absolute; z-index: 2; right: 0; min-width: 190px; padding: 4px; border: 1px solid var(--line); background: #fff; }
+.export-menu > div > button, .export-menu > div > #csv { display: block; width: 100%; text-align: left; border: 0; color: var(--ink); background: #fff; }
+.export-menu > div > button:hover, .export-menu > div > #csv:hover { background: var(--accent-soft); }
+#event-panel { position: fixed; inset: 0 0 0 auto; margin: 0; width: min(100%, 450px); height: 100dvh; max-height: none; max-width: none; border: 0; padding: 24px; overflow-y: auto; }
+#event-panel::backdrop { background: #102b3a89; }
+#event-panel > button { margin-bottom: 18px; }
+#event-panel dl { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 10px; padding-block: 14px; border-block: 1px solid var(--line); }
+#event-panel dt { color: var(--muted); }
+#event-panel dd { margin: 0; overflow-wrap: anywhere; }
+.event-references a { display: block; margin-bottom: 6px; }
+@media (max-width: 650px) {
+  .wrap { width: calc(100% - 32px); }
+  .mast { gap: 8px; }
+  .mast button, .export-menu summary { min-height: 44px; }
+  .mast nav { gap: 16px; }
+  .lead { padding: 14px 0; }
+}
+@media print {
+  .year-strip, .export-menu, #event-panel { display: none !important; }
+  .lead { padding: 5px 0; }
+}
