@@ -1,0 +1,35 @@
+name: Gaz Takvimi 2027 - Kaynak kontrolü
+
+on:
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gaz-2027-sources
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/cache@v4
+        with:
+          path: source-baseline.json
+          key: gaz-source-monitor-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: gaz-source-monitor-
+      - run: node 2027/scripts/monitor.cjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-report
+          path: source-report.json
+          if-no-files-found: error
+          retention-days: 30
