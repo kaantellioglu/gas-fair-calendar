@@ -1,0 +1,736 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gaz Takvimi//2027//TR
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Gaz Takvimi 2027
+BEGIN:VEVENT
+UID:lpg-kenya-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270125
+DTEND;VALUE=DATE:20270127
+SUMMARY:East Africa LPG Expo
+LOCATION:Nairobi\, Kenya
+URL:https://lpgexpo.com.sg/3rd-east-africa-lpg-expo-kenya-2027/
+DESCRIPTION:Birincil kaynak\nhttps://lpgexpo.com.sg/kenya-registration-link
+ edin\nhttps://fliphtml5.com/nfiwz/LPG-Expo---Kenya-2027---Main-Brochure-1/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:apga-legislative-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270127
+DTEND;VALUE=DATE:20270129
+SUMMARY:APGA Legislative Summit
+LOCATION:Washington\, DC\, Amerika Birleşik Devletleri
+URL:https://www.apga.org/apga-events/recent-upcoming-events
+DESCRIPTION:Birincil kaynak\nhttps://www.apga.org/apga-events/recent-upcomi
+ ng-events
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:india-energy-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270128
+DTEND;VALUE=DATE:20270201
+SUMMARY:India Energy Week
+LOCATION:New Town Convention Centre\, Kolkata\, Hindistan
+URL:https://www.indiaenergyweek.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.pib.gov.in/PressReleasePage.aspx?P
+ RID=2316206&lang=2&reg=48
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:e-world-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270216
+DTEND;VALUE=DATE:20270219
+SUMMARY:E-world energy & water
+LOCATION:Messe Essen\, Essen\, Almanya
+URL:https://e-world-essen.com/en/
+DESCRIPTION:Birincil kaynak\nhttps://e-world-essen.com/en/downloads/e-world
+ -2027-registration-form/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:lngcon-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270303
+SUMMARY:International LNG Congress
+LOCATION:Sheraton Amsterdam Airport Hotel and Conference Center\, Amsterdam
+ \, Hollanda
+URL:https://lngcongress.com/
+DESCRIPTION:Birincil kaynak\nhttps://lngcongress.com/venue/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:australia-exa-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270302
+DTEND;VALUE=DATE:20270305
+SUMMARY:Energy Exchange Australia
+LOCATION:Perth\, Avustralya
+URL:https://energyexchangeaustralia.com.au/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ceraweek-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270308
+DTEND;VALUE=DATE:20270313
+SUMMARY:CERAWeek
+LOCATION:Hilton Americas-Houston ve George R. Brown Convention Center\, Hou
+ ston\, Amerika Birleşik Devletleri
+URL:https://www.ceraweek.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ceraweek.com/en/register\nÜcretle
+ r ikincil kaynakta yayımlandı. 2027 ödeme ekranında teyit edin.\nhttps
+ ://www.ceraweek.com/content/dam/events/ceraweek/documents/2026-NextGen-In-
+ Review.pdf
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:cippe-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270317
+DTEND;VALUE=DATE:20270320
+SUMMARY:cippe Beijing
+LOCATION:New China International Exhibition Center\, Pekin\, Çin
+URL:https://en.cippe.com.cn/
+DESCRIPTION:Birincil kaynak\nDoğal gaz\, boru hattı ve kaya gazı ekipman
+ ı bölümlerini içerir.\nhttps://en.cippe.com.cn/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:perc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270323
+DTEND;VALUE=DATE:20270325
+SUMMARY:PERC National Propane Education & Training Conference
+LOCATION:Charlotte\, Amerika Birleşik Devletleri
+URL:https://propane.com/2027-national-propane-education-training-conference
+ /
+DESCRIPTION:Birincil kaynak\nhttps://propane.com/2027-national-propane-educ
+ ation-training-conference/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:iptc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270324
+DTEND;VALUE=DATE:20270327
+SUMMARY:International Petroleum Technology Conference
+LOCATION:Bangkok\, Tayland
+URL:https://www.iptcnet.org/
+DESCRIPTION:Birincil kaynak\nhttps://www.iptcnet.org/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:egypes-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270330
+DTEND;VALUE=DATE:20270402
+SUMMARY:Egypt Energy Show
+LOCATION:Egypt International Exhibition Center\, Kahire\, Mısır
+URL:https://www.egypes.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.egypes.com/visitor-registration/\n
+ Organizatörün güncel tarihleri esas alındı.\nhttps://www.egypes.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:npga-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270404
+DTEND;VALUE=DATE:20270407
+SUMMARY:NPGA Southeastern & International Propane Expo
+LOCATION:Music City Center\, Nashville\, Amerika Birleşik Devletleri
+URL:https://www.npga.org/news-resources/npga-expo/
+DESCRIPTION:Birincil kaynak\nhttps://www.npga.org/news-resources/npga-expo/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:atyrau-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270407
+DTEND;VALUE=DATE:20270410
+SUMMARY:Atyrau Oil & Gas
+LOCATION:Atırau\, Kazakistan
+URL:https://www.oil-gas.kz/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:neftegaz-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270412
+DTEND;VALUE=DATE:20270416
+SUMMARY:Neftegaz
+LOCATION:Crocus Expo\, Moskova\, Rusya
+URL:https://www.neftegaz-expo.ru/en/
+DESCRIPTION:Birincil kaynak\nhttps://www.neftegaz-expo.ru/en/media/news/ind
+ ex.php?id4=21182
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aiglp-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270416
+SUMMARY:AIGLP Congress
+LOCATION:Sheraton Santiago Hotel & Convention Center\, Santiago\, Şili
+URL:https://aiglp.org/aiglp2027/
+DESCRIPTION:Birincil kaynak\nhttps://aiglp.org/aiglp2027/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-se-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270416
+SUMMARY:LDC Gas Forums Southeast
+LOCATION:Savannah\, Amerika Birleşik Devletleri
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:omc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270416
+SUMMARY:OMC Med Energy
+LOCATION:Ravenna\, İtalya
+URL:https://www.omc.it/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:osea-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270416
+SUMMARY:OSEA
+LOCATION:Marina Bay Sands\, Singapur\, Singapur
+URL:https://www.osea-asia.com/
+DESCRIPTION:Birincil kaynak\nhttps://registration.mvents.asia/seaasia-osea/
+ RegistrationAttendeesEntry?formid=uid3z5km7cuvi80l23az86up3if7il&referral=
+ OSwebsite\nKayıt bağlantısı organizatör sitesinden alındı. Form tar
+ ama sırasında yönlendirme döngüsüne girdi.\nhttps://www.osea-asia.co
+ m/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:wom-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270415
+DTEND;VALUE=DATE:20270418
+SUMMARY:World of Mobility · Petroleum Istanbul
+LOCATION:Tüyap Fuar ve Kongre Merkezi\, İstanbul\, Türkiye
+URL:https://www.tuyap.com.tr/en/exhibitions/world-of-mobility-
+DESCRIPTION:Birincil kaynak\nhttps://www.tuyap.com.tr/en/exhibitions/world-
+ of-mobility-
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:flame-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270419
+DTEND;VALUE=DATE:20270423
+SUMMARY:Flame
+LOCATION:Hotel Okura\, Amsterdam\, Hollanda
+URL:https://informaconnect.com/flame-conference/
+DESCRIPTION:Birincil kaynak\nAna konferans 21–22 Nisan.\nhttps://informac
+ onnect.com/flame-conference/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ros-gas-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270420
+DTEND;VALUE=DATE:20270424
+SUMMARY:ROS-GAS-EXPO
+LOCATION:ExpoForum\, St. Petersburg\, Rusya
+URL:https://rosgasexpo.ru/
+DESCRIPTION:Birincil kaynak\nhttps://rosgasexpo.ru/en/about/news/important-
+ dates-have-been-confirmed-for-the-ros-gas-expo-exhibition/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:spigf-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270420
+DTEND;VALUE=DATE:20270424
+SUMMARY:St. Petersburg International Gas Forum
+LOCATION:ExpoForum\, St. Petersburg\, Rusya
+URL:https://gas-forum.ru/en/
+DESCRIPTION:Birincil kaynak\nROS-GAS-EXPO ile eş zamanlı.\nhttps://rosgas
+ expo.ru/en/about/news/important-dates-have-been-confirmed-for-the-ros-gas-
+ expo-exhibition/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aga-operations-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270425
+DTEND;VALUE=DATE:20270501
+SUMMARY:AGA Operations Conference & Biennial Exhibition
+LOCATION:Oxon Hill\, Amerika Birleşik Devletleri
+URL:https://www.aga.org/events/2027-aga-operations-conference-biennial-exhi
+ bition-spring-committee-meetings/
+DESCRIPTION:Birincil kaynak\nhttps://www.aga.org/events/2027-aga-operations
+ -conference-biennial-exhibition-spring-committee-meetings/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:opes-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270426
+DTEND;VALUE=DATE:20270429
+SUMMARY:Oman Petroleum & Energy Show
+LOCATION:Maskat\, Umman
+URL:https://omanpetroleumandenergyshow.com/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:otc-houston-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270503
+DTEND;VALUE=DATE:20270506
+SUMMARY:Offshore Technology Conference
+LOCATION:NRG Park\, Houston\, Amerika Birleşik Devletleri
+URL:https://otcnet.org/
+DESCRIPTION:Takvim kaynağı\nhttps://www.ice.it/it/settori/oilgas-e-nuclea
+ re/iniziative-promozionali-oil-gas
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:apga-spring-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270505
+DTEND;VALUE=DATE:20270507
+SUMMARY:APGA Spring Conference
+LOCATION:Burlington\, Amerika Birleşik Devletleri
+URL:https://www.apga.org/springevent/conference
+DESCRIPTION:Birincil kaynak\nhttps://www.apga.org/springevent/conference
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:elgc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270512
+DTEND;VALUE=DATE:20270514
+SUMMARY:European Liquid Gas Congress
+LOCATION:MOC Event Center Messe München\, Münih\, Almanya
+URL:https://europeanliquidgascongress.com/
+DESCRIPTION:Birincil kaynak\nOrganizatör kayıt açılışını kasım son
+ u olarak duyurdu. İnceleme sırasında kayıt sayfası erişilemedi.\nhtt
+ ps://www.europeanliquidgascongress.com/about/practical-information/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ogu-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270512
+DTEND;VALUE=DATE:20270515
+SUMMARY:Oil & Gas Uzbekistan
+LOCATION:CAEx Uzbekistan\, Taşkent\, Özbekistan
+URL:https://oilgas.uz/
+DESCRIPTION:Birincil kaynak\nhttps://oilgas.uz/jarqurgon
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aep-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270517
+DTEND;VALUE=DATE:20270521
+SUMMARY:Australian Energy Producers Conference & Exhibition
+LOCATION:Perth\, Avustralya
+URL:https://energyproducersconference.au/
+DESCRIPTION:Birincil kaynak\nhttps://energyproducersconference.au/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:igrc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270524
+DTEND;VALUE=DATE:20270529
+SUMMARY:International Gas Research Conference
+LOCATION:Budapeşte\, Macaristan
+URL:https://www.igrc2027.com/
+DESCRIPTION:Tarih uyuşmazlığı\nhttps://www.igrc2027.com/register\nOrgan
+ izatörün etkinlik sayfası 24–28 Mayıs\, IGU takvimi 24–27 Mayıs g
+ österiyor. Seyahat öncesi teyit edin.\nhttps://www.igrc2027.com/faq
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:japan-energy-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270526
+DTEND;VALUE=DATE:20270529
+SUMMARY:Japan Energy Summit & Exhibition
+LOCATION:Tokyo\, Japonya
+URL:https://www.japanenergyevent.com/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:caspian-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270602
+DTEND;VALUE=DATE:20270605
+SUMMARY:Caspian Oil & Gas
+LOCATION:Baku Expo Center\, Bakü\, Azerbaycan
+URL:https://caspianoilgas.az/en
+DESCRIPTION:Birincil kaynak\nhttps://caspianoilgas.az/en/register-as-profes
+ sional\nhttps://caspianoilgas.az/en
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-ne-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270610
+SUMMARY:LDC Gas Forums Northeast
+LOCATION:Boston\, Amerika Birleşik Devletleri
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:tga-annual-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270610
+SUMMARY:TGA Annual Meeting
+LOCATION:Amerika Birleşik Devletleri
+URL:https://www.apga.org/calendar/events-by-date
+DESCRIPTION:Takvim kaynağı\nhttps://www.apga.org/calendar/events-by-date
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:global-energy-canada-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270608
+DTEND;VALUE=DATE:20270611
+SUMMARY:Global Energy Show Canada
+LOCATION:BMO Centre\, Calgary\, Kanada
+URL:https://www.globalenergyshow.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.globalenergyshow.com/register\nhtt
+ ps://www.globalenergyshow.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:nog-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270627
+DTEND;VALUE=DATE:20270702
+SUMMARY:NOG Energy Week
+LOCATION:Bola Ahmed Tinubu International Conference Centre\, Abuja\, Nijery
+ a
+URL:https://www.nogenergyweek.com/
+DESCRIPTION:Birincil kaynak\nFuar 29 Haziran–1 Temmuz. Tarih aralığı t
+ üm etkinliği kapsar.\nhttps://www.nogenergyweek.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:valve-americas-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270714
+DTEND;VALUE=DATE:20270716
+SUMMARY:Valve World Americas
+LOCATION:George R. Brown Convention Center\, Houston\, Amerika Birleşik De
+ vletleri
+URL:https://valveworldexpoamericas.com/
+DESCRIPTION:Birincil kaynak\nGüncel tarih temmuz olarak duyuruldu.\nhttps:
+ //valve-world-americas.com/valve-world-americas-expo-conference-set-for-20
+ 27-in-houston-texas/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:apga-annual-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270725
+DTEND;VALUE=DATE:20270729
+SUMMARY:APGA Annual Conference
+LOCATION:Snowbird\, Amerika Birleşik Devletleri
+URL:https://www.apga.org/annualconference/home
+DESCRIPTION:Birincil kaynak\nhttps://www.apga.org/annualconference/home
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-west-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270811
+DTEND;VALUE=DATE:20270814
+SUMMARY:LDC Gas Forums Rockies & West
+LOCATION:San Diego\, Amerika Birleşik Devletleri
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:mea-ops-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270817
+DTEND;VALUE=DATE:20270820
+SUMMARY:MEA Gas Operations Technical & Leadership Summit
+LOCATION:Amerika Birleşik Devletleri
+URL:https://www.apga.org/calendar/events-by-date
+DESCRIPTION:Takvim kaynağı\nhttps://www.apga.org/calendar/events-by-date
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:kioge-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270901
+DTEND;VALUE=DATE:20270904
+SUMMARY:KIOGE Kazakhstan Oil & Gas
+LOCATION:Almatı\, Kazakistan
+URL:https://kioge.kz/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:offshore-europe-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270907
+DTEND;VALUE=DATE:20270910
+SUMMARY:SPE Offshore Europe
+LOCATION:Aberdeen\, Birleşik Krallık
+URL:https://www.offshore-europe.co.uk/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-mid-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270913
+DTEND;VALUE=DATE:20270916
+SUMMARY:LDC Gas Forums Mid-Continent
+LOCATION:Chicago\, Amerika Birleşik Devletleri
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:gastech-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270914
+DTEND;VALUE=DATE:20270918
+SUMMARY:Gastech
+LOCATION:George R. Brown Convention Center\, Houston\, Amerika Birleşik De
+ vletleri
+URL:https://www.gastechevent.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.gastechevent.com/visit/visitor-reg
+ istration/\nhttps://www.aixenergy.com/visit/why-visit/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:meos-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270914
+DTEND;VALUE=DATE:20270917
+SUMMARY:MEOS GEO
+LOCATION:Exhibition World Bahrain\, Sakhir\, Bahreyn
+URL:https://www.meos-geo.com/
+DESCRIPTION:Birincil kaynak\nOrganizatörün eylül takvimi önceki nisan l
+ istesinin yerini aldı.\nhttps://www.meos-geo.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:pvpc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270914
+DTEND;VALUE=DATE:20270917
+SUMMARY:PVPC Global
+LOCATION:Dhahran Expo\, Dammam\, Suudi Arabistan
+URL:https://pvpcglobal.com/
+DESCRIPTION:Birincil kaynak\nhttps://pvpcglobal.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:mea-rodeo-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270918
+SUMMARY:MEA National Gas Rodeo & Expo
+LOCATION:Amerika Birleşik Devletleri
+URL:https://www.apga.org/calendar/events-by-date
+DESCRIPTION:Takvim kaynağı\nhttps://www.apga.org/calendar/events-by-date
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:valve-sea-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270915
+DTEND;VALUE=DATE:20270917
+SUMMARY:Valve World Southeast Asia
+LOCATION:Bangkok\, Tayland
+URL:https://valve-world-sea.com/
+DESCRIPTION:Birincil kaynak\nhttps://valve-world-sea.com/event-information/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:gpa-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270919
+DTEND;VALUE=DATE:20270923
+SUMMARY:GPA Midstream Convention
+LOCATION:Loews Arlington\, Arlington\, Amerika Birleşik Devletleri
+URL:https://www.gpamidstream.org/gpa-midstream-convention/
+DESCRIPTION:Birincil kaynak\nSayfadaki 2026 ücretleri referans amaçlıdı
+ r.\nhttps://www.gpamidstream.org/gpa-midstream-convention/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:aog-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270920
+DTEND;VALUE=DATE:20270924
+SUMMARY:Argentina Oil & Gas Expo
+LOCATION:La Rural\, Buenos Aires\, Arjantin
+URL:https://aog.com.ar/
+DESCRIPTION:Birincil kaynak\nhttps://aog.com.ar/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:tga-safety-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20270928
+DTEND;VALUE=DATE:20271001
+SUMMARY:TGA Safety Summit
+LOCATION:Amerika Birleşik Devletleri
+URL:https://www.apga.org/calendar/events-by-date
+DESCRIPTION:Takvim kaynağı\nhttps://www.apga.org/calendar/events-by-date
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:napec-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271004
+DTEND;VALUE=DATE:20271007
+SUMMARY:NAPEC
+LOCATION:Oran\, Cezayir
+URL:https://napec-dz.com/
+DESCRIPTION:Takvim kaynağı\nhttps://www.ice.it/it/settori/oilgas-e-nuclea
+ re/iniziative-promozionali-oil-gas
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-gulf-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271011
+DTEND;VALUE=DATE:20271014
+SUMMARY:LDC Gas Forums Gulf Coast
+LOCATION:The Westin New Orleans\, New Orleans\, Amerika Birleşik Devletler
+ i
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:emc-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271018
+DTEND;VALUE=DATE:20271020
+SUMMARY:Eastern Mediterranean Energy Conference & Exhibition
+LOCATION:Limasol\, Kıbrıs
+URL:https://www.emc-cyprus.com/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:sodex-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271019
+DTEND;VALUE=DATE:20271023
+SUMMARY:ISK-SODEX İstanbul
+LOCATION:İstanbul Fuar Merkezi\, İstanbul\, Türkiye
+URL:https://www.sodex.com.tr/
+DESCRIPTION:Birincil kaynak\nGaz yakma\, ısıtma ve akış ekipmanı içer
+ en geniş kapsamlı fuar.\nhttps://www.messe.de/files/files/000/media/glob
+ ale-bilder-downloads/auslandsveranstaltungen/isk/isk-sodex-2027-contract-e
+ n.pdf
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:apga-operations-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271026
+DTEND;VALUE=DATE:20271029
+SUMMARY:APGA Operations Conference
+LOCATION:Greenville\, Amerika Birleşik Devletleri
+URL:https://www.apga.org/fallevent/conference
+DESCRIPTION:Birincil kaynak\n2027 kayıtlarının yazın açılması planla
+ nıyor.\nhttps://www.apga.org/fallevent/conference
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:otc-brasil-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271026
+DTEND;VALUE=DATE:20271029
+SUMMARY:OTC Brasil
+LOCATION:Rio de Janeiro\, Brezilya
+URL:https://otcbrasil.org/
+DESCRIPTION:Takvim kaynağı\nhttps://ies.co.it/ies-agency/download-event-a
+ ttachments/
+STATUS:TENTATIVE
+END:VEVENT
+BEGIN:VEVENT
+UID:adipec-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271101
+DTEND;VALUE=DATE:20271105
+SUMMARY:ADIPEC
+LOCATION:ADNEC Centre Abu Dhabi\, Abu Dabi\, Birleşik Arap Emirlikleri
+URL:https://www.adipec.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.adipec.com/adipec-visitor-registra
+ tion/\nOrganizatörün ziyaretçi linki 2027 ana sayfasında yer alıyor. 
+ Form başlığı önceki edisyonu gösterebilir.\nhttps://www.adipec.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:liquid-gas-week-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271108
+DTEND;VALUE=DATE:20271113
+SUMMARY:Liquid Gas Week
+LOCATION:George R. Brown Convention Center\, Houston\, Amerika Birleşik De
+ vletleri
+URL:https://www.liquidgasweek.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.liquidgasweek.com/houston-2027
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:ldc-power-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271115
+DTEND;VALUE=DATE:20271118
+SUMMARY:NatGas to Power
+LOCATION:Marriott Rivercenter\, San Antonio\, Amerika Birleşik Devletleri
+URL:https://www.ldcgasforums.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.ldcgasforums.com/
+STATUS:CONFIRMED
+END:VEVENT
+BEGIN:VEVENT
+UID:americas-lng-2027@gaz-takvimi
+DTSTAMP:20261117T000000Z
+DTSTART;VALUE=DATE:20271116
+DTEND;VALUE=DATE:20271119
+SUMMARY:Americas Gas & LNG Summit
+LOCATION:Amerika Birleşik Devletleri
+URL:https://www.americasgas.com/
+DESCRIPTION:Birincil kaynak\nhttps://www.americasgas.com/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
