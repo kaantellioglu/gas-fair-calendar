@@ -242,7 +242,11 @@ exportChoices.append(get('csv'),get('ics'),get('subscribe'),get('print'));
 exportMenu.append(make('summary','Dışa aktar'),exportChoices);
 document.querySelector('#takvim .actions').append(exportMenu);
 exportChoices.addEventListener('click',event => {
-  if (event.target.closest('button:not(:disabled)')) exportMenu.open = false;
+  if (!event.target.closest('button:not(:disabled)')) return;
+  exportMenu.open = false;
+  const trigger = exportMenu.querySelector('summary');
+  if (event.target.id === 'subscribe') get('dialog').addEventListener('close',() => trigger.focus(),{once:true});
+  else trigger.focus();
 });
 
 const yearStrip = make('div');
@@ -274,4 +278,4 @@ updateButton.title = 'GitHub Actions → Run workflow ile kaynak kontrolünü ba
 updateButton.addEventListener('click', () => {
   window.open('https://github.com/kaantellioglu/gas-fair-calendar/actions/workflows/gaz-2027-sources.yml', '_blank', 'noopener,noreferrer');
 });
-get('subscribe').after(updateButton);
+document.querySelector('.mast').append(updateButton);
