@@ -1,4 +1,6 @@
-const {events:published,sources,checked} = window.GazCatalog;
+const {checked} = window.GazCatalog;
+const manual = window.GazManual;
+const {events:published,sources} = manual.init(window.GazCatalog.events,window.GazCatalog.sources);
 const editor = window.GazEventEditor;
 const events = editor.init(published);
 let atlas;
@@ -70,6 +72,7 @@ function makeRow(event) {
   details.setAttribute('aria-label','Ayrıntılar · '+event.name);
   details.addEventListener('click',() => showEventDetails(event,details));
   name.append(details);
+  if (manual.isLocal(event.id)) name.append(make('small','Manuel kayıt · Bu tarayıcıda'));
   if (editor.changed(event)) name.append(make('small','Bu tarayıcıda düzenlendi'));
   const place = make('td');
   place.append(make('strong',[event.city,event.country].filter(Boolean).join(', ')));
@@ -345,6 +348,7 @@ function fillEventDetails(event,message='') {
   if (event.attendance) references.append(make('p','Katılım · '+event.attendance));
   if (event.note) references.append(make('p',event.note));
   references.append(make('p','Son inceleme · '+event.checked));
+  if (manual.isLocal(event.id)) references.append(make('p','Bu kayıt bu tarayıcıda saklanır. Ortak takvime eklemek için sayfanın altındaki Manuel kayıtlarım bölümünden GitHub önerisi açın.'));
   const controls = editor.controls(event, (updated,notice) => {
     events[events.findIndex(e=>e.id===event.id)] = updated;
     updateYearStrip();
@@ -426,3 +430,5 @@ updateButton.addEventListener('click', () => {
   window.open('https://github.com/kaantellioglu/gas-fair-calendar/actions/workflows/gaz-2027-sources.yml', '_blank', 'noopener,noreferrer');
 });
 document.querySelector('.mast').append(updateButton);
+
+manual.mount(events);
