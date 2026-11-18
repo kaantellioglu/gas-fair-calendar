@@ -142,7 +142,115 @@ function showReport(active) {
   showConflicts();
 }
 let active = [];
-function render() {
+let currentPage = 1;
+let pageSize = 20;
+function resetView() {
+  for (const key of ['q','topic','country','month','status','fee']) get(key).value = '';
+  get('saved').checked = false;
+  get('sort').value = 'date';
+  atlas.reset();
+  render();
+}
+document.querySelectorAll('[data-reset-view]').forEach(control => control.addEventListener('click',event => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  resetView();
+  if (control.tagName === 'BUTTON') get('list-title').focus();
+}));
+function updateAddress(push=false) {
+  const url = new URL(location.href);
+  for (const key of ['q','topic','country','month','status','fee','sort']) {
+    const value=get(key).value;
+    if (value && !(key==='sort' && value==='date')) url.searchParams.set(key,value);
+    else url.searchParams.delete(key);
+  }
+  const selection=atlas.selection();
+  if(selection.country) url.searchParams.set('countryCode',selection.country);else url.searchParams.delete('countryCode');
+  if(selection.region) url.searchParams.set('region',selection.region);else url.searchParams.delete('region');
+  if(get('saved').checked) url.searchParams.set('saved','1');else url.searchParams.delete('saved');
+  if(currentPage>1) url.searchParams.set('page',currentPage);else url.searchParams.delete('page');
+  if(pageSize!==20) url.searchParams.set('size',pageSize);else url.searchParams.delete('size');
+  if(url.href !== location.href) history[push?'pushState':'replaceState'](null,'',url);
+}
+function restoreAddress() {
+  const params=new URL(location.href).searchParams;
+  for (const key of ['q','topic','country','month','status','fee']) get(key).value=params.get(key)||'';
+  get('sort').value=['date','name','country'].includes(params.get('sort'))?params.get('sort'):'date';
+  get('saved').checked=params.get('saved')==='1';
+  pageSize=[10,20,50,100].includes(Number(params.get('size')))?Number(params.get('size')):20;
+  currentPage=Math.max(1,Math.min(100000,Number(params.get('page'))||1));
+  currentPage=Math.floor(currentPage);
+  const country=params.get('countryCode') || published.find(e=>e.country===get('country').value)?.countryCode || '';
+  atlas.restore(params.get('region')||'',country);
+  get('country').value=published.find(e=>e.countryCode===atlas.selection().country)?.country||'';
+  render(false);
+}
+function showPagination() {
+  const totalPages=Math.max(1,Math.ceil(active.length/pageSize));
+  const start=active.length?(currentPage-1)*pageSize+1:0;
+  const end=Math.min(currentPage*pageSize,active.length);
+  for(const position of ['top','bottom']) {
+    const host=get('pagination-'+position);
+    host.replaceChildren();
+    host.hidden=!active.length;
+    const info=make('p',start+'–'+end+' / '+active.length+' etkinlik');
+    info.className='page-range';
+    const nav=make('nav');
+    nav.setAttribute('aria-label',position==='top'?'Etkinlik sayfaları · Üst':'Etkinlik sayfaları · Alt');
+    const button=(text,page,label)=>{
+      const b=make('button',text);
+      b.type='button';
+      b.disabled=page<1 || page>totalPages;
+      b.setAttribute('aria-label',label||'Sayfa '+page);
+      if(page===currentPage && !label) b.setAttribute('aria-current','page');
+      b.addEventListener('click',()=>{
+        currentPage=page;
+        render(false,true);
+        get('results').focus({preventScroll:true});
+        get('list-title').scrollIntoView({block:'start',behavior:'instant'});
+      });
+      return b;
+    };
+    nav.append(button('Önceki',currentPage-1,'Önceki sayfa'));
+    const pages=new Set([1,totalPages,currentPage-1,currentPage,currentPage+1]);
+    if(currentPage<=3) [2,3,4].forEach(p=>pages.add(p));
+    if(currentPage>=totalPages-2) [totalPages-3,totalPages-2,totalPages-1].forEach(p=>pages.add(p));
+    let previous=0;
+    for(const page of [...pages].filter(p=>p>=1&&p<=totalPages).sort((a,b)=>a-b)) {
+      if(page-previous>1) {const gap=make('span','…');gap.setAttribute('aria-hidden','true');nav.append(gap);}
+      nav.append(button(page,page));
+      previous=page;
+    }
+    nav.append(button('Sonraki',currentPage+1,'Sonraki sayfa'));
+    const sizeLabel=make('label','Sayfa başına');
+    const size=make('select');
+    size.setAttribute('aria-label','Sayfa başına etkinlik · '+(position==='top'?'Üst':'Alt'));
+    size.append(...[10,20,50,100].map(n=>new Option(n,n)));
+    size.value=pageSize;
+    size.addEventListener('change',()=>{pageSize=Number(size.value);currentPage=1;render(false,true);});
+    sizeLabel.append(size);
+    host.append(info,nav,sizeLabel);
+  }
+}
+function showActiveFilters() {
+  const host=get('active-filters');
+  const selection=atlas.selection();
+  const labels=[];
+  if(selection.country) labels.push(get('atlas-country').selectedOptions[0]?.textContent.split(' · ')[0]);
+  else if(selection.region) labels.push(get('atlas-regions').querySelector('[aria-pressed=true]')?.textContent);
+  for(const key of ['topic','month','status','fee']) if(get(key).value) labels.push(get(key).selectedOptions[0].textContent);
+  if(get('q').value.trim()) labels.push('Arama: '+get('q').value.trim());
+  if(get('saved').checked) labels.push('Takip listem');
+  host.replaceChildren();
+  host.hidden=!labels.length;
+  if(labels.length) {
+    const caption=make('p',labels.filter(Boolean).join(' · '));
+    const clear=make('button','Tüm etkinliklere dön');
+    clear.type='button';clear.addEventListener('click',resetView);
+    host.append(caption,clear);
+  }
+}
+function render(resetPage=true,push=false) {
+  if(resetPage!==false) currentPage=1;
   const query = normal(get('q').value.trim());
   const month = get('month').value;
   for (const cell of yearStrip.children) cell.setAttribute('aria-pressed',String(cell.dataset.month === month));
@@ -164,7 +272,11 @@ function render() {
     }
     return (a.start || '9999').localeCompare(b.start || '9999') || a.name.localeCompare(b.name,'tr');
   });
-  get('rows').replaceChildren(...active.map(makeRow));
+  currentPage=Math.min(currentPage,Math.max(1,Math.ceil(active.length/pageSize)));
+  get('rows').replaceChildren(...active.slice((currentPage-1)*pageSize,currentPage*pageSize).map(makeRow));
+  showPagination();
+  showActiveFilters();
+  updateAddress(push);
   get('results').textContent = active.length+' / '+events.length+' etkinlik · '+active.filter(e => e.start).length+' tarihli';
   get('empty').hidden = active.length > 0;
   get('csv').disabled = !active.length;
@@ -176,11 +288,13 @@ get('filters').addEventListener('input',event => {
   if (event.target === get('country')) atlas.selectCountry(published.find(e=>e.country===event.target.value)?.countryCode || '',false);
   render();
 });
-get('filters').addEventListener('reset',() => setTimeout(() => {atlas.reset();render();},0));
+get('filters').addEventListener('reset',event => {event.preventDefault();resetView();});
 get('sort').addEventListener('change',render);
 get('csv').addEventListener('click',() => download(csv(active),'text/csv;charset=utf-8','gaz-takvimi-2027.csv'));
 get('ics').addEventListener('click',() => ics(active,'gaz-takvimi-2027'));
 get('print').addEventListener('click',() => window.print());
+window.addEventListener('beforeprint',()=>get('rows').replaceChildren(...active.map(makeRow)));
+window.addEventListener('afterprint',()=>render(false));
 get('subscribe').addEventListener('click',() => {
   const publicFeed = location.protocol === 'https:' && !['localhost','127.0.0.1'].includes(location.hostname);
   get('feed').value = publicFeed ? new URL('calendar.ics',location.href).href : '';
@@ -234,7 +348,7 @@ function fillEventDetails(event,message='') {
   const controls = editor.controls(event, (updated,notice) => {
     events[events.findIndex(e=>e.id===event.id)] = updated;
     updateYearStrip();
-    render();
+    render(false);
     fillEventDetails(updated,notice);
     get('event-title').focus();
   }, message);
@@ -297,11 +411,13 @@ for (const month of months) {
 }
 get('filters').before(yearStrip);
 updateYearStrip();
-atlas = window.GazAtlas(get('atlas'),events,code => {
+atlas = window.GazAtlas(get('atlas'),events,(code,clearAll) => {
+  if(clearAll) {resetView();return;}
   get('country').value = published.find(e=>e.countryCode===code)?.country || '';
   render();
 });
-render();
+restoreAddress();
+window.addEventListener('popstate',restoreAddress);
 
 const updateButton = make('button', 'Takvimi güncelle');
 updateButton.type = 'button';
