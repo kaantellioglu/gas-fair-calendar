@@ -95,12 +95,23 @@
       const next = countries.get(code);
       apply(code && region && next?.continent !== region ? '' : region,code,notify);
     }
+    function clearAll() {
+      apply('','',false,false);
+      onChange('',true);
+    }
+    function toggleCountry(code) {
+      if (code === chosen) clearAll();
+      else selectCountry(code);
+    }
     for (const [value,labelText] of [['','Tüm dünya'],...Object.entries(continents).map(([k,v])=>[k,v[0]])]) {
       const button = document.createElement('button');
       button.type = 'button';
       button.textContent = labelText;
       button.dataset.region = value;
-      button.addEventListener('click',() => apply(value,''));
+      button.addEventListener('click',() => {
+        if (!value || (value === region && !chosen)) clearAll();
+        else apply(value,'');
+      });
       regions.append(button);
     }
     select.addEventListener('change',() => selectCountry(select.value));
@@ -219,7 +230,7 @@
         if (!pointer || e.pointerId!==pointer.id) return;
         const code = !pointer.drag && pick(e);
         pointer=null;
-        if(code) selectCountry(code);
+        if(code) toggleCountry(code);
         schedule();
       });
       for (const event of ['pointercancel','lostpointercapture']) canvas.addEventListener(event,e => {
@@ -233,6 +244,8 @@
     apply('','',false,false);
     return {
       selectCountry, reset:() => apply('','',false,false),
+      selection:() => ({country:chosen,region}),
+      restore:(nextRegion,code) => apply(continents[nextRegion] ? nextRegion : '',countries.has(code) ? code : '',false),
       includes:event => (!chosen || event.countryCode===chosen) && (!region || countries.get(event.countryCode)?.continent===region)
     };
   };
