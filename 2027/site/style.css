@@ -182,3 +182,28 @@ footer nav { display:flex; flex-wrap:wrap; gap:20px; }
 .manual-library textarea { width:100%; font:inherit; }
 @media(max-width:480px) { #manual-panel { padding:18px; } #takvim .heading>.actions { width:100%; justify-content:space-between; } }
 @media print { [data-manual-add],.manual-toolbar,#manual-manager,#manual-panel { display:none!important; } }
+
+/* Multiple choices within filters; intersection across filter groups. */
+.filter-guide { font-size:.875rem; color:var(--muted); margin:12px 0 10px; max-width:90ch; }
+.filter-field { display:grid; gap:4px; min-width:0; }
+.filter-field>span { font-size:.8rem; font-weight:650; }
+.multi-select summary { display:block; margin:0; min-height:40px; padding:8px 26px 8px 9px; font-size:.875rem; font-weight:500; color:var(--ink); background:#fff; border:1px solid #7198a9; cursor:pointer; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.multi-select summary::-webkit-details-marker { display:none; }
+.multi-select summary::after { content:''; display:inline-block; position:absolute; right:10px; top:15px; width:6px; height:6px; border:solid currentColor; border-width:0 1.5px 1.5px 0; transform:rotate(45deg); }
+.multi-select { position:relative; }
+.multi-select.has-selection summary { border-color:var(--accent); background:var(--accent-soft); font-weight:650; }
+.multi-panel { position:fixed; z-index:30; padding:12px; background:#fff; border:1px solid #92acb7; border-radius:6px; box-shadow:0 8px 24px #0000001f; overflow:auto; }
+.multi-panel>input { min-height:44px; font-size:1rem; }
+.multi-options { max-height:220px; overflow:auto; margin:8px 0; overscroll-behavior:contain; }
+.multi-options label { display:flex; align-items:center; gap:9px; padding:9px 5px; min-height:42px; font-size:.875rem; font-weight:500; cursor:pointer; }
+.multi-options label:hover { background:var(--accent-soft); }
+.multi-options label[hidden] { display:none; }
+#filters .multi-options input[type=checkbox] { width:16px; height:16px; min-height:16px; margin:0; flex:0 0 16px; accent-color:var(--accent); }
+.multi-actions { display:flex; justify-content:space-between; gap:10px; border-top:1px solid var(--line); padding-top:10px; }
+.multi-actions button { min-height:40px; font-size:.85rem; }
+.multi-no-match { color:var(--muted); font-size:.875rem; }
+.filter-chips { display:flex; flex-wrap:wrap; gap:6px; min-width:0; }
+.active-filters { align-items:flex-start; }
+.filter-chips button { text-align:left; font-size:.8rem; min-height:36px; background:#fff; color:var(--accent); border-color:#9fc0cc; overflow-wrap:anywhere; }
+@media(max-width:650px) { .multi-select summary,.multi-actions button { min-height:44px; } }
+@media print { .filter-guide { display:none; } }
