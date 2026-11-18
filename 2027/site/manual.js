@@ -122,7 +122,7 @@ window.GazManual={
    if(kind==='event'){const target=new URL(location.href);target.search='';target.searchParams.set('q',item.name);target.hash='takvim';const show=node('a','Takvimde göster');show.href=target;actions.append(show);}else actions.append(link('Kaynağı aç',item.url));
    const remove=node('button','Yerel kaydı kaldır');remove.type='button';remove.setAttribute('aria-label','Yerel kaydı kaldır · '+item.name);
    remove.addEventListener('click',()=>{const bucket=kind==='event'?'events':'sources';if(write({...state,[bucket]:state[bucket].filter(e=>e.id!==item.id)}))location.reload();else{const message=node('p','Kayıt kaldırılamadı. Depolama ayarlarını kontrol edin.');message.setAttribute('role','alert');row.append(message);}});
-   row.append(actions);
+   actions.append(remove);row.append(actions);
    if(draft.url.href.length>7500){const label=node('label','Öneri metnini GitHub’a kopyalayın');const text=node('textarea');text.value=draft.body;text.readOnly=true;text.rows=4;label.append(text);row.append(label);}
    list.append(row);
   }
