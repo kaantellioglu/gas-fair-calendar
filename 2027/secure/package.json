@@ -1,0 +1,12 @@
+{
+  "name": "eska-gas-calendar-secure",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.cjs",
+    "test": "node --test test/*.test.cjs"
+  },
+  "engines": {
+    "node": "24.x"
+  }
+}

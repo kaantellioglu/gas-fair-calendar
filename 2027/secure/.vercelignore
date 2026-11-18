@@ -1,0 +1,9 @@
+.local-secrets/
+.local-tools/
+.env
+.env.*
+!.env.example
+node_modules/
+.vercel/
+test/
+README.md

@@ -32,7 +32,12 @@ function validate(item,kind){
  }
  return null;
 }
-function write(next){try{localStorage.setItem(key,JSON.stringify(next));state=next;return true;}catch{return false;}}
+async function write(next){
+ if(window.GazShared){
+  const kind=next.events.length?'event':'source';
+  return window.GazShared.addRecord(kind,(kind==='event'?next.events:next.sources).at(-1));
+ }
+ try{localStorage.setItem(key,JSON.stringify(next));state=next;return true;}catch{return false;}}
 function link(text,url){const e=node('a',text);e.href=url;e.target='_blank';e.rel='noopener noreferrer';return e;}
 function proposal(item,kind){
  const fence=String.fromCharCode(96).repeat(3);
@@ -48,7 +53,7 @@ window.GazManual={
   for(const [code] of window.GazAtlasGeometry||[])if(/^[A-Z]{2}$/.test(code))countries.set(code,names.of(code));
   for(const code of ['BH','SG','MT','AD','LI','MC','SM','VA','MU','SC','KM','ST','CV','MV'])countries.set(code,names.of(code));
   for(const e of events)countries.set(e.countryCode,e.country);
-  try{
+  if(!window.GazShared)try{
    const raw=JSON.parse(localStorage.getItem(key)||'{}');
    const clean=(list,kind)=>Array.isArray(list)?list.slice(0,1000).filter(e=>!validate(e,kind)&&typeof e.id==='string'&&/^manual-[a-z0-9-]+$/.test(e.id)):[];
    state={events:clean(raw?.events,'event'),sources:clean(raw?.sources,'source')};
@@ -63,7 +68,7 @@ window.GazManual={
   const panel=node('dialog');panel.id='manual-panel';panel.setAttribute('aria-labelledby','manual-title');
   const close=node('button','Kapat');close.type='button';close.className='manual-close';close.autofocus=true;close.addEventListener('click',()=>panel.close());
   const title=node('h2');title.id='manual-title';
-  const intro=node('p','Kayıt bu tarayıcıda saklanır. Ortak takvime eklemek için kaydettikten sonra GitHub önerisi açabilirsiniz.');
+  const intro=node('p',window.GazShared?'Kayıt ortak GitHub veritabanına kaydedilir. Tüm kullanıcılar aynı kayıtları görür.':'Kayıt bu tarayıcıda saklanır. Ortak takvime eklemek için kaydettikten sonra GitHub önerisi açabilirsiniz.');
   const content=node('div');panel.append(close,title,intro,content);document.body.append(panel);
   function open(kind,trigger){
    title.textContent=kind==='event'?'Manuel fuar ekle':'Manuel kaynak ekle';
@@ -83,13 +88,13 @@ window.GazManual={
     wrapper.append(control);group.append(wrapper);inputs[key]=control;
     control.addEventListener('input',()=>Object.values(inputs).forEach(e=>e.setCustomValidity('')));
    }
-   const hint=node('p',kind==='event'?'* Zorunlu alan. Tarih açıklanmadıysa iki tarihi de boş bırakın; kayıt “Takipte” görünür.':'* Zorunlu alan. Kaynak eklemek tarama başlatmaz. Ortak kaynak listesine alınması için öneri gönderin.');hint.className='editor-scope';
+   const hint=node('p',window.GazShared?(kind==='event'?'* Zorunlu alan. Tarih açıklanmadıysa iki tarihi de boş bırakın.':'* Zorunlu alan. Kaynak ortak listeye kaydedilir; tarama otomatik başlamaz.'):kind==='event'?'* Zorunlu alan. Tarih açıklanmadıysa iki tarihi de boş bırakın; kayıt “Takipte” görünür.':'* Zorunlu alan. Kaynak eklemek tarama başlatmaz. Ortak kaynak listesine alınması için öneri gönderin.');hint.className='editor-scope';
    const message=node('p');message.className='editor-message';message.setAttribute('role','status');
    const actions=node('div');actions.className='editor-actions';
-   const save=node('button','Tarayıcıya kaydet');save.type='submit';save.className='editor-primary';
+   const save=node('button',window.GazShared?'Ortak takvime kaydet':'Tarayıcıya kaydet');save.type='submit';save.className='editor-primary';
    const cancel=node('button','Vazgeç');cancel.type='button';cancel.addEventListener('click',()=>panel.close());
    actions.append(save,cancel);form.append(hint,group,message,actions);
-   form.addEventListener('submit',event=>{
+   form.addEventListener('submit',async event=>{
     event.preventDefault();
     const record=Object.fromEntries(Object.entries(inputs).map(([k,e])=>[k,e.value.trim()||null]));
     const error=validate(record,kind);if(error){inputs[error[0]].setCustomValidity(error[1]);inputs[error[0]].reportValidity();return;}
@@ -98,7 +103,8 @@ window.GazManual={
     record.id='manual-'+crypto.randomUUID();record.checked=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Istanbul'}).format(new Date());
     if(kind==='event'){record.country=countries.get(record.countryCode);record.status=record.start?'Manuel kayıt':'Takipte';}
     const bucket=kind==='event'?'events':'sources';
-    if(!write({...state,[bucket]:[...state[bucket],record]})){message.textContent='Kayıt saklanamadı. Tarayıcınızın depolama ayarlarını kontrol edin.';return;}
+    save.disabled=true;
+    if(!await write({...state,[bucket]:[...state[bucket],record]})){message.textContent=window.GazShared?.error||'Kayıt saklanamadı. Tarayıcınızın depolama ayarlarını kontrol edin.';save.disabled=false;return;}
     const target=new URL(location.href);
     if(kind==='event'){
      for(const key of ['q','topic','country','countryCode','region','month','status','fee','sort','saved','page','size'])target.searchParams.delete(key);
@@ -121,7 +127,7 @@ window.GazManual={
    actions.append(link('GitHub’da öneri aç',draft.url.href.length<=7500?draft.url.href:'https://github.com/kaantellioglu/gas-fair-calendar/issues/new'));
    if(kind==='event'){const target=new URL(location.href);target.search='';target.searchParams.set('q',item.name);target.hash='takvim';const show=node('a','Takvimde göster');show.href=target;actions.append(show);}else actions.append(link('Kaynağı aç',item.url));
    const remove=node('button','Yerel kaydı kaldır');remove.type='button';remove.setAttribute('aria-label','Yerel kaydı kaldır · '+item.name);
-   remove.addEventListener('click',()=>{const bucket=kind==='event'?'events':'sources';if(write({...state,[bucket]:state[bucket].filter(e=>e.id!==item.id)}))location.reload();else{const message=node('p','Kayıt kaldırılamadı. Depolama ayarlarını kontrol edin.');message.setAttribute('role','alert');row.append(message);}});
+   remove.addEventListener('click',async ()=>{const bucket=kind==='event'?'events':'sources';if(await write({...state,[bucket]:state[bucket].filter(e=>e.id!==item.id)}))location.reload();else{const message=node('p','Kayıt kaldırılamadı. Depolama ayarlarını kontrol edin.');message.setAttribute('role','alert');row.append(message);}});
    actions.append(remove);row.append(actions);
    if(draft.url.href.length>7500){const label=node('label','Öneri metnini GitHub’a kopyalayın');const text=node('textarea');text.value=draft.body;text.readOnly=true;text.rows=4;label.append(text);row.append(label);}
    list.append(row);

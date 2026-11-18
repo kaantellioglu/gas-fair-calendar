@@ -50,7 +50,8 @@
     }
     return validate(updated) ? {...event} : updated;
   }
-  function save(id,patch) {
+  async function save(id,patch) {
+    if(window.GazShared)return patch?window.GazShared.updateEvent(id,patch.values):true;
     const next = {...patches};
     if (patch) next[id]=patch; else delete next[id];
     try {
@@ -80,7 +81,7 @@
   }
   window.GazEventEditor = {
     init(originals) {
-      try {
+      if(!window.GazShared)try {
         const raw=JSON.parse(localStorage.getItem(key)||'{}');
         if (raw && typeof raw==='object' && !Array.isArray(raw)) patches=Object.assign(Object.create(null),raw);
       } catch {}
@@ -88,7 +89,7 @@
       return originals.map(applyPatch);
     },
     changed(event) {
-      return Object.keys(currentChanges(revisions.get(event.id),event)).length>0;
+      return !window.GazShared && Object.keys(currentChanges(revisions.get(event.id),event)).length>0;
     },
     controls(event,update,notice='') {
       const original=revisions.get(event.id);
@@ -117,8 +118,8 @@
         actions.append(send);
         const reset=node('button','Yayımlanan bilgilere dön');
         reset.type='button';
-        reset.addEventListener('click',()=>{
-          if (!save(event.id,null)) {message.textContent='Yerel düzeltme silinemedi. Tarayıcınızın depolama ayarlarını kontrol edin.';return;}
+        reset.addEventListener('click',async ()=>{
+          if (!await save(event.id,null)) {message.textContent='Yerel düzeltme silinemedi. Tarayıcınızın depolama ayarlarını kontrol edin.';return;}
           update({...original},'Yerel düzeltme kaldırıldı.');
         });
         actions.append(reset);
@@ -151,12 +152,12 @@
           wrapper.append(field);group.append(wrapper);inputs[name]=field;
           field.addEventListener('input',()=>Object.values(inputs).forEach(i=>i.setCustomValidity('')));
         }
-        const saveButton=node('button','Tarayıcıya kaydet');saveButton.type='submit';saveButton.className='editor-primary';
+        const saveButton=node('button',window.GazShared?'Ortak takvime kaydet':'Tarayıcıya kaydet');saveButton.type='submit';saveButton.className='editor-primary';
         const cancel=node('button','Vazgeç');cancel.type='button';
         cancel.addEventListener('click',()=>{area.replaceChildren();edit.setAttribute('aria-expanded','false');edit.focus();});
         const formActions=node('div');formActions.className='editor-actions';formActions.append(saveButton,cancel);
         form.append(summary,group,formActions);
-        form.addEventListener('submit',e=>{
+        form.addEventListener('submit',async e=>{
           e.preventDefault();
           const candidate={...event};
           for (const [name] of fields) candidate[name]=inputs[name].value.trim()||null;
@@ -166,9 +167,12 @@
           const datesTouched=Object.hasOwn(values,'start')||Object.hasOwn(values,'end');
           const base=Object.fromEntries(Object.keys(values).map(k=>[k,value(original,k)]));
           if(datesTouched){base.start=original.start;base.end=original.end;}
-          if (!save(event.id,Object.keys(values).length?{base,values}:null)) {
-            message.textContent='Değişiklikler kaydedilemedi. Tarayıcınızın depolama ayarlarını kontrol edin.';return;
+          saveButton.disabled=true;
+          if (!await save(event.id,Object.keys(values).length?{base,values}:null)) {
+            message.textContent=window.GazShared?.error||'Değişiklikler kaydedilemedi. Tarayıcınızın depolama ayarlarını kontrol edin.';saveButton.disabled=false;return;
           }
+          if(window.GazShared){location.reload();return;}
+          saveButton.disabled=false;
           update(candidate,'Bu tarayıcıya kaydedildi.');
         });
         area.replaceChildren(form);
