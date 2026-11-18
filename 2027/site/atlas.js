@@ -54,6 +54,7 @@
     }
     const namesFor = item => labels.get(item.code) || (item.code ? names.of(item.code) : item.name) || item.name;
     const collator = new Intl.Collator('tr');
+    let selected = new Set();
     let region = '', chosen = '', lon = 10, lat = 29, spin = !reduced.matches;
     let pointer = null, hovered = null, over = false, visible = true, frame = 0, last = 0;
     let width = 0, height = 0, ratio = 1, hits = [];
@@ -61,12 +62,12 @@
     function options() {
       const all = [...countries.values()].filter(i => !region || i.continent === region).sort((a,b) => collator.compare(namesFor(a),namesFor(b)));
       for (const [code,name] of labels) if (!region && !countries.has(code)) all.push({code,name});
-      select.replaceChildren(new Option('Tüm ülkeler',''),...all.map(i => new Option(namesFor(i)+(counts.has(i.code) ? ' · '+counts.get(i.code) : ''),i.code)));
+      select.replaceChildren(new Option(selected.size>1 ? selected.size+' ülke seçili' : 'Tüm ülkeler',''),...all.map(i => new Option(namesFor(i)+(counts.has(i.code) ? ' · '+counts.get(i.code) : ''),i.code)));
       select.value = chosen;
     }
     function statusText() {
-      const n = chosen ? counts.get(chosen)||0 : region ? events.filter(e => countries.get(e.countryCode)?.continent === region).length : events.length;
-      const name = chosen ? labels.get(chosen) || namesFor(countries.get(chosen)) : region ? continents[region][0] : 'Tüm dünya';
+      const n = selected.size ? events.filter(e=>selected.has(e.countryCode)).length : region ? events.filter(e => countries.get(e.countryCode)?.continent === region).length : events.length;
+      const name = selected.size>1 ? selected.size+' ülke' : chosen ? labels.get(chosen) || namesFor(countries.get(chosen)) : region ? continents[region][0] : 'Tüm dünya';
       status.textContent = name+' · '+n+' etkinlik';
     }
     function updateButtons() {
@@ -75,7 +76,8 @@
     }
     function apply(nextRegion,nextCountry,notify=true,focus=true) {
       region = nextRegion;
-      chosen = nextCountry;
+      selected = new Set((Array.isArray(nextCountry)?nextCountry:[nextCountry]).filter(code=>code&&countries.has(code)));
+      chosen = selected.size===1 ? [...selected][0] : '';
       hovered = null;
       label.hidden = true;
       if (focus && chosen && countries.get(chosen)?.center) {
@@ -100,8 +102,9 @@
       onChange('',true);
     }
     function toggleCountry(code) {
-      if (code === chosen) clearAll();
-      else selectCountry(code);
+      const next = new Set(selected);
+      if(next.has(code)) next.delete(code); else next.add(code);
+      apply('',[...next],true,false);
     }
     for (const [value,labelText] of [['','Tüm dünya'],...Object.entries(continents).map(([k,v])=>[k,v[0]])]) {
       const button = document.createElement('button');
@@ -109,7 +112,7 @@
       button.textContent = labelText;
       button.dataset.region = value;
       button.addEventListener('click',() => {
-        if (!value || (value === region && !chosen)) clearAll();
+        if (!value || (value === region && !selected.size)) clearAll();
         else apply(value,'');
       });
       regions.append(button);
@@ -156,19 +159,19 @@
       for (const item of land) {
         const path = new Path2D();
         for (const ring of item.rings) path.addPath(trace(ring,true));
-        const isActive = item.code && item.code === (hovered || chosen);
+        const isActive = item.code && (item.code === hovered || selected.has(item.code));
         const shown = counts.has(item.code);
-        ctx.fillStyle = isActive ? '#effcc8' : shown && (!region || item.continent === region) && (!chosen || chosen === item.code) ? '#91ce91' : '#3e6d73';
+        ctx.fillStyle = isActive ? '#effcc8' : shown && (!region || item.continent === region) && (!selected.size || selected.has(item.code)) ? '#91ce91' : '#3e6d73';
         ctx.fill(path,'evenodd');
         ctx.strokeStyle = '#143f50'; ctx.lineWidth = .55; ctx.stroke(path);
         if (item.code) hits.push([item.code,path]);
       }
       for (const item of markers) {
-        if (!counts.has(item.code) && chosen !== item.code) continue;
+        if (!counts.has(item.code) && !selected.has(item.code)) continue;
         const [x,y,z] = project(item.point);
         if (z < 0) continue;
         const path = new Path2D(); path.arc(x,y,4,0,Math.PI*2);
-        ctx.fillStyle = (chosen === item.code || hovered === item.code) ? '#effcc8' : '#91ce91';
+        ctx.fillStyle = (selected.has(item.code) || hovered === item.code) ? '#effcc8' : '#91ce91';
         ctx.fill(path); ctx.stroke(path);
         hits.push([item.code,path]);
       }
@@ -244,9 +247,9 @@
     apply('','',false,false);
     return {
       selectCountry, reset:() => apply('','',false,false),
-      selection:() => ({country:chosen,region}),
-      restore:(nextRegion,code) => apply(continents[nextRegion] ? nextRegion : '',countries.has(code) ? code : '',false),
-      includes:event => (!chosen || event.countryCode===chosen) && (!region || countries.get(event.countryCode)?.continent===region)
+      selection:() => ({country:chosen,countries:[...selected],region}),
+      restore:(nextRegion,codes) => apply(continents[nextRegion] ? nextRegion : '',codes,false),
+      includes:event => (!selected.size || selected.has(event.countryCode)) && (!region || countries.get(event.countryCode)?.continent===region)
     };
   };
 })();
