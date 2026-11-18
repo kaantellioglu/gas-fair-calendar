@@ -35,11 +35,29 @@ function options(id,values) {
   get(id).append(new Option('Tümü',''), ...values.map(([value,label]) => new Option(label,value)));
 }
 for (const field of ['topic','country','status']) {
-  const values = [...new Set(events.map(e => e[field]).filter(Boolean))].sort((a,b) => a.localeCompare(b,'tr'));
+  let values = [...new Set(events.map(e => e[field]).filter(Boolean))];
+  if(field==='country') {
+    const names=new Intl.DisplayNames(['tr'],{type:'region'});
+    const countries=new Map((window.GazAtlasGeometry||[]).filter(([code])=>/^[A-Z]{2}$/.test(code)).map(([code])=>[code,names.of(code)]));
+    events.forEach(e=>countries.set(e.countryCode,e.country));
+    values=[...new Set(countries.values())];
+  }
+  values.sort((a,b) => a.localeCompare(b,'tr'));
   options(field,values.map(value => [value,value]));
 }
 const months = Array.from({length:12},(_,i) => String(i+1).padStart(2,'0'));
 options('month',[...months.map(month => [month,monthName(month)]),['none','Tarih bekleniyor']]);
+const multi = {};
+const countryNames = new Map();
+const regionNames = new Intl.DisplayNames(['tr'],{type:'region'});
+for(const [code] of window.GazAtlasGeometry||[]) if(/^[A-Z]{2}$/.test(code)) countryNames.set(code,regionNames.of(code));
+published.forEach(e=>countryNames.set(e.countryCode,e.country));
+const countryCodes = new Map([...countryNames].map(([code,name])=>[name,code]));
+for(const [key,label] of [['topic','Konu'],['country','Ülke'],['month','Ay'],['status','Tarih kaynağı'],['fee','Ücret']]) multi[key]=window.GazMulti.mount(get(key),label);
+const selections=()=>Object.fromEntries(window.GazMulti.keys.map(key=>[key,window.GazMulti.values(key)]));
+function syncCountries() {
+  atlas.restore('',window.GazMulti.values('country').map(name=>countryCodes.get(name)).filter(Boolean));
+}
 get('checked').textContent = new Intl.DateTimeFormat('tr-TR',{dateStyle:'long',timeZone:'UTC'}).format(new Date(checked));
 get('sources').replaceChildren(...sources.map(source => {
   const item = make('li');
@@ -148,7 +166,8 @@ let active = [];
 let currentPage = 1;
 let pageSize = 20;
 function resetView() {
-  for (const key of ['q','topic','country','month','status','fee']) get(key).value = '';
+  get('q').value = '';
+  Object.values(multi).forEach(control=>control.set([]));
   get('saved').checked = false;
   get('sort').value = 'date';
   atlas.reset();
@@ -161,13 +180,17 @@ document.querySelectorAll('[data-reset-view]').forEach(control => control.addEve
 }));
 function updateAddress(push=false) {
   const url = new URL(location.href);
-  for (const key of ['q','topic','country','month','status','fee','sort']) {
+  for (const key of window.GazMulti.keys) {
+    url.searchParams.delete(key);
+    for(const value of window.GazMulti.values(key)) url.searchParams.append(key,value);
+  }
+  for(const key of ['q','sort']) {
     const value=get(key).value;
-    if (value && !(key==='sort' && value==='date')) url.searchParams.set(key,value);
-    else url.searchParams.delete(key);
+    if(value && !(key==='sort'&&value==='date')) url.searchParams.set(key,value);else url.searchParams.delete(key);
   }
   const selection=atlas.selection();
-  if(selection.country) url.searchParams.set('countryCode',selection.country);else url.searchParams.delete('countryCode');
+  url.searchParams.delete('countryCode');
+  for(const code of selection.countries) url.searchParams.append('countryCode',code);
   if(selection.region) url.searchParams.set('region',selection.region);else url.searchParams.delete('region');
   if(get('saved').checked) url.searchParams.set('saved','1');else url.searchParams.delete('saved');
   if(currentPage>1) url.searchParams.set('page',currentPage);else url.searchParams.delete('page');
@@ -176,15 +199,16 @@ function updateAddress(push=false) {
 }
 function restoreAddress() {
   const params=new URL(location.href).searchParams;
-  for (const key of ['q','topic','country','month','status','fee']) get(key).value=params.get(key)||'';
+  get('q').value=params.get('q')||'';
+  for(const key of window.GazMulti.keys) multi[key].set(params.getAll(key));
   get('sort').value=['date','name','country'].includes(params.get('sort'))?params.get('sort'):'date';
   get('saved').checked=params.get('saved')==='1';
   pageSize=[10,20,50,100].includes(Number(params.get('size')))?Number(params.get('size')):20;
   currentPage=Math.max(1,Math.min(100000,Number(params.get('page'))||1));
   currentPage=Math.floor(currentPage);
-  const country=params.get('countryCode') || published.find(e=>e.country===get('country').value)?.countryCode || '';
-  atlas.restore(params.get('region')||'',country);
-  get('country').value=published.find(e=>e.countryCode===atlas.selection().country)?.country||'';
+  const codes=params.getAll('countryCode').length?params.getAll('countryCode'):window.GazMulti.values('country').map(name=>countryCodes.get(name)).filter(Boolean);
+  atlas.restore(params.get('region')||'',codes);
+  multi.country.set(atlas.selection().countries.map(code=>countryNames.get(code)).filter(Boolean));
   render(false);
 }
 function showPagination() {
@@ -236,36 +260,47 @@ function showPagination() {
 }
 function showActiveFilters() {
   const host=get('active-filters');
-  const selection=atlas.selection();
-  const labels=[];
-  if(selection.country) labels.push(get('atlas-country').selectedOptions[0]?.textContent.split(' · ')[0]);
-  else if(selection.region) labels.push(get('atlas-regions').querySelector('[aria-pressed=true]')?.textContent);
-  for(const key of ['topic','month','status','fee']) if(get(key).value) labels.push(get(key).selectedOptions[0].textContent);
-  if(get('q').value.trim()) labels.push('Arama: '+get('q').value.trim());
-  if(get('saved').checked) labels.push('Takip listem');
-  host.replaceChildren();
-  host.hidden=!labels.length;
-  if(labels.length) {
-    const caption=make('p',labels.filter(Boolean).join(' · '));
-    const clear=make('button','Tüm etkinliklere dön');
-    clear.type='button';clear.addEventListener('click',resetView);
-    host.append(caption,clear);
+  const chips=make('div');chips.className='filter-chips';
+  const labels={country:'Ülke',topic:'Konu',month:'Ay',status:'Tarih kaynağı',fee:'Ücret'};
+  for(const key of window.GazMulti.keys) for(const option of get(key).selectedOptions) {
+    if(!option.value) continue;
+    const chip=make('button',option.textContent+' · kaldır');
+    chip.type='button';chip.setAttribute('aria-label',labels[key]+' filtresini kaldır · '+option.textContent);
+    chip.addEventListener('click',()=>{
+      multi[key].set(window.GazMulti.values(key).filter(value=>value!==option.value));
+      if(key==='country')syncCountries();
+      render();
+    });
+    chips.append(chip);
+  }
+  const region=atlas.selection().region;
+  if(region) {
+    const chip=make('button',get('atlas-regions').querySelector('[aria-pressed=true]').textContent+' · kaldır');
+    chip.type='button';chip.addEventListener('click',()=>{atlas.restore('',atlas.selection().countries);render();});chips.append(chip);
+  }
+  if(get('q').value.trim()) {
+    const chip=make('button','Arama: '+get('q').value.trim()+' · kaldır');chip.type='button';
+    chip.addEventListener('click',()=>{get('q').value='';render();});chips.append(chip);
+  }
+  if(get('saved').checked) {
+    const chip=make('button','Takip listem · kaldır');chip.type='button';
+    chip.addEventListener('click',()=>{get('saved').checked=false;render();});chips.append(chip);
+  }
+  host.hidden=!chips.children.length;host.replaceChildren();
+  if(chips.children.length) {
+    const clear=make('button','Tüm etkinliklere dön');clear.type='button';clear.addEventListener('click',resetView);
+    host.append(chips,clear);
   }
 }
 function render(resetPage=true,push=false) {
   if(resetPage!==false) currentPage=1;
   const query = normal(get('q').value.trim());
-  const month = get('month').value;
-  for (const cell of yearStrip.children) cell.setAttribute('aria-pressed',String(cell.dataset.month === month));
-  const fee = get('fee').value;
-  const filters = ['topic','status'].map(key => [key,get(key).value]);
+  const filters=selections();
+  for(const cell of yearStrip.children) cell.setAttribute('aria-pressed',String(filters.month.includes(cell.dataset.month)));
   active = events.filter(event => {
     if (!atlas.includes(event)) return false;
     if (get('saved').checked && !saved.has(event.id)) return false;
-    if (filters.some(([key,value]) => value && event[key] !== value)) return false;
-    if (month && (event.start?.slice(5,7) || 'none') !== month) return false;
-    const hasFee = event.visitor || event.delegate;
-    if (fee === 'known' && !hasFee || fee === 'unknown' && hasFee || fee === 'free' && !event.visitor?.startsWith('Ücretsiz')) return false;
+    if (!window.GazMulti.matches(event,filters)) return false;
     return !query || normal([event.name,event.topic,event.type,event.city,event.country,event.venue,event.note].join(' ')).includes(query);
   }).sort((a,b) => {
     const key = get('sort').value;
@@ -288,7 +323,7 @@ function render(resetPage=true,push=false) {
 }
 get('filters').addEventListener('submit',event => event.preventDefault());
 get('filters').addEventListener('input',event => {
-  if (event.target === get('country')) atlas.selectCountry(published.find(e=>e.country===event.target.value)?.countryCode || '',false);
+  if (event.target === get('country')) syncCountries();
   render();
 });
 get('filters').addEventListener('reset',event => {event.preventDefault();resetView();});
@@ -408,7 +443,9 @@ for (const month of months) {
   cell.dataset.month = month;
   cell.append(make('span',monthName(month)),make('strong'));
   cell.addEventListener('click',() => {
-    get('month').value = get('month').value === month ? '' : month;
+    const selected=new Set(window.GazMulti.values('month'));
+    if(selected.has(month))selected.delete(month);else selected.add(month);
+    multi.month.set([...selected]);
     render();
   });
   yearStrip.append(cell);
@@ -417,7 +454,7 @@ get('filters').before(yearStrip);
 updateYearStrip();
 atlas = window.GazAtlas(get('atlas'),events,(code,clearAll) => {
   if(clearAll) {resetView();return;}
-  get('country').value = published.find(e=>e.countryCode===code)?.country || '';
+  multi.country.set(atlas.selection().countries.map(code=>countryNames.get(code)).filter(Boolean));
   render();
 });
 restoreAddress();
