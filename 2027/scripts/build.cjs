@@ -49,7 +49,7 @@ for (const [name,content] of Object.entries(outputs)) fs.writeFileSync(path.join
 const indexPath = path.join(site,'index.html');
 const versions = new Map();
 const index = fs.readFileSync(indexPath,'utf8').replace(
-  /\b(src|href)="(style\.css|catalog\.js|core\.js|app\.js|atlas-data\.js|atlas\.js|event-editor\.js|events\.csv|events\.json|report\.json)(?:\?v=[a-f0-9]+)?"/g,
+  /\b(src|href)="(style\.css|catalog\.js|core\.js|app\.js|atlas-data\.js|atlas\.js|event-editor\.js|manual\.js|events\.csv|events\.json|report\.json)(?:\?v=[a-f0-9]+)?"/g,
   (_,attr,name) => {
     if (!versions.has(name)) {
       versions.set(name,createHash('sha256').update(fs.readFileSync(path.join(site,name))).digest('hex').slice(0,16));
