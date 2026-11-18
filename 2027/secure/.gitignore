@@ -1,0 +1,7 @@
+assets/
+.local-secrets/
+.env
+.env.*
+!.env.example
+node_modules/
+.vercel/

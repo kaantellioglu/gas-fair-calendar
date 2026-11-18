@@ -1,0 +1,16 @@
+{
+  "framework": null,
+  "buildCommand": "npm run build",
+  "functions": {
+    "api/gateway.js": {
+      "includeFiles": "assets/**",
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/gateway?route=$1"
+    }
+  ]
+}
