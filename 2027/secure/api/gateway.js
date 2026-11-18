@@ -5,11 +5,24 @@ const {randomUUID}=require('node:crypto');
 const security=require('../lib/security.cjs');
 const {createStore,StoreError}=require('../lib/github-store.cjs');
 const {mutateCatalog}=require('../lib/catalog.cjs');
-const loginHTML='<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ESKA · Gaz Takvimi 2027</title><link rel="stylesheet" href="/login.css"><main><p class="brand">ESKA · GAZ TAKVİMİ 2027</p><h1>Ortak takvime giriş</h1><p>Fuarları ve kaynakları ekip olarak tek bir yerde yönetin.</p><form id="login"><label>Parola<input type="password" name="password" autocomplete="current-password" required maxlength="256" autofocus></label><button>Takvimi aç</button><p id="message" role="status"></p></form></main><script src="/login.js"></script></html>';
+const pwaHead='<meta name="theme-color" content="#024660"><meta name="apple-mobile-web-app-title" content="ESKA Takvim"><link rel="manifest" href="/manifest.webmanifest"><link rel="icon" type="image/svg+xml" href="/icons/icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"><link rel="stylesheet" href="/pwa.css">';
+const loginHTML='<!doctype html><html lang="tr"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ESKA · Gaz Takvimi 2027</title>'+pwaHead+'<link rel="stylesheet" href="/login.css"><main><p class="brand">ESKA · GAZ TAKVİMİ 2027</p><h1>Ortak takvime giriş</h1><p>Fuarları ve kaynakları ekip olarak tek bir yerde yönetin.</p><form id="login"><label>Parola<input type="password" name="password" autocomplete="current-password" required maxlength="256" autofocus></label><button>Takvimi aç</button><p id="message" role="status"></p></form></main><script src="/login.js"></script><script defer src="/pwa-install.js"></script></html>';
 const loginCSS='*{box-sizing:border-box}body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#024660;color:#163746;font:16px/1.55 "Segoe UI",sans-serif;padding:24px}main{width:min(460px,100%);background:#f5f9fb;padding:36px;border-radius:8px}.brand{font-size:.8rem;font-weight:750;color:#006985}h1{font-size:1.8rem;line-height:1.2;letter-spacing:-.025em}p{color:#526b76}label{display:grid;gap:8px;font-weight:650}input,button{font:inherit;min-height:48px;border-radius:4px}input{border:1px solid #7198a9;padding:10px;width:100%}button{background:#024660;color:#fff;border:0;margin-top:16px;width:100%;font-weight:700;cursor:pointer}button:disabled{opacity:.65;cursor:wait}:focus-visible{outline:3px solid #009fd6;outline-offset:3px}#message{min-height:24px;margin-bottom:0}';
 const loginJS="document.getElementById('login').addEventListener('submit',async event=>{event.preventDefault();const form=event.currentTarget,button=form.querySelector('button'),message=document.getElementById('message');button.disabled=true;message.textContent='Giriş kontrol ediliyor…';try{const response=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:form.elements.password.value}),credentials:'same-origin'});form.elements.password.value='';const result=await response.json();if(!response.ok)throw Error(result.error||'Giriş yapılamadı.');location.replace('/');}catch(error){message.textContent=error.message;button.disabled=false;form.elements.password.focus();}});";
 const allowed=new Set(['index.html','style.css','app.js','atlas.js','atlas-data.js','core.js','multi-select.js','manual.js','event-editor.js','shared.js']);
 const dynamic=new Set(['catalog.js','events.json','events.csv','calendar.ics','report.json']);
+// Only installation resources are public. The shared catalog and app stay session-protected.
+const publicPwaAssets=new Map([
+ ['manifest.webmanifest','application/manifest+json; charset=utf-8'],
+ ['pwa-install.js','text/javascript; charset=utf-8'],
+ ['pwa.css','text/css; charset=utf-8'],
+ ['sw.js','text/javascript; charset=utf-8'],
+ ['icons/icon.svg','image/svg+xml'],
+ ['icons/icon-192.png','image/png'],
+ ['icons/icon-512.png','image/png'],
+ ['icons/icon-maskable-512.png','image/png'],
+ ['icons/apple-touch-icon.png','image/png']
+]);
 async function bodyJSON(req){
  if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))throw new StoreError(415,'JSON biçiminde veri gönderin.');
  if(req.body!==undefined){
@@ -22,7 +35,7 @@ async function bodyJSON(req){
 }
 function createHandler({env=process.env,store:providedStore,readAsset,core}={}){
  let store=providedStore,authCache;
- const asset=readAsset||((name)=>fs.readFile(path.join(__dirname,'../assets',name),'utf8'));
+ const asset=readAsset||((name)=>fs.readFile(path.join(__dirname,'../assets',name),name.endsWith('.png')?undefined:'utf8'));
  function database(){return store||(store=createStore(env));}
  async function authRecord(){
   if(authCache?.until>Date.now())return authCache.record;
@@ -43,7 +56,7 @@ function createHandler({env=process.env,store:providedStore,readAsset,core}={}){
   };
   const send=(status,data,type='application/json; charset=utf-8',extra={})=>{
    res.writeHead(status,{...common,'Content-Type':type,...extra});
-   res.end(req.method==='HEAD'?'':typeof data==='string'?data:JSON.stringify(data));
+   res.end(req.method==='HEAD'?'':typeof data==='string'||Buffer.isBuffer(data)?data:JSON.stringify(data));
   };
   try{
    const requestURL=new URL(req.url,'https://gateway.invalid');
@@ -53,6 +66,9 @@ function createHandler({env=process.env,store:providedStore,readAsset,core}={}){
    const api=route.startsWith('api/');
    if(['GET','HEAD'].includes(req.method)&&route==='login.css')return send(200,loginCSS,'text/css; charset=utf-8');
    if(['GET','HEAD'].includes(req.method)&&route==='login.js')return send(200,loginJS,'text/javascript; charset=utf-8');
+   if(['GET','HEAD'].includes(req.method)&&publicPwaAssets.has(route)){
+    return send(200,await asset(route),publicPwaAssets.get(route));
+   }
    const post=req.method==='POST';
    if(post&&req.headers.origin!==origin())throw new StoreError(403,'İstek kaynağı doğrulanamadı.');
    if(route==='login'&&post){
@@ -105,7 +121,9 @@ function createHandler({env=process.env,store:providedStore,readAsset,core}={}){
    let content=await asset(route);
    if(route==='index.html'){
     content=content.replace(/<script defer src="manual\.js[^"]*"><\/script>/,match=>'<script defer src="/shared.js"></script>'+match)
-     .replace('Manuel ekledikleriniz bu tarayıcıda saklanır. Ortak takvime eklemek için GitHub önerisi açın.','Fuar ve kaynak kayıtları ortak GitHub veritabanına kaydedilir. Tüm kullanıcılar aynı veri üzerinde çalışır.');
+     .replace('Manuel ekledikleriniz bu tarayıcıda saklanır. Ortak takvime eklemek için GitHub önerisi açın.','Fuar ve kaynak kayıtları ortak GitHub veritabanına kaydedilir. Tüm kullanıcılar aynı veri üzerinde çalışır.')
+     .replace(/<\/title>/,'</title>'+pwaHead)
+     .replace('<header id="anasayfa">','<script defer src="/pwa-install.js"></script><header id="anasayfa">');
    }
    return send(200,content,route.endsWith('.css')?'text/css; charset=utf-8':route.endsWith('.js')?'text/javascript; charset=utf-8':'text/html; charset=utf-8');
   }catch(error){

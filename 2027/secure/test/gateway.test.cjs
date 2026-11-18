@@ -21,7 +21,7 @@ function fixture(){
    value=structuredClone(next);revision='c'.repeat(40);writes++;return revision;
   },async consumeLoginBudget(){}
  };
- const handler=createHandler({env:{APP_ORIGIN:'https://calendar.example',SESSION_SECRET:secret},store,readAsset:async name=>name==='index.html'?'<script defer src="manual.js"></script>':'asset',core:require('../../site/core.js')});
+ const handler=createHandler({env:{APP_ORIGIN:'https://calendar.example',SESSION_SECRET:secret},store,readAsset:async name=>name==='index.html'?'<title>ESKA Takvim</title><script defer src="manual.js"></script><header id="anasayfa"></header>':'asset',core:require('../../site/core.js')});
  const token=()=>security.issueSession(secret,auth.version);
  async function call(route,{method='GET',body,cookie,csrf,origin='https://calendar.example'}={}){
   let result;
@@ -48,9 +48,33 @@ test('sessions reject tampering, expiry and a password-version change',()=>{
 test('unauthenticated visits show login; data and auth records are not exposed',async()=>{
  const f=fixture();const page=await f.call('');
  assert.equal(page.status,200);assert.match(page.body,/Ortak takvime giriş/);assert(!page.body.includes(catalog.events[0].name));
+ assert.match(page.body,/rel="manifest" href="\/manifest\.webmanifest"/);
+ assert.match(page.body,/pwa-install\.js/);
  for(const route of ['catalog.js','events.csv','events.json','calendar.ics','report.json','data/catalog.json','auth/password.json','assets/app.js','api/catalog']){
   const response=await f.call(route);assert.equal(response.status,401,route);assert.equal(response.headers['Cache-Control'],'private, no-store, max-age=0');
  }
+});
+test('installation resources are public without exposing protected data or caching it offline',async()=>{
+ const f=fixture();
+ for(const [route,type] of [
+  ['manifest.webmanifest','application/manifest+json'],['pwa-install.js','text/javascript'],
+  ['pwa.css','text/css'],['sw.js','text/javascript'],['icons/icon.svg','image/svg+xml'],
+  ['icons/icon-192.png','image/png'],['icons/icon-512.png','image/png'],
+  ['icons/icon-maskable-512.png','image/png'],['icons/apple-touch-icon.png','image/png']
+ ]){
+  const response=await f.call(route);
+  assert.equal(response.status,200,route);
+  assert(response.headers['Content-Type'].startsWith(type),route);
+  assert.equal((await f.call(route,{method:'HEAD'})).status,200,route);
+ }
+ const manifest=JSON.parse(fs.readFileSync(require.resolve('../public/manifest.webmanifest'),'utf8'));
+ assert.equal(manifest.display,'standalone');
+ assert.equal(manifest.scope,'/');
+ assert(manifest.icons.some(icon=>icon.purpose==='maskable'));
+ const sw=fs.readFileSync(require.resolve('../public/sw.js'),'utf8');
+ assert(!sw.includes("addEventListener('fetch'"));
+ assert(!sw.includes('caches.open'));
+ for(const path of ['catalog.js','events.json','api/catalog'])assert.equal((await f.call(path)).status,401);
 });
 test('login rejects wrong credentials and cross-origin requests',async()=>{
  const f=fixture();
@@ -74,7 +98,10 @@ test('authenticated users get the same live GitHub catalog; mutations require CS
 test('protected assets are allowlisted, and signout clears the cookie',async()=>{
  const f=fixture(),cookie=f.token();
  for(const route of ['auth/password.json','.env','lib/security.cjs','assets/app.js'])assert.equal((await f.call(route,{cookie})).status,404,route);
- const html=await f.call('',{cookie});assert.match(html.body,/shared\.js/);
+ const html=await f.call('',{cookie});
+ assert.match(html.body,/shared\.js/);
+ assert.match(html.body,/manifest\.webmanifest/);
+ assert.match(html.body,/pwa-install\.js/);
  const catalogJS=await f.call('catalog.js',{cookie});assert.match(catalogJS.body,/"shared":true/);assert(!catalogJS.body.includes(auth.digest));
  const logout=await f.call('api/logout',{method:'POST',cookie,csrf:security.csrf(cookie,secret)});
  assert.equal(logout.status,200);assert.match(logout.headers['Set-Cookie'],/Max-Age=0/);

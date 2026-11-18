@@ -41,6 +41,14 @@ Depo public ise sunucu veri işlemlerini reddeder. Parola, GitHub yazma anahtar�
 
 ICS indirme, oturum açıldıktan sonra çalışır. Outlook'un arka planda şifreli oturum çerezini kullanamayacağı için public web aboneliği kapalıdır. Ayrı bir korumalı abonelik yöntemi kurulmadan anonim ICS adresi verilmez.
 
+## Android ve iOS ana ekran uygulaması
+
+Uygulama PWA olarak kurulabilir. Android Chrome'da "Uygulamayı yükle" butonu tarayıcının kurulum penceresini açar; iPhone'da Safari → Paylaş → Ana Ekrana Ekle yolunu gösterir.
+
+Manifest, simgeler, kurulum betiği ve service worker kimlik doğrulaması olmadan sunulur. Bunlar **hiçbir ortak takvim verisi içermez**. Service worker ağ isteklerini yakalamaz ve özel veri önbelleğe alınmaz. Diğer tüm uygulama dosyaları ile JSON/CSV/ICS çıktıları oturum koruması altında kalır.
+
+PWA kaynakları `public/` klasöründedir; `npm run build` bunları Vercel işlevinin `assets/` klasörüne kopyalar. Simgeler ESKA kurumsal renkleri ve takvim işaretiyle tasarlanmıştır.
+
 ## Kontrol
 
 Proje kökünden:
